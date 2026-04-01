@@ -56,7 +56,63 @@ Außerdem müssen nach die Änderungen alle Mitarbeiter darüber in Kenntniss ge
 == Industriestandarts
 
 Auch in der Industrie sind verschieden Standarts vorhanden, welche seit vielen Jahren genutzt werden. 
-Im folgenden sollen die 3 bekanntesten Erklärt und auf Anwendbarkeit für die aktuelle Situation analysiert werden.
+Im folgenden sollen die 2 bekanntesten Erklärt und auf Anwendbarkeit für die aktuelle Situation analysiert werden.
+
+=== GitHub-Flow
+
+#figure(image("assets/GitHub-Flow.png", width: 80%), caption: "GitHub Flow" )<GitHub-Flow>
+
+GitHub-Flow ist ein leichtgewichtiges, kontinuierlich ausgerichtetes Branching-Modell, das speziell für Teams entwickelt wurde, die schnell und flexibel deployen möchten. Es setzt auf kurze Feature-Branches, häufige Pull Requests und automatisierte Tests, um Änderungen zügig in den Main-Branch zu integrieren. Besonders beliebt ist GitHub-Flow in modernen DevOps-Umgebungen und Projekten, in denen kontinuierliche Auslieferung und hohe Release-Geschwindigkeit im Vordergrund stehen, wie z.B. bei Web-Apps.
+
+#figure(table(
+  columns: (1fr, 2fr),
+  inset: 8pt,
+  align: (left, left),
+  stroke: 0.5pt + gray,
+  [
+    *Branch*
+  ],
+  [
+    *Beschreibung*
+  ],
+
+  // main(master)
+  [
+    main(master)
+  ],
+  [
+    Enthält fertige Releases
+
+    Stabil - Änderungen nur aus feature/\* per PR
+  ],
+
+  // feature
+  [
+    feature/\*
+  ],
+  [
+    Entwicklungsbranch für einzelne Features oder Fixes
+
+    werden direkt von main erstellt
+
+    nach Fertigstellung direkt PR in main
+  ],
+))<Tabelle-GitHub-Flow>
+
+In @Tabelle-GitHub-Flow sind die einzelnen Branches beschrieben und wie sie funktionieren, was auch nochmal in @GitHub-Flow erkennbar ist. Hiermit wird klar, dass diese Strategie sich sehr gut für schnelle Feature Releases eignet. Allerdings gilt dies nur unter bestimmten Bedingungen. Die Eignung hängt von den spezifischen Anforderungen der Organisation ab. 
+==== Vorteile
+- Schnelle Iteration
+- geringe Komplexität
+- ideal für Kontinuierliche Integration
+==== Nachteile
+- Wenig Struktur für große Releases
+- Risiko von instabilem Main-Branch bei häufigem mergen
+==== Fazit
+
+Zusammenfassend bietet GitHub-Flow eine einfache und agile Branching-Strategie, die sich ideal für Teams eignet, die kontinuierliche Integration und schnelle Feature-Releases priorisieren. Durch kurze Feature-Branches und direkte Merges in den Main-Branch fördert es Flexibilität und reduziert Overhead. Im Kontext der #gls("O-SW")-Abteilung, die auf strukturierte Meilenstein-Releases setzt, zeigt sich jedoch eine Schwäche: Die fehlende Isolation von Release-Vorbereitungen kann zu Instabilitäten führen und die Qualitätssicherung erschweren. Daher ist GitHub-Flow weniger geeignet als komplexere Modelle wie Git-Flow, die eine klarere Trennung von Entwicklungs- und Release-Phasen bieten.
+
+GitHub-Flow zeigt also Grenzen für die O-SW. Im folgenden wird die Alternative Git-Flow analysiert, um festzustellen, ob diese 
+besser zum Kontext passt.
 
 === Git-Flow
 
@@ -80,16 +136,16 @@ In @Git-Flow wird erkenntlich wie diese sich verändern können, bzw. in welchen
     *Beschreibung*
   ],
 
-  // main/master
+  // main(master)
   [
-    main/master
+    main(master)
   ],
   [
     Enthält fertige Releases
 
     Stabil - Änderungen nur aus release/\* per PR
 
-    Änderungen in main/master müssen zurück in develop fließen.
+    Änderungen in main müssen zurück in develop fließen.
   ],
 
   // develop
@@ -143,21 +199,23 @@ In @Git-Flow wird erkenntlich wie diese sich verändern können, bzw. in welchen
     hotfix \/ \* 
   ],
   [
-    Hotfix von main/master
+    Hotfix von main
 
     Änderungen fließen auch in develop
   ],
 ))<tabelle-Git-Flow>
 
-=== GitHub-Flow
-
-=== Trunk based 
+Dieses System eignet sich hervorragend für einen Strukturierten Ablauf mit klaren, großen und aufeinander folgende Releases, ist allerdings eher ungeeignet, für die Entwicklung von "Rolling Releases", da der Weg zum Release zu langsam ist. Weil aber die Projekte in der #gls("O-SW") nur bei den Projektmeilensteinen einen Release vorsehen, eignet sich dieses System am besten.
 
 == Richtlinien E-SW
 
-Zu Beginn wurde von Ralf Scheyerle, welcher für die Richtlinien bei #gls("E-SW") zuständig ist, ein aktueller Stand dieser angefordert. Da das Team allerdings nur 5 Personen umfasst, wurden diese Hauptsächlich mündlich kommuniziert und lediglich in einem einfachen Word Dokument grob formuliert. 
 
 #figure(image("assets/Git-Flow-E-SW.png", width: 90%), caption: "Git Flow E-SW" )<Git-Flow-E-SW>
+
+Zu Beginn wurde von Ralf Scheyerle, welcher für die Richtlinien bei #gls("E-SW") zuständig ist, ein aktueller Stand dieser angefordert. Da das Team allerdings nur 5 Personen umfasst, wurden diese Hauptsächlich mündlich kommuniziert und lediglich in einem einfachen Word Dokument grob formuliert. 
+
+In @Git-Flow-E-SW, welches in diesem Word Dokument liegt, ist bereits erkennbar, dass die aktuelle Strategie der #gls("E-SW") bereits sehr stark der Git-Flow Strategie ähnelt. Der einzige Unterschied, wie in @tabelle-E-SW, welche auch in dem Dokument ist, genauer beschrieben wurde, werden hier die Releases nicht in den release/\* Branches vorbereitet, sondern in main, und dann in einem release Branch Veröffentlicht. Das hat hier den Vorteil, dass man schnell zum Code Stand von einem Vergangenen Release zurückspringen kann, ohne in den Tags/Pull-Requests nach der Versionsnummer zu suchen. 
+Es hat aber den Nachteil, dass sich auf Dauer eine sehr große Menge an "toten" Branches akkumulieren, welche das Arbeiten unübersichtlich machen.
 
 #figure(table(
   columns: (1fr, 2fr),
