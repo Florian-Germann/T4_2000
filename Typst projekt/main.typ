@@ -33,7 +33,7 @@ Ein zentrales Konzept ist der Branch. Branches sind isolierte Entwicklungszweige
 
 Durch diese Kombination aus Versionskontrolle, klarer Nachvollziehbarkeit und parallelen Entwicklungszweigen bietet GitHub eine strukturierte Grundlage für moderne Softwareentwicklung. Sowohl für kleine Teams als auch für große.
 
-Die Effektivität von GitHub hängt allerdings von der Wahl einer passenden Branching-Strategie ab. Branching-Regeln definieren, wie Features, Bugfixes und Releases organisiert sowie integriert werden. Sie sind technisch und prozessual relevant für Koordination und Qualitätssicherung.
+Die Effektivität von GitHub hängt allerdings von der Wahl einer passenden Branching-Strategie ab. Branching-Regeln definieren, wie Features, Bugfixes und Releases organisiert und integriert werden. Sie sind technisch und prozessual relevant für Koordination und Qualitätssicherung.
 
 Genau solche Strategien besitzt die Abteilung #gls("E-SW") bereits, wo sie erfolgreich eingesetzt werden. Diese Richtlinien werden auch in der #gls("O-SW") genutzt, um die Entwicklung der internen Bibliotheken und Template-Projekte zu verbessern. Nun sollen die Vorgaben zusätzlich für die Arbeit an den Anlagen angewendet werden. Da dort jedoch ein anderer Ablauf herrscht und sich die Anforderungen deutlich unterscheiden, müssen die bestehenden Richtlinien auf ihre Kompatibilität geprüft und gegebenenfalls angepasst werden.
 
@@ -46,17 +46,17 @@ Diese fehlende Passgenauigkeit führt dazu, dass Branching-Entscheidungen indivi
 
 Die zentrale Herausforderung besteht somit darin, die vorhandenen Strategien systematisch auf ihre Eignung für die spezifischen Abläufe der #gls("O-SW") zu prüfen und daraus konsistente, abteilungsweit gültige Richtlinien abzuleiten.
 
-Desweiteren soll in diesem Prozess ebenfalls die Prüfung der geltenden Coding-Conventions implementiert und gegebenenfalls durch KI gestützt werden.
+Des Weiteren soll in diesem Prozess ebenfalls die Prüfung der geltenden Coding-Conventions implementiert und gegebenenfalls durch KI gestützt werden.
 
-Außerdem müssen nach die Änderungen alle Mitarbeiter darüber in Kenntniss gesetzt und entsprechend geschult werden, um die korrekte Umsetzung und effiziente Nutzung zu gewährleisten.
+Außerdem müssen nach der Umsetzung alle Mitarbeiter darüber in Kenntnis gesetzt und entsprechend geschult werden, um die korrekte Umsetzung und effiziente Nutzung zu gewährleisten.
 
 
-= Aktueller Stand
+= Aktueller Stand der Richtlinien
 
-== Industriestandarts
+== Industriestandards
 
-Auch in der Industrie sind verschieden Standarts vorhanden, welche seit vielen Jahren genutzt werden. 
-Im folgenden sollen die 2 bekanntesten Erklärt und auf Anwendbarkeit für die aktuelle Situation analysiert werden.
+Auch in der Industrie sind verschiedene Standards vorhanden, die seit vielen Jahren genutzt werden. 
+Im Folgenden sollen die zwei bekanntesten erläutert und auf Anwendbarkeit für die aktuelle Situation analysiert werden.
 
 === GitHub-Flow
 
@@ -111,18 +111,18 @@ In @Tabelle-GitHub-Flow sind die einzelnen Branches beschrieben und wie sie funk
 
 Zusammenfassend bietet GitHub-Flow eine einfache und agile Branching-Strategie, die sich ideal für Teams eignet, die kontinuierliche Integration und schnelle Feature-Releases priorisieren. Durch kurze Feature-Branches und direkte Merges in den Main-Branch fördert es Flexibilität und reduziert Overhead. Im Kontext der #gls("O-SW")-Abteilung, die auf strukturierte Meilenstein-Releases setzt, zeigt sich jedoch eine Schwäche: Die fehlende Isolation von Release-Vorbereitungen kann zu Instabilitäten führen und die Qualitätssicherung erschweren. Daher ist GitHub-Flow weniger geeignet als komplexere Modelle wie Git-Flow, die eine klarere Trennung von Entwicklungs- und Release-Phasen bieten.
 
-GitHub-Flow zeigt also Grenzen für die O-SW. Im folgenden wird die Alternative Git-Flow analysiert, um festzustellen, ob diese 
+GitHub-Flow zeigt also Grenzen für die O-SW. Im Folgenden wird die Alternative Git-Flow analysiert, um festzustellen, ob diese 
 besser zum Kontext passt.
 
-=== Git-Flow
+=== Git-Flow <Git-Flow>
 
 
-#figure(image("assets/Gitflow-Workflow-4.png", width: 80%), caption: "Git Flow" )<Git-Flow>
+#figure(image("assets/Gitflow-Workflow-4.png", width: 80%), caption: "Git Flow" )<Git-Flow-Grafik>
 
 Git-Flow ist ein strukturiertes Branching-Modell für Git, das Teams hilft, Entwicklungsprozesse klar zu organisieren und gleichzeitig stabile Releases sicherzustellen. Es wurde 2010 von Vincent Driessen entwickelt und ist besonders in Projekten beliebt, in denen mehrere Features, Hotfixes und Versionen parallel entstehen.
 
-Dieses umfasst ein paar langlebige Branches, welchen gewisse Regeln auferlegt sind.
-In @Git-Flow wird erkenntlich wie diese sich verändern können, bzw. in welchen Branches tatsächlich commitet wird. Desweiteren sind in @tabelle-Git-Flow die einzelnen Branches bzw. Branch-Gruppen beschrieben.
+Dies umfasst einige langlebige Branches, denen gewisse Regeln auferlegt sind.
+In @Git-Flow-Grafik wird erkennbar, wie diese sich verändern können und in welchen Branches tatsächlich commitet wird. Des Weiteren sind in @tabelle-Git-Flow die einzelnen Branches bzw. Branch-Gruppen beschrieben.
 
 #figure(table(
   columns: (1fr, 2fr),
@@ -207,14 +207,14 @@ In @Git-Flow wird erkenntlich wie diese sich verändern können, bzw. in welchen
 
 Dieses System eignet sich hervorragend für einen Strukturierten Ablauf mit klaren, großen und aufeinander folgende Releases, ist allerdings eher ungeeignet, für die Entwicklung von "Rolling Releases", da der Weg zum Release zu langsam ist. Weil aber die Projekte in der #gls("O-SW") nur bei den Projektmeilensteinen einen Release vorsehen, eignet sich dieses System am besten.
 
-== Richtlinien E-SW
+== Richtlinien E-SW<E-SW-Richtlinien>
 
 
 #figure(image("assets/Git-Flow-E-SW.png", width: 90%), caption: "Git Flow E-SW" )<Git-Flow-E-SW>
 
-Zu Beginn wurde von Ralf Scheyerle, welcher für die Richtlinien bei #gls("E-SW") zuständig ist, ein aktueller Stand dieser angefordert. Da das Team allerdings nur 5 Personen umfasst, wurden diese Hauptsächlich mündlich kommuniziert und lediglich in einem einfachen Word Dokument grob formuliert. 
+Zu Beginn wurde von Ralf Scheyerle, welcher für die Richtlinien bei #gls("E-SW") zuständig ist, ein aktueller Stand dieser angefordert. Da das Team allerdings nur 5 Personen umfasst, wurden diese hauptsächlich mündlich kommuniziert und lediglich in einem einfachen Word-Dokument grob formuliert. 
 
-In @Git-Flow-E-SW, welches in diesem Word Dokument liegt, ist bereits erkennbar, dass die aktuelle Strategie der #gls("E-SW") bereits sehr stark der Git-Flow Strategie ähnelt. Der einzige Unterschied, wie in @tabelle-E-SW, welche auch in dem Dokument ist, genauer beschrieben wurde, werden hier die Releases nicht in den release/\* Branches vorbereitet, sondern in main, und dann in einem release Branch Veröffentlicht. Das hat hier den Vorteil, dass man schnell zum Code Stand von einem Vergangenen Release zurückspringen kann, ohne in den Tags/Pull-Requests nach der Versionsnummer zu suchen. 
+In @Git-Flow-E-SW, welches in diesem Word Dokument liegt, ist bereits erkennbar, dass die aktuelle Strategie der #gls("E-SW") bereits sehr stark der Git-Flow Strategie ähnelt. Der einzige Unterschied, wie in @tabelle-E-SW, welche auch in dem Dokument ist, genauer beschrieben wurde, werden hier die Releases nicht in den release/\* Branches vorbereitet, sondern in main, und dann in einem release Branch Veröffentlicht. Dies hat den Vorteil, dass man schnell zum Code-Stand eines vergangenen Releases zurückspringen kann, ohne in den Tags/Pull Requests nach der Versionsnummer suchen zu müssen.
 Es hat aber den Nachteil, dass sich auf Dauer eine sehr große Menge an "toten" Branches akkumulieren, welche das Arbeiten unübersichtlich machen.
 
 #figure(table(
@@ -309,12 +309,28 @@ Es hat aber den Nachteil, dass sich auf Dauer eine sehr große Menge an "toten" 
   ],
 ))<tabelle-E-SW>
 
-Dieses Word Dokument enthällt zum einen @Git-Flow-E-SW und zum anderen @tabelle-E-SW. Diese deuten auf eine veränderte Git Flow Branching-Strategie hin, mit dem Unterschied, dass hier nicht in einem separaten release\/\* branch der Release vorbereitet wird, sondern in main und der Release erfolgt durch einen release\/\* branch.
+Dieses Word-Dokument enthält in @Git-Flow-E-SW und @tabelle-E-SW die Kernelemente einer angepassten Git-Flow-Strategie. Die Strategie unterscheidet sich dadurch, dass Releases nicht in separaten release/\*-Branches vorbereitet werden, sondern in main, und dann über einen release/\*-Branch veröffentlicht werden.
+Die übrigen Vor- und Nachteile entsprechen denen aus @Git-Flow.
+
+== Fazit
+
+Nach Gesprächen mit dem in #gls("O-SW") für die Richtlinien verantwortlichen Mitarbeiter Robin Hettel stellte sich heraus, dass zum aktuellen Zeitpunkt die Implementierung von Git-Flow sowohl am sinnvollsten, als auch gewünscht ist. Dies ist darauf zurückzuführen, dass diese für die wenigen großen Releases in Projekten besser anwendbar ist als GitHub-Flow. Außerdem würde der Vorteil, der in @E-SW-Richtlinien genannt wurde, hier keine Anwendung finden, da nur die Projektmeilensteine einem Release nahe kommen, und da benötigt man ohnehin lediglich den letzten Stand.
 
 
-== Prüfung Coding-Conventions
+= Prüfung der Coding-Conventions
 
 
+Der GitHub Copilot kann weit mehr als nur Code vervollständigen: Er unterstützt Entwickler auch dabei, bestehende Coding Conventions automatisch einzuhalten. Während des Schreibens analysiert Copilot den Kontext, erkennt typische Muster und orientiert sich an projektinternen Standards. Dadurch entstehen Vorschläge, die nicht nur funktional sind, sondern auch stilistisch konsistent bleiben. Teams profitieren so von einer gleichmäßig hohen Codequalität, weniger manuellen Korrekturen und einem deutlich effizienteren Review-Prozess.
 
+== Aktueller Stand bei fpt
+
+Der aktuelle Stand bei fpt ist, dass der Copilot derzeit lediglich getestet wird. Hierzu wurde von den Verantwortlichen ein Test-Repository erstellt, um nicht in kritischen Bereichen zu agieren. Da der Copilot für Code Reviews nur auf das jeweilige Repository zugreifen kann, müssen im .github-Ordner die Coding-Conventions hinterlegt sein. Das geschieht über .md-Dateien, da GitHub diese nativ in kompilierter Form anzeigen kann. Damit alle Repositories stets auf dem neuesten Stand bleiben und Änderungen nicht manuell in der gesamten Organisation verteilt werden müssen, wurde das in @CodingConventionDiagramm dargestellte System erstellt. Jeder Block steht für ein Repository und die Pfeile repräsentieren GitHub Actions.
+
+Wenn nun eine Änderung in den Coding-Conventions auftritt, wird im Übersicht Repository eine GitHub-Aktion ausgeführt, welche die aktuellen .md Dateien auf die Libraries und die Template Projekte verteilt. Da in den Aktionen aber immer die genauen Repositorys angegeben werden müssen, kann man über diese Möglichkeit nicht direkt die Dateien in den Projekt-Repos anpassen, da hier ständig neue erstellt werden. Man kann aber im Template Projekt Aktionen anlegen, welche dann auch in jedem Projekt vorhanden sind, welche die aktuellen Conventions im Übersicht Repo anfragen, welches diese dann zurückgibt. Somit sind in allen relevanten Repositorys die aktuellen Conventions verteilt.
+
+
+#figure(image("assets\CodingConventionFlow.png", width: 90%), caption: "Coding-Convention Verteilung" )<CodingConventionDiagramm>
+
+Diese Aktionen sind bereits in allen #gls("O-SW")-Repositories vorhanden, die keine Projekt-Repositories sind. Sie wurden intensiv auf Fehler getestet. Auch die Funktion, dass Projekte diese Aktionen automatisch erhalten, ist bereits implementiert.
 
 = Fazit
