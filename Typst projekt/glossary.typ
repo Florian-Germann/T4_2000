@@ -11,4 +11,8 @@
     key: "FlexOp",
     description: "Firmeneigene Nutzeroberfläche zu Steuerung und Verwaltung von Anlagen",
   ),
+  (
+    key: "TwinCat3",
+    description: "Aktuelle Version der Entwicklungsumgebung für Beckhoff SPS"
+  )
 )

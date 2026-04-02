@@ -324,13 +324,42 @@ Der GitHub Copilot kann weit mehr als nur Code vervollständigen: Er unterstütz
 
 == Aktueller Stand bei fpt
 
-Der aktuelle Stand bei fpt ist, dass der Copilot derzeit lediglich getestet wird. Hierzu wurde von den Verantwortlichen ein Test-Repository erstellt, um nicht in kritischen Bereichen zu agieren. Da der Copilot für Code Reviews nur auf das jeweilige Repository zugreifen kann, müssen im .github-Ordner die Coding-Conventions hinterlegt sein. Das geschieht über .md-Dateien, da GitHub diese nativ in kompilierter Form anzeigen kann. Damit alle Repositories stets auf dem neuesten Stand bleiben und Änderungen nicht manuell in der gesamten Organisation verteilt werden müssen, wurde das in @CodingConventionDiagramm dargestellte System erstellt. Jeder Block steht für ein Repository und die Pfeile repräsentieren GitHub Actions.
+Der aktuelle Stand bei fpt ist, dass der Copilot derzeit lediglich getestet wird. Hierzu wurde von den Verantwortlichen ein Test-Repository erstellt, um nicht in kritischen Bereichen zu agieren. Da der Copilot für Code Reviews nur auf das jeweilige Repository zugreifen kann, müssen im .github-Ordner die Coding-Conventions hinterlegt sein. Das geschieht über .md-Dateien, da GitHub diese nativ in gerenderter Form anzeigen kann. Damit alle Repositories stets auf dem neuesten Stand bleiben und Änderungen nicht manuell in der gesamten Organisation verteilt werden müssen, wurde das in @CodingConventionDiagramm dargestellte System erstellt. Jeder Block steht für ein Repository und die Pfeile repräsentieren GitHub Actions.
 
-Wenn nun eine Änderung in den Coding-Conventions auftritt, wird im Übersicht Repository eine GitHub-Aktion ausgeführt, welche die aktuellen .md Dateien auf die Libraries und die Template Projekte verteilt. Da in den Aktionen aber immer die genauen Repositorys angegeben werden müssen, kann man über diese Möglichkeit nicht direkt die Dateien in den Projekt-Repos anpassen, da hier ständig neue erstellt werden. Man kann aber im Template Projekt Aktionen anlegen, welche dann auch in jedem Projekt vorhanden sind, welche die aktuellen Conventions im Übersicht Repo anfragen, welches diese dann zurückgibt. Somit sind in allen relevanten Repositorys die aktuellen Conventions verteilt.
+Wenn nun eine Änderung in den Coding-Conventions auftritt, wird im Übersichts-Repository eine GitHub-Aktion ausgeführt, welche die aktuellen .md Dateien auf die Libraries und die Template Projekte verteilt. Da in den Aktionen aber immer die genauen Repositories angegeben werden müssen, kann man über diese Möglichkeit nicht direkt die Dateien in den Projekt-Repos anpassen, da hier ständig neue erstellt werden. Man kann aber im Template Projekt Aktionen anlegen, welche dann auch in jedem Projekt vorhanden sind, welche die aktuellen Conventions im Übersichts-Repo anfragen, das diese dann zurückgibt. Somit sind in allen relevanten Repositories die aktuellen Conventions verteilt.
 
 
 #figure(image("assets\CodingConventionFlow.png", width: 90%), caption: "Coding-Convention Verteilung" )<CodingConventionDiagramm>
 
-Diese Aktionen sind bereits in allen #gls("O-SW")-Repositories vorhanden, die keine Projekt-Repositories sind. Sie wurden intensiv auf Fehler getestet. Auch die Funktion, dass Projekte diese Aktionen automatisch erhalten, ist bereits implementiert.
+Diese Aktionen sind bereits in allen #gls("O-SW")-Repositories vorhanden, die keine Projekt-Repositories sind. Diese wurden intensiv auf Fehler getestet. Auch die Funktion, dass neue Projekte diese Aktionen automatisch erhalten, ist bereits implementiert.
+
+
+Des Weiteren ist auf dem Test-Repository schon implementiert worden, dass der Copilot bei jeder Pull Request auf main automatisch alle Commits auf die Coding-Conventions überprüft und dann entsprechende Vorschläge liefert, um potenzielle Fehler zu beheben. Um diese Funktion auf Richtigkeit zu überprüfen, wurden mit Absicht eigene Fehler eingebaut. Aus den resultierenden Antworten des Copilot auf die Pull Requests konnten nun einige Probleme abgeleitet werden. 
+Diese sollen im Folgenden aufgelistet, erläutert und potenziell gelöst werden.
+
+== Probleme und potenzielle Lösungen
+
+==== Problem 1
+
+Das erste Problem, welches auftauchte war, dass der GitHub-Copilot bei #gls("TwinCat3") Projekten den Namen für Propertys von Funktionsbausteinen nicht geprüft hat. Dies führte dazu, dass diese auch nicht auf den Korrekten Präfix "P\_" geprüft werden konnten. Da im Internet keine Information zu diesem Verhalten zu finden waren, wurde versucht, dieses Problem dem Copilot selbst zu schildern um herauszufinden, woran als liegen könnte. Dazu wurde @prompt1 mit Referenzierung zum betreffenden Repository, verwendet. Diesem wurde auch ein Ausschnitt aus dem Relevanten Teil der Coding-Conventions übergeben, welcher in @PropertyNaming zu sehen ist.
+
+#figure(image("assets\Vorgabe-Property.png", width: 90%), caption: "Coding-Convention Property Benennung" )<PropertyNaming>
+
+#figure(raw( "Ich habe ein Problem bei der Nutzung von codeüberprüfung in Github mit dem GitHub Copilot. Dieser soll in meinem Repository automatisch bei Pull requests in main auf die aktuell geltenden Coding-Conventions überprüfen. Dabei erkennt er auch fast alle Fehler richtig. Nur bei der benennung von Propertys eines TwinCat3 Funktionsbausteins scheint er Probleme zu haben. Diese sollten nämlich auf das Präfix \"P_\" geprüft werden. wenn eine Property aber mit dem Präfix \"M_\" deklariert wird, meldet der copilot den Fehler nicht. Woran könnte das liegen?"), caption: "Prompt")<prompt1>
+
+
+Auf diesen Prompt anwortete der Copilot, dass das Problem mit der Erkennung warscheinlich auf der Tatsache basiert, dass die Regel in einer Tabelle formuliert ist. Dies sei für Sprachbasierte KI-Systeme schwer zu verstehen und eine Formulierung um Klartext würde dieses Problem warscheinlich lösen. Hierzu schlug er die Sätze, _"Propertys müssen ausnahmslos mit dem Präfix "P\_" beginnen. Transitionen müssen ausnahmslos mit dem Präfix "T\_" beginnen. Andere Präfixe sind für diese Typen nicht zulässig."_ vor. Diesen wurde noch die Klarifikation für Transitionen beigefügt, da diese ebenfalls teilweise schwer zu erkennen seien. 
+
+==== Problem 2
+
+Das zweite Problem, das sich zeigte, war, dass der Copilot Schwierigkeiten hatte, Verstöße gegen die Benennungsregeln für Variablentypen, innerhalb von Structs zu erkennen. 
+Dies zeigte sich in der Form, dass die Verstöße zwar erkannt wurden, aber der Kommentar unterdrückt wurde, da sich die KI nicht sicher war. 
+Das Problem wurde hervorgerufen, indem bei einem Struct im Testcode das Präfix für den Variablentypen entfernt wurde. Hierzu wurde der Prompt aus @prompt2 verwendet. Dieses wurde im gleichen Chat versendet wie @prompt1, um den bereits erkannten Kontext zu nutzen. Außerdem wurde wieder der Relevante Ausschnitt aus den Coding-Conventions @VariableNaming beigefügt.
+
+#figure(image("assets\Vorgaben-Variablen.png", width: 70%), caption: "Coding-Convention Variablen Präfixe" )<VariableNaming>
+
+#figure(raw("Ich habe noch ein anderes Problem. Und zwar wird bei einem Benennungsverstoß innerhalb einer Structdeklaration dieser zwar erkannt, aber wegen Unsicherheit unterdrückt. woran könnte das liegen. Stelle fragen, um Unklarheiten aufzuklären"), caption:"Prompt 2")<prompt2>
+
+Nach einer kleinen Klarifikation hat der Copilot das Problem ebenfalls auf die Tabelle zurückgeführt. Allerdings mit dem Unterschied, dass hier das Ergebnis nur "uncertain" und nicht komplettes ignorieren ist. Daraufhin hat er einen Zusatz für die Coding-Conventions vorgeschlagen, die Explizit erwähnen, dass diese allgemeine Anforderung auch für Variablen innerhalb von Structs oder Enums gelten. Zudem hat er zu bool und integer jeweils ein Beispiel angefügt. 
 
 = Fazit
