@@ -12,7 +12,7 @@
     description: "Firmeneigene Nutzeroberfläche zu Steuerung und Verwaltung von Anlagen",
   ),
   (
-    key: "TwinCat3",
+    key: "TwinCat",
     description: "Aktuelle Version der Entwicklungsumgebung für Beckhoff SPS"
   )
 )
