@@ -14,5 +14,13 @@
   (
     key: "TwinCat",
     description: "Aktuelle Version der Entwicklungsumgebung für Beckhoff SPS"
+  ),
+  (
+    key: "fpt Systems GmbH",
+    description:"Tochterfirma der FPT Robotik GmbH & Co. KG, welche für die Softwareentwicklung verantwortlich ist."
+  ),
+  (
+    key: "FPT Robotik GmbH & Co. KG",
+    description: "Die FPT Robotik GmbH & Co. KG ist ein Automatisierungsspezialist aus Amtzell, der industrielle Roboterlösungen und maßgeschneiderte Automationsanlagen für verschiedenste Branchen entwickelt."
   )
 )

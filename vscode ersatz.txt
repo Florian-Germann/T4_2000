@@ -1,0 +1,8 @@
+xae shell öffnen über vscode
+multiprog
+access
+remotedesktopverbindung
+
+
+copilot integration möglich
+sourceverwaltung in vscode
