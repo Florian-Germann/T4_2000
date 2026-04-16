@@ -1,5 +1,6 @@
 #import "@preview/clean-dhbw:0.4.0": *
 #import "glossary.typ": glossary-entries
+#import "../ki-erklärung.typ": ki-erklaerung
 
 #show: clean-dhbw.with(
   title: "Konzeption und Implementierung eines GitHub-basierten Branching-, Review- und Projektmanagementprozesses mit KI-gestützter Code-Compliance",
@@ -22,6 +23,9 @@
 )
 
 // Edit this content to your liking
+
+#ki-erklaerung
+
 
 = Einleitung
 
@@ -382,6 +386,8 @@ Wenn Änderungen an den Coding-Conventions oder Copilot-Anweisungen vorgenommen 
 
 In den Code-Reviews durch Copilot zeigte sich zunächst, dass die Gründlichkeit nicht ausreichte. Nach Recherchen und Konsultation von GitHub Copilot Chat wurde deutlich, dass die Coding-Conventions vermutlich nicht präzise genug formuliert waren. Deshalb wurden die vollständigen Kapitel "#gls("TwinCat")" und "Allgemein" überarbeitet. Hierzu wurde der Microsoft-Copilot-Agent "Prompt Coach" eingesetzt, um die Regeln unter Berücksichtigung des vorhandenen Kontexts KI-kompatibler zu formulieren. Die Überarbeitung umfasste vor allem eine sprachliche Präzisierung sowie die Ergänzung separater Copilot-Anweisungen.
 
+Die durch die KI generierten Vorschläge wurden von mehreren Personen inhaltlich geprüft und nur nach sorgfältiger Bewertung übernommen. Eine ungeprüfte oder automatische Übernahme der KI-Ausgaben erfolgte nicht.
+
 Zusätzlich wurde jeder Regel eine eindeutige ID zugeordnet, die von GitHub Copilot referenziert werden kann. Die Struktur folgt dem Muster Kapitelnummer-Fehlernummer im Kapitel, zum Beispiel "3.2.7-2".
 
 Nach diesen Anpassungen verbesserte sich die Qualität der Reviews deutlich. Dies zeigte sich daran, dass die Referenzierung von Kapiteln beziehungsweise Regel-IDs konsistent funktionierte und identifizierte Probleme zumindest als unterdrückte Kommentare erschienen.
@@ -419,6 +425,8 @@ Die Auswertung zeigte, dass die Kommentare von GitHub selbst unterdrückt wurden
 - Das Umbenennen an sich als intentionale Änderung gilt. Copilot widerspricht dem PR-Intent
 Daraus folgt: Copilot erkennt den Verstoß korrekt, GitHub unterdrückt den Kommentar jedoch im Anschluss.
 
+Die durch die Agent gelieferten Analysen wurden manuell überprüft und mit den tatsächlichen Repository-Änderungen abgeglichen, um Fehlinterpretationen auszuschließen.
+
 Als Gegenmaßnahme schlug der Agent vor, die in @Klausel gezeigte Anweisung in die GitHub-Copilot-Instruktionen aufzunehmen.
 
 #figure(caption: "Anti suppression Klausel",
@@ -446,6 +454,17 @@ da GitHub diese Kommentare als low-confidence unterdrückt.
 
 Damit werden Verstöße nicht nur an der Deklaration, sondern zusätzlich an der ersten Verwendung in einer nicht umbenannten Datei gemeldet. Dadurch sinkt die Wahrscheinlichkeit einer Unterdrückung durch GitHub.
 Nach dem Testen dieses Vorschlags wurden die ursprünglichen Kommentare zwar weiterhin teilweise unterdrückt, die Verstöße erschienen jedoch zusätzlich an der ersten Verwendung der betroffenen Variable als Fehler. Da diese Fundstellen nicht in umbenannten Dateien lagen, wurden die entsprechenden Meldungen nicht unterdrückt.
+
+
+== Feedback und andere Verbesserung
+
+Nachdem die Verbesserungen auf dem Test-Repository implementiert wurden, fand ein Gespräch mit Ralf Scheyerle statt, welcher die Änderungen prüfte. 
+Hierbei merkte er einige Dinge an den Instructions an. Zum einen seien sie ziemlich eng formuliert, sodass der Copilot nur als Reviewer funktionieren kann, was die Nutzung von ihm als Coding Agent in der Zukunft erschweren würde. Da diese Funktion ein großer Teil der effektiven Nutzung von KI ausmacht, empfiel er hier, die Anweisungen abzuändern, um diese Möglichkeit zu erhalten. Hierbei muss aber eine Balance gefunden werden, zwischen Freiheit und richtiger Funktion des Modells.
+
+Im Nachgang dieses Gesprächs wurden zum einen die Instructions so überarbeitet, dass sie den Copilot nichtmehr zu stark einschränken. Dies Bestand daraus, dass die Klausel, welche das Verhalten auf reines Reviewen beschränkten, entfernt wurde. Desweiteren wurden die überarbeiteten TwinCat-Instructions in das Übersicht-Repository eingearbeitet. Somit kann nun der Ablauf aus @CodingConventionDiagramm verwendet werden, um die Coding-Conventions un Copilot-Intructions zu verteilen.
+
+
+
 
 
 = Testen Branching und Code-Review
@@ -476,5 +495,6 @@ Das Copilot-gestützte Code-Review wurde analog zum Test-Repository in den Proje
 Das Code-Review wird bei jedem Pull Request auf main ausgelöst, um die Einhaltung der Coding-Conventions systematisch zu prüfen.
 
 
+= Implementierung ZenHub
 
 = Fazit
