@@ -1,6 +1,6 @@
 #import "@preview/clean-dhbw:0.4.0": *
 #import "glossary.typ": glossary-entries
-#import "ki-erklärung.typ": ki-erklaerung
+#import "chapters/ki-erklärung.typ": ki-erklaerung
 
 #show: clean-dhbw.with(
   title: "Konzeption und Implementierung eines GitHub-basierten Branching-, Review- und Projektmanagementprozesses mit KI-gestützter Code-Compliance",
@@ -25,7 +25,6 @@
 // Edit this content to your liking
 
 #ki-erklaerung
-
 
 = Einleitung
 
@@ -77,7 +76,7 @@ ZenHub soll deshalb auch in der #gls("O-SW") eingeführt werden. Ziel ist es, di
 
 ==== Code-Review
 
-Zur Verbesserung der Code-Qualität wird ein flexibler Ansatz verfolgt, der klassische Linter ergänzt beziehungsweise in Teilbereichen ersetzt. In Abstimmung mit dem KI-Experten der #gls("E-SW") und dem in der #gls("O-SW") für Richtlinien verantwortlichen Mitarbeiter Robin Hettel wurde daher die Einführung von GitHub-Copilot-gestützten Code-Reviews vorgeschlagen. Dieser Ansatz lässt sich an projektspezifische Anforderungen anpassen und unterstützt eine effizientere Qualitätssicherung.
+Zur Verbesserung der Code-Qualität wird ein flexibler Ansatz verfolgt, der klassische Linter ergänzt beziehungsweise in Teilbereichen ersetzt. In Abstimmung mit dem KI-Experten der #gls("E-SW") Ralf Scheyerle und dem in der #gls("O-SW") für Richtlinien verantwortlichen Mitarbeiter Robin Hettel wurde daher die Einführung von GitHub-Copilot-gestützten Code-Reviews vorgeschlagen. Dieser Ansatz lässt sich an projektspezifische Anforderungen anpassen und unterstützt eine effizientere Qualitätssicherung.
 
 ==== Fazit
 
@@ -478,6 +477,8 @@ Beide Programmierer signalisierten außerdem Offenheit gegenüber Copilot, sofer
 
 In einer anschließenden Abstimmung zu den Meeting-Ergebnissen merkte Robin Hettel an, dass statt nutzerbezogener Branches eher anlagenbereichsbezogene Branches sinnvoll seien. Dadurch könnten Programmierer einzelne Bereiche zeitweise "reservieren" und dort konzentriert arbeiten. Gleichzeitig würde dieser Ansatz helfen, keine gesonderten Richtlinien nur für die Anlagenprogrammierung einzuführen, sondern einen unternehmensweit einheitlichen Standard beizubehalten.
 
+Nach der Formulierung dieser Richtlinien startete das Projekt in seine erste Phase, und zwar die Virtuelle Inbetriebnahme. In dieser Phase werden die Roboter in einer Simulation angelegt und hier bereits Grundlegend Programmiert.
+
 
 == Umsetzung
 === Branching Strategien
@@ -522,12 +523,38 @@ Dieser Ablauf schafft hohe Transparenz über Zuständigkeiten und Fortschritt. G
 
 Die Übertragung auf die #gls("O-SW") erfolgt mit dem Ziel, die bisher überwiegend mündliche und E-Mail-basierte Abstimmung durch einen standardisierten und nachvollziehbaren Prozess zu ersetzen. Gerade bei kurzfristigen Änderungen rund um #gls("FlexOp")-Versionen ist eine zentrale Planung notwendig, um Abhängigkeiten frühzeitig sichtbar zu machen.
 
-Für die Einführung wird ein stufenweises Vorgehen empfohlen:
-- Definition eines einheitlichen Board-Aufbaus mit klaren Statusspalten.
-- Festlegung verbindlicher Regeln für die Anlage und Pflege von Issues.
-- Verknüpfung von Epics mit Meilensteinen der Anlagenprojekte.
-- Schulung der Mitarbeitenden hinsichtlich Priorisierung, Ticketpflege und Statusaktualisierung.
+#lorem(50)
 
 Durch dieses Vorgehen kann ZenHub nicht nur als reines Ticket-Tool genutzt werden, sondern als verbindendes Steuerungselement zwischen technischer Umsetzung, Branching-Prozess und Release-Kommunikation.
+
+
+= Schulung der Mitarbeiter
+
+Dass die in vorigen beschriebenen Methoden auch im Team ihren vollen Nutzen entfalten können und korrekt genutzt werden, sollen nun hier im folgenden Schulungsunterlagen und Schulungen erarbeitet werden. Diese sollen zum einen eine Grundlegende Einleitung in Git und GitHub für neue Mitarbeiter und Azubis enthalten, und zum anderen die neuen Methoden und Regeln vermitteln. Die umfangreiche Dokumentation soll dazu dienen das Onboarding für neue Mitarbeiter zu erleichtern und einen Abteilungsweiten Standart zu erzielen.
+
+== Aktuelles Wissen der Mitarbeiter
+
+Um die Schulung so einsteigerfreundlich wie möglich zu gestalten, wurde mit dem Mitarbeiter Matthias Scheuring ein Termin vereinbart. Dieser hatte zu diesem Zeitpunkt nur minimale Erfahrung mit Git und mit GitHub. Da er in einem Projekt schon Kontakt mit diesen Anwendungen hatte, wurde in dem Termin niedergeschrieben, welche Schulungsinhalte er sich gewünscht hätte, um den Einstieg flüssiger zu gestalten. Er nannte diese:
+- 
+- 
+- 
+
+Auf Basis dieser Wünsche wurden die folgenden Inhalte zusammengestellt
+
+== Wahl der Schulungsumgebung
+
+Um die Mitarbeiter optimal zu schulen, muss auch eine optimale Schulungsumgebung gewählt werden. Dies geschah aufgeteilt nach den einzelnen Themen.
+
+=== Git und GitHub Grundlagen
+
+Hier kommen einige Platformen in Frage
+- Microsoft Learn
+- GitHub Skills
+- Udemy
+- Youtube
+- Eigene Dokumentation
+https://www.youtube.com/watch?v=a0_AcknhqDY&t=54s
+
+
 
 = Fazit

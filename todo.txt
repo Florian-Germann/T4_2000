@@ -1,0 +1,36 @@
+todo:
+- copilot nur diff gemeckert -> sieht nur diff
+
+- direkter commit dev klären
+
+- steuerung mit dev überbügeln  
+
+- workflow kompletter code analysieren
+
+hold:
+
+- compilierbarkeit in PR
+
+erledigt:
+
+extensions ins Repositorie
+
+remotedesktopverbindung in vscode öffnen -> nicht möglich wegen mremote bug
+
+template in test Repositorie
+
+- extensions in workspace
+
+Probleme Projekt Jakob -> FA3428
+- gitignore unvollständig
+- merge konflikte datenbank
+
+- kein Repo Experte
+
+- test repo löschen/einfügen
+
+- ref to convention einarbeiten
+
+- refactoring datei in gitignore
+
+- robin abklären extensions
