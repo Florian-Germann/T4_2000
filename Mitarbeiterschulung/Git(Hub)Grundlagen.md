@@ -8,6 +8,9 @@ GitHub Desktop bietet eine grafische Oberfläche, um Git ohne Kommandozeile zu n
 
 Die wesentlichen Inhalte sind bereits in der Präsentation unter https://fptsystems.sharepoint.com/:p:/r/sites/fptO-SW/_layouts/15/Doc2.aspx?action=edit&sourcedoc=%7B7a8594e8-8a01-47b3-8dcb-4f2c872ff129%7D&wdExp=TEAMS-TREATMENT&web=1&linkOpenTime=1778059081883 beschrieben.
 
+Für eine Videoanleitung kann auch dieser Youtube Link verwendet werden.
+https://www.youtube.com/watch?v=a0_AcknhqDY&t=54s
+
 ---
 
 ## Was ist Git?

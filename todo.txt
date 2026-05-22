@@ -1,15 +1,29 @@
 todo:
-- copilot nur diff gemeckert -> sieht nur diff
+- erfahrungen alex david dokumentieren
 
-- direkter commit dev klären
+- branching schulung
 
-- steuerung mit dev überbügeln  
+- agent toolchain erstellung pr's
 
-- workflow kompletter code analysieren
+- branch management in vscode
+
+- vscode arbeitsweise dokumentieren
+
+- CaseConveying Lib Review
+
+- PalletConveying Lib Review
+
+- vscode in Arbeit verarbeiten
+
+- lorem blöcke entfernen
 
 hold:
 
 - compilierbarkeit in PR
+
+- steuerung mit dev überbügeln
+
+- twincat agents(nur für st brauchbar bis plc++)
 
 erledigt:
 
@@ -23,6 +37,7 @@ template in test Repositorie
 
 Probleme Projekt Jakob -> FA3428
 - gitignore unvollständig
+
 - merge konflikte datenbank
 
 - kein Repo Experte
@@ -34,3 +49,23 @@ Probleme Projekt Jakob -> FA3428
 - refactoring datei in gitignore
 
 - robin abklären extensions
+
+- workflow kompletter code analysieren -> möglich, aber teuer
+
+- copilot nur diff gemeckert -> sieht nur diff
+
+- code review agent erstellen
+
+- test repo agent testen
+
+- agent legt review in md ab
+
+- agent legt issues auf github an
+
+- direkter commit dev klären 
+
+- review publisher(label discussion/ copilot review: am anfang)
+
+- großes review stdLib
+
+- std lib mergen

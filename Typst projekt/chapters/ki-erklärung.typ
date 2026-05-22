@@ -11,6 +11,7 @@
     [*Werkzeug*], [*Anbieter*], [*Verwendungszweck*],
     [GitHub Copilot], [Microsoft / GitHub], [Automatisiertes Code-Review anhand der Coding-Conventions bei Pull Requests],
     [GitHub Copilot Chat], [Microsoft / GitHub], [Analyse von Review-Problemen, Recherche zu Lösungsansätzen, Überprüfung von Rechtschreibung],
+    [GitHub Copilot in Visual Studio Code], [Microsoft / GitHub], [Rechtschreib und Grammatikprüfung, Ausführen lokaler Agents],
     [GitHub Copilot Agent], [Microsoft / GitHub], [Tiefergehende Repository-Analyse zur Ursachenforschung bei Kommentarunterdrückung],
     [Microsoft Copilot „Prompt Coach"], [Microsoft], [Unterstützung bei der KI-kompatiblen Überarbeitung und Präzisierung der Coding-Conventions],
   ), caption: "Eingesetzte KI-Werkzeuge")

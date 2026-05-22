@@ -16,6 +16,10 @@
     description: "Aktuelle Version der Entwicklungsumgebung für Beckhoff SPS"
   ),
   (
+    key: "WorkVisual",
+    description: "Engineering-Umgebung zur Programmierung und Konfiguration von KUKA Robotern."
+  ),
+  (
     key: "fpt Systems GmbH",
     description:"Tochterfirma der FPT Robotik GmbH & Co. KG, welche für die Softwareentwicklung verantwortlich ist."
   ),
