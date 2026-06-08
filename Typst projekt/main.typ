@@ -64,7 +64,7 @@ Trotz klar formulierter Coding-Conventions gelangen weiterhin falsch benannte Va
 
 === Entwicklungsumgebung
 
-Im Moment existiert in der #gls("O-SW") das Problem, dass keine einheitliche Entwicklungsumgebung vorhanden ist. Das kommt daher, da die Lizenzen für die alte Lösung ausgelaufen sind und zum einen wegen Kosten und zum anderen wegen langen Update Zeiten nun eine neue Lösung gefunden werden soll. Allerdings steht zum aktuellen Zeitpunkt noch kein neues Programm bereit um das alte zu ersetzen. 
+In der #gls("O-SW") besteht derzeit das Problem, dass keine einheitliche Entwicklungsumgebung verfügbar ist. Ursache ist, dass die Lizenzen der bisherigen Lösung ausgelaufen sind und aufgrund von Kostenaspekten sowie langen Update-Zeiten eine neue Lösung eingeführt werden soll. Zum aktuellen Zeitpunkt steht jedoch noch kein vollständig etabliertes Nachfolgesystem bereit.
 
 Aus diesen vier Problemfeldern ergibt sich der Bedarf nach einem gemeinsamen, technisch umsetzbaren und von der gesamten Abteilung getragenen Lösungsansatz.
 
@@ -88,13 +88,15 @@ Zur Verbesserung der Code-Qualität wird ein flexibler Ansatz verfolgt, der klas
 
 === Entwicklungsumgebung
 
-Dass die Entwickler in der #gls("O-SW") wieder nahtlos Programmieren können soll nun eine neuen Lösung gefunden werden. Bisher wurde hier Visual Studio 2017 in Kombination mit dem Explorer, Github Desktop oder Sourcetree und ein in Visual Studio integriertes Programm für KUKA Steuerungen verwendet. Das integrierte, Firmeneigene Programm namens FlexManager ist allerdings schon sehr alt und kann nicht auf die neuen Visual Studio Version geupdatet werden. Da aus diesem Grund ohnehin eine neuentwicklung nötig wäre und die Lizenzen für Visual Studio auslaufen, wurde beschlossen eine Entwicklungsumgebung zu erarbeiten. Hierzu wurde sich für VSCode in Kombination mit der TwinCat XAE Shell entschieden, da VSCode sich durch Extensions hervorragend erweitern lässt und sich so ideal auf die Anforderungen anpassen lässt. 
+Um in der #gls("O-SW") wieder nahtlos entwickeln zu können, wird derzeit eine neue Umgebung aufgebaut. Bisher kamen Visual Studio 2017 in Kombination mit dem Windows Explorer, GitHub Desktop oder Sourcetree sowie ein in Visual Studio integriertes Werkzeug für KUKA-Steuerungen zum Einsatz. Das firmeneigene integrierte Werkzeug FlexManager ist jedoch veraltet und kann nicht auf neuere Visual-Studio-Versionen aktualisiert werden. Da deshalb ohnehin eine Neuentwicklung erforderlich wäre und die Visual-Studio-Lizenzen auslaufen, wurde die Konzeption einer neuen Entwicklungsumgebung beschlossen. Die Entscheidung fiel auf Visual Studio Code in Kombination mit der TwinCat XAE Shell, da sich VS Code durch Extensions bedarfsgerecht erweitern lässt.
 
-=== Fazit
+=== Teilfazit Ausgangslage und Zielbild
 
-Damit die eingeführten Verbesserungen im Alltag zuverlässig funktionieren, müssen alle Mitarbeitenden nach der Implementierung informiert und entsprechend geschult werden. Zusätzlich ist eine zentrale, leicht zugängliche Dokumentation der neuen Abläufe notwendig, damit die Anwendung langfristig konsistent bleibt.
+*Erkenntnis:* Die identifizierten Problemfelder lassen sich nur durch ein abgestimmtes Maßnahmenbündel aus Branching-Regeln, Managementprozess, Review-Methodik und geeigneter Entwicklungsumgebung adressieren.
 
-Insgesamt dienen die Maßnahmen dazu, sowohl die Arbeitsqualität als auch die Code-Qualität in der fpt Systems GmbH nachhaltig zu erhöhen.
+*Implikation:* Damit die eingeführten Verbesserungen im Alltag zuverlässig funktionieren, müssen alle Mitarbeitenden nach der Implementierung informiert und entsprechend geschult werden. Zusätzlich ist eine zentrale, leicht zugängliche Dokumentation der neuen Abläufe notwendig, damit die Anwendung langfristig konsistent bleibt.
+
+*Übergang:* Vor diesem Hintergrund werden im folgenden Kapitel die fachlichen Grundlagen und Referenzmodelle systematisch eingeordnet.
 
 
 = Grundlagen und Ausgangslage
@@ -154,11 +156,13 @@ Die Ausgestaltung Pull-Request-basierter Zusammenarbeit und ihre Auswirkungen au
 ==== Nachteile
 - Wenig Struktur für große Releases
 - Risiko eines instabilen Main-Branches bei häufigem Mergen
-==== Fazit
+==== Teilfazit GitHub-Flow
 
-Zusammenfassend ist GitHub-Flow eine einfache und agile Strategie, die besonders gut zu Teams passt, die auf kontinuierliche Integration und kurze Release-Zyklen setzen. Die kurzen Feature-Branches und direkten Merges in main sorgen für Flexibilität und wenig Prozess-Overhead. Im Kontext der #gls("O-SW") mit stärker meilensteinorientierten Releases zeigt sich allerdings ein Nachteil: Da eine separate Release-Vorbereitung fehlt, steigt das Risiko von Instabilitäten im Freigabeprozess. Für diesen Kontext sind daher strukturiertere Modelle wie Git-Flow meist besser geeignet.
+*Erkenntnis:* GitHub-Flow ist eine einfache und agile Strategie, die insbesondere für kontinuierliche Integration und kurze Release-Zyklen geeignet ist.
 
-Damit stößt GitHub-Flow in der #gls("O-SW") an klare Grenzen. Im nächsten Schritt wird daher Git-Flow betrachtet, um die Eignung für den vorliegenden Kontext zu bewerten.
+*Implikation:* Im Kontext der #gls("O-SW") mit stärker meilensteinorientierten Releases zeigt sich jedoch ein Nachteil: Da eine separate Release-Vorbereitung fehlt, steigt das Risiko von Instabilitäten im Freigabeprozess.
+
+*Übergang:* Für den vorliegenden Kontext sind daher strukturiertere Modelle wie Git-Flow zu prüfen; entsprechend wird im nächsten Abschnitt Git-Flow bewertet.
 
 === Git-Flow <Git-Flow>
 
@@ -395,7 +399,7 @@ Zur Bewertung der Zuverlässigkeit von GitHub Copilot wurde im Test-Repository e
 
 Da Copilot auch die Pull-Request-Beschreibung und Diskussionen verarbeitet, wurde die Checkliste der absichtlich eingebauten Fehler jeweils erst nach Abschluss des Reviews ergänzt. So blieb die Auswertung nachvollziehbar und methodisch vergleichbar.
 
-Wenn Anpassungen an Coding-Conventions oder Copilot-Anweisungen vorgenommen wurden, wurde die vorherige Pull Request geschlossen und eine neue erstellt. Damit konnte jede Änderung unter möglichst gleichen Rahmenbedingungen bewertet werden.
+Wenn Anpassungen an Coding-Conventions oder Copilot-Anweisungen vorgenommen wurden, wurde die vorherige Pull Request geschlossen und eine neue erstellt. Dadurch konnte jede Änderung unter möglichst vergleichbaren Rahmenbedingungen bewertet werden.
 
 
 == Ergebnisse und Problemanalyse
@@ -476,38 +480,76 @@ Nach dem Test zeigte sich, dass die ursprünglichen Kommentare weiterhin teilwei
 
 == Feedback und weitere Verbesserung
 
-Nach der Umsetzung der Verbesserungen im Test-Repository wurde ein Abstimmungsgespräch mit Ralf Scheyerle geführt, der die Änderungen bewertete.
-Dabei merkte er an, dass die Instructions in Teilen zu eng gefasst seien. Dadurch funktioniere Copilot zwar zuverlässig als Reviewer, seine spätere Nutzung als Coding Agent werde jedoch unnötig eingeschränkt. Da gerade diese Flexibilität für den produktiven KI-Einsatz wichtig ist, wurde empfohlen, die Anweisungen gezielt zu öffnen, ohne die Review-Qualität zu verlieren.
+Nach der Umsetzung der Verbesserungen im Test-Repository wurde ein Abstimmungsgespräch mit Ralf Scheyerle geführt, in dem die Änderungen bewertet wurden.
+Dabei wurde angemerkt, dass die Instructions in Teilen zu eng gefasst seien. Dadurch funktioniere Copilot zwar zuverlässig als Reviewer, die spätere Nutzung als Coding Agent werde jedoch unnötig eingeschränkt. Da diese Flexibilität für den produktiven KI-Einsatz wesentlich ist, wurde empfohlen, die Anweisungen gezielt zu öffnen, ohne die Review-Qualität zu verlieren.
 
 Im Anschluss wurden die Instructions entsprechend überarbeitet. Konkret wurde die Klausel entfernt, die das Verhalten zu stark auf reines Reviewing begrenzte. Außerdem wurden die überarbeiteten TwinCat-Instructions in das Übersichts-Repository übernommen. Damit kann der in @CodingConventionDiagramm dargestellte Verteilungsprozess nun sowohl für Coding-Conventions als auch für Copilot-Instructions einheitlich genutzt werden.
 
-Außerdem wurde angemerkt, dass Copilot bei Pull-Request-Reviews nur die veränderten Zeilen lesen kann. Dies führt dazu, dass bereits vorhandener Code nicht überprüft wird. Das zeigt sich vor allem darin, dass Fehler, die schon im Template-Projekt vorliegen, nicht korrekt erkannt werden. Hier musste daher eine Lösung gefunden werden, um Bestandscode zu prüfen.
+Außerdem wurde angemerkt, dass Copilot bei Pull-Request-Reviews nur die veränderten Zeilen auswerten kann. Dies führt dazu, dass bereits vorhandener Code nicht überprüft wird. Das zeigt sich insbesondere darin, dass Fehler, die bereits im Template-Projekt vorliegen, nicht zuverlässig erkannt werden. Daher musste eine ergänzende Lösung zur Prüfung von Bestandscode gefunden werden.
 
 Zu diesem Zweck wurde in Zusammenarbeit mit Ralf Scheyerle ein Agent entwickelt, der große Datenmengen komplexen Bestandscodes analysieren kann. Dies wurde dadurch ermöglicht, dass Ralf bereits einen Agenten besitzt, der qualitativ hochwertige Agent-Anweisungen formulieren kann. Mithilfe dessen konnte dieser Reviewer erfolgreich erstellt werden. Dieser wurde auch sofort eingesetzt, um die Template-Projekte und Standard-Libraries, soweit möglich, von Coding-Conventions-Verstößen zu bereinigen.
 
 = Entwicklungsumgebung
 
-Bei der Entwicklungsumgebung wurde sich für den Texteditor VSCode in Kombination mit der TwinCat XAE Shell entschieden, da VSCode sich durch Extensions hervorragend erweitern lässt und sich so ideal auf die Anforderungen anpassen lässt. Außerdem ist es Open Source und braucht im Gegensatz zu einer großen IDE nur sehr wenig Resourcen.
+Für die Entwicklungsumgebung wurde die Kombination aus VS Code und TwinCat XAE Shell gewählt, da sich VS Code über Extensions flexibel an projektspezifische Anforderungen anpassen lässt. Zudem ist VS Code Open Source und benötigt im Vergleich zu umfassenden IDE-Lösungen deutlich weniger Ressourcen.
+
+Für die Einführung dieser Umgebung ist nicht nur die Tool-Auswahl entscheidend, sondern vor allem ein einheitlicher Arbeitsablauf. Deshalb werden im Folgenden die drei zentralen Bereiche Dateiverwaltung, SPS-Programmierung und GitHub-Verwaltung getrennt betrachtet und jeweils aus Prozesssicht konkretisiert.
 
 
 == Dateiverwaltung
 
-Die Dateiverwaltung fand bisher immer über den Windows Explorer statt. Da VSCode aber einen schönen Projektbaum bietet, soll die Dateiverwaltung hierher verlagert werden. Dies gibt auch den Vorteil, dass viele Funktionen wie z.B. auch die Github Source Verwaltung und bearbeiten von Textdateien, wie in den Projekt häufige XML's, alle in einem Programm kombiniert werden können. So kann eine schlanker und effizienter Entwicklungsprozess mit weniger offenen Programmen erreicht werden.
+Die Dateiverwaltung erfolgte bislang überwiegend über den Windows Explorer. Da VS Code jedoch eine strukturierte Projektansicht bereitstellt, soll die Dateiverwaltung dorthin verlagert werden. Dadurch können zentrale Funktionen wie GitHub-Source-Verwaltung sowie die Bearbeitung von in Projekten häufig vorkommenden Textartefakten (z. B. XML-Dateien) in einer Umgebung gebündelt werden. Auf diese Weise lässt sich ein schlanker und effizienter Entwicklungsprozess mit weniger parallel geöffneten Programmen etablieren.
+
+Für die praktische Umsetzung bedeutet das einen klaren Soll-Ablauf:
+- Projekt lokal öffnen und die benötigten Verzeichnisse direkt im VS Code Explorer verwalten.
+- Relevante Textartefakte (z. B. XML-Dateien) ohne Medienbruch im gleichen Arbeitsfenster bearbeiten.
+- Änderungen unmittelbar im Source-Control-Bereich prüfen, bevor sie committet werden.
+
+Dadurch entfällt der häufige Wechsel zwischen Explorer, separatem Git-Client und Editor. Gleichzeitig steigt die Nachvollziehbarkeit, weil Dateiänderung und Versionsstatus jederzeit im selben Kontext sichtbar sind.
 
 == SPS-Programmierung
 
-Da Beckhoff SPS SourceCode, also TwinCat Programme nicht als Klartext abliegen, sondern im XML Format, können sie nicht in jedem Text Editor bearbeitet werden. Deshalb ist hier immer eine Beckhoff eigene IDE nötig. Deshalb wird die SPS-Programmierung nichtmehr wie zuvor in Visual Studio sondern in der TwinCat XAE Shell umgesetzt. Diese basiert auf Visual Studio, ist aber kostenfrei und in der Regel schneller. Außerdem sind neue Versionen von TwinCat in der Regel zuerst für die XAE Shell verfügbar, da diese von Beckhoff selbst herausgegeben wird. 
+Da Beckhoff-SPS-Sourcecode, also TwinCat-Programme, nicht als Klartext vorliegt, sondern XML-basiert gespeichert wird, kann er nicht in beliebigen Texteditoren bearbeitet werden. Zudem sind Kompilierung, Upload auf die Steuerung und Debugging keine offenen Standardprozesse. Daher ist hierfür eine Beckhoff-spezifische Entwicklungsumgebung erforderlich. Die SPS-Programmierung wird deshalb nicht mehr in Visual Studio, sondern in der TwinCat XAE Shell umgesetzt. Diese basiert zwar auf Visual Studio, ist jedoch kostenfrei und in der Regel performanter. Außerdem werden neue TwinCat-Versionen typischerweise zuerst für die XAE Shell bereitgestellt, da diese direkt von Beckhoff veröffentlicht wird.
+
+Für den Entwicklungsprozess in diesem Umfeld ergibt sich damit eine klare Trennung der Verantwortlichkeiten der Werkzeuge:
+- VS Code für Projektorganisation, Versionsverwaltung, Reviews und begleitende Textartefakte.
+- TwinCat XAE Shell für die eigentliche SPS-Programmierung und Bearbeitung der projektspezifischen XML-basierten Inhalte.
+
+Diese Aufteilung reduziert Tool-Konflikte und unterstützt einen stabilen Ablauf: Fachliche Änderungen werden in der XAE Shell umgesetzt, organisatorische und kollaborative Schritte erfolgen in VS Code und GitHub.
+
+// TODO: Ablaufgrafik ergänzen (von Codeänderung bis Pull Request).
+// Beispiel:
+// #figure(image("assets/SPS-Workflow.png", width: 90%), caption: "Ablauf SPS-Änderung bis Review")<SPS-Workflow>
 
 == GitHub Verwaltung
 
-#lorem(30)
+Bisher wurde die GitHub-Verwaltung überwiegend über Sourcetree oder GitHub Desktop durchgeführt. In VS Code ist jedoch bereits eine GitHub-Integration vorhanden, die unter anderem folgende Prozesse abdeckt:
+- pull
+- push 
+- commit
+- checkout
+- Branch-Auswahl
+- Arbeitsbaum
+- Verwaltung von Änderungen
 
+Das zugehörige Interface ist, wie in @VS-Code-SourceControl dargestellt, intuitiv aufgebaut und kann jederzeit über die Seitenleiste aufgerufen werden.
+Um zusätzlich Funktionen wie Issues, Actions und Pull Requests abzubilden, wurden die Extensions "GitHub Pull Requests" und "GitHub Actions" als empfohlene Erweiterungen ergänzt.
+
+Für die tägliche Arbeit lässt sich daraus ein durchgängiger Ablauf ableiten:
+- Synchronisation des lokalen Stands (pull/fetch) und Wechsel auf den vorgesehenen Arbeitsbranch.
+- Umsetzung der Änderung mit laufender Sichtprüfung im Arbeitsbaum.
+- Commit und Push aus VS Code, anschließend Erstellung oder Aktualisierung der Pull Request.
+- Review und Freigabe über die GitHub-Integration, danach Merge in den Zielbranch.
+
+Die Einführung dieser integrierten Vorgehensweise reduziert Medienbrüche und unterstützt die in dieser Arbeit definierten Qualitätsmechanismen, insbesondere Pull-Request-basierte Freigaben und nachvollziehbare Änderungsverläufe.
+
+#figure(image("assets\VS-Code-SourceControl.png", width: 50%), caption: "VS-Code Source Verwaltung" )<VS-Code-SourceControl>
 
 = Pilotierung im Projekt
 
-Um die praxisnahe Integration der eingeführten Quality-Assurance-Protokolle zu bewerten, wurden diese in ein Projekt eingebracht, das sich noch in der Vorinbetriebnahme befand. Dazu wurde mit den Projektprogrammierern David Kromer und Alexandru Trusi ein Termin angesetzt, in dem die geplanten Methoden gemeinsam besprochen wurden. Insbesondere die Branching-Strategien wurden positiv bewertet, da beide Programmierer die in @Problematik beschriebenen Herausforderungen bereits aus ihrem Arbeitsalltag kannten.
+Um die praxisnahe Integration der eingeführten Qualitätssicherungsprotokolle zu bewerten, wurden diese in ein Projekt eingebracht, das sich noch in der Vorinbetriebnahme befand. Dazu wurde mit den Projektprogrammierern David Kromer und Alexandru Trusi ein Termin angesetzt, in dem die geplanten Methoden gemeinsam besprochen wurden. Insbesondere die Branching-Strategien wurden positiv bewertet, da beide Programmierer die in @Problematik beschriebenen Herausforderungen bereits aus ihrem Arbeitsalltag kannten.
 
-Alexandru brachte zusätzlich den Vorschlag ein, neben Feature-Branches pro Entwickler jeweils einen eigenen Develop-Branch zu nutzen. So kann zunächst unabhängig gearbeitet werden, bevor stabile Zwischenstände per Pull Request in develop überführt werden.
+Alexandru brachte zusätzlich den Vorschlag ein, neben Feature-Branches pro Entwickler jeweils einen eigenen Develop-Branch zu nutzen. Dadurch kann zunächst unabhängig gearbeitet werden, bevor stabile Zwischenstände per Pull Request in develop überführt werden.
 Ergänzend können nutzerspezifische Feature-Branches für die Umsetzung konkreter Funktionen angelegt werden.
 Die Benennung könnte beispielsweise wie folgt aussehen:
 - user/develop
@@ -526,11 +568,34 @@ Nach der Formulierung dieser Richtlinien startete das Projekt in seine erste Pha
 
 Die Branching-Strategie wurde auf Basis des angepassten Git-Flow-Modells umgesetzt. Dabei wurden die Aufgaben der einzelnen Branches klar abgegrenzt und der Merge-Prozess über Pull Requests verbindlich standardisiert. Ergänzend wurden Benennungsregeln für Feature-, Bugfix- und Release-Branches festgelegt, um eine hohe Nachvollziehbarkeit und einheitliche Abläufe sicherzustellen.
 
+==== Erfahrungen und Probleme
+
+//TODO  dokumentieren in meeting nach pr in main
+Positives:
+- Keine/wenig Mergekonflikte (leicht auflösbar)
+- sicheres arbeiten und Pullen ohne Arbeitsverlust
+- strukturierte Code Reviews durch PR's
+Negatives:
+- 
+#lorem(20)
+
 === Copilot Code-Review
 
 Das Copilot-gestützte Code-Review wurde analog zum Test-Repository in den Projektkontext überführt. Pull Requests auf main werden dabei automatisch gegen die hinterlegten Coding-Conventions geprüft. Die Ergebnisse fließen als strukturierte Review-Kommentare in den Freigabeprozess ein und unterstützen die frühzeitige Erkennung von Abweichungen.
 
 Das Code-Review wird bei jedem Pull Request auf main ausgelöst, um die Einhaltung der Coding-Conventions systematisch zu prüfen.
+
+==== Erfahrungen und Probleme
+
+Zunächst lief das Projekt, wie in jedem anderen auch üblich, ganz normal, mit dem Unterschied, dass bei jedem PR ein Review des Copilots aufgerufen wurden. 
+Nach dem ersten Meilenstein, der Virtuellen Inbetriebnahme, wurde ein Zwischenfazit mit den Erfahrungen gezogen.
+Alexandru schrieb hier die folgende Erfahrungen:
+- Kommentiert meißt auf Rechtschreibfehler, hier bisher immer korrekt, auch automatischer resolve
+- Manchmal nichtverwendung von Variablen angemeckert, obwohl in FUP verwendet
+- Fehler als schlimmer Klassifiziert, als sie sind
+- Bei strukturellen Verbesserungsvorschlägen manchmal Syntaxfehler präsent (manuelle Umsetzung/Überprüfung nötig)
+//TODO  dokumentieren in meeting nach pr in main
+#lorem(20)
 
 
 = Projektmanagementprozess mit ZenHub
@@ -589,8 +654,8 @@ Die inhaltlichen Ergebnisse werden im weiteren Projektverlauf noch vollständig 
 - Sicheres Arbeiten mit Branches, Pull Requests und Merges
 - Orientierung im unternehmensspezifischen Ablaufmodell
 
-In dem Gespräch mit Matthias nannte er einige Themen, welche ihm beim Einstieg in GitHub Probleme machten. Zunächst hatte er das Problem, dass er das Prinzip von Git nicht kannte und das Tool dessen nicht nutzte. Dadurch hatten andere Projektbeteiligte das Problem, dass sie ihn immer darum bitten mussten seinen Code zu commiten. #linebreak()
-Desweiteren kannte er zu Beginn die Mechanik der Branches in Git nicht, was die Folge hatte, dass er commits nur in Main vornahm. Das führte wie in @ProblematikBranching beschrieben zu Konflikten im Code und mit anderen Programmierern.
+Im Gespräch benannte Matthias mehrere Themen, die ihm den Einstieg in GitHub erschwerten. Zunächst war das Grundprinzip von Git nicht ausreichend bekannt, sodass das Werkzeug in der Praxis nicht konsequent genutzt wurde. Dies führte dazu, dass andere Projektbeteiligte wiederholt um Commits bitten mussten. #linebreak()
+Darüber hinaus war die Branch-Mechanik zu Beginn nicht hinreichend vertraut, was dazu führte, dass Commits ausschließlich in main vorgenommen wurden. Wie in @ProblematikBranching beschrieben, führte dies zu Konflikten im Code und im Team.
 
 Auf Basis dieser Erhebung wurden die im Folgenden beschriebenen Schulungsbausteine zusammengestellt.
 
@@ -623,8 +688,11 @@ In der #gls("fpt Systems GmbH") existiert bereits ein HTML-basiertes Intranet-Wi
 
 Die Dokumentation der Git- und GitHub-Grundlagen bildet den Einstieg für neue Mitarbeitende und Auszubildende. Behandelt werden die zentralen Konzepte der Versionsverwaltung, die Arbeit mit Branches sowie der Ablauf von Pull Requests und Reviews im Unternehmenskontext. Die Inhalte sind so aufgebaut, dass sie sowohl für das Onboarding als auch als Nachschlagewerk im laufenden Projektbetrieb genutzt werden können.
 
-// TODO: Hier die endgültige Struktur der Dokumentation (Kapitel, Verweise, Medien) und den Rollout-Prozess ergänzen.
-#lorem(65)
+Die fachliche Grundstruktur der Schulungsdokumentation orientiert sich an dem in "Arbeiten mit Git & GitHub (mit GitHub Desktop)" ausgearbeiteten Aufbau. Inhaltlich beginnt die Unterlage mit einer kompakten Einführung in Git als Versionsverwaltungssystem und GitHub als kollaborative Plattform. Darauf aufbauend werden die Grundelemente des Git-Arbeitsmodells erläutert, insbesondere Working Directory, Staging Area, lokales Repository und Remote Repository. Im nächsten Schritt folgt der typische Arbeitsablauf im Team: Repository klonen, Änderungen synchronisieren, lokale Anpassungen prüfen, committen, pushen sowie Pull Requests zur kontrollierten Integration nutzen. Ergänzt wird dieser Ablauf durch eigenständige Kapitel zu Branches, Merge-Vorgängen, Konfliktbehandlung, Historie und typischen Fehlersituationen, sodass sowohl Grundlagenwissen als auch unmittelbar anwendbare Handlungsschritte abgedeckt werden.
+
+Für die praktische Nutzbarkeit im Unternehmensalltag wird die Dokumentation nicht auf reine Textbeschreibungen beschränkt. Stattdessen werden die Kapitel durch Verweise auf die bereits vorhandene Präsentation sowie auf ein ausgewähltes Video-Tutorial ergänzt. Damit entsteht ein mehrstufiges Lernangebot aus kurzer Begriffserklärung, grafisch unterstützter Schritt-für-Schritt-Anleitung und weiterführendem Demonstrationsmaterial. Die schriftliche Dokumentation übernimmt dabei die Funktion des verbindlichen Referenzdokuments, während Präsentation und Video vor allem den Einstieg erleichtern und typische Bedienabläufe anschaulich machen.
+
+Der Rollout erfolgt stufenweise über das Intranet-Wiki der #gls("fpt Systems GmbH"). Zunächst wird die Grundlagendokumentation dort als zentraler Schulungsbaustein für neue Mitarbeitende und Auszubildende veröffentlicht. Anschließend wird sie in Einweisungsgesprächen und bei teaminternen Schulungen verwendet, sodass die grundlegenden Begriffe und Standardabläufe einheitlich vermittelt werden. Rückmeldungen aus diesen ersten Anwendungen werden in die weitere Ausarbeitung aufgenommen, bevor die Inhalte um unternehmensspezifische Vorgaben zu Branching, Pull-Request-Freigaben und Review-Prozessen ergänzt werden. Auf diese Weise entsteht schrittweise eine konsistente Dokumentationsbasis, die sowohl den allgemeinen Einstieg in GitHub als auch die konkreten Prozesse der #gls("O-SW") abbildet.
 
 
 === Branching Strategien
@@ -632,20 +700,33 @@ Die Dokumentation der Git- und GitHub-Grundlagen bildet den Einstieg für neue M
 
 Im Schulungsbaustein zu Branching-Strategien wird das in dieser Arbeit eingeführte Vorgehen praxisnah vermittelt. Der Schwerpunkt liegt auf der eindeutigen Zuordnung von Branch-Typen, der strukturierten Nutzung von Pull Requests sowie der nachvollziehbaren Integration in develop und main. Ziel ist eine konsistente Anwendung der festgelegten Regeln im Tagesgeschäft.
 
-// TODO: Hier die finalen Schulungsinhalte, Lernziele und Übungsaufgaben für den Baustein Branching einfügen.
-#lorem(60)
+Die Unterlage baut inhaltlich auf den Git- und GitHub-Grundlagen auf und überführt diese in den konkreten Teamprozess der #gls("O-SW"). Zunächst werden Zweck und Verantwortlichkeiten der verwendeten Branch-Typen systematisch erläutert (main, develop, feature\/\*, bugfix\/\*, release\/\*, hotfix\/\*). Darauf aufbauend wird der verbindliche Ablauf vom Anlegen eines Arbeitsbranches bis zum Merge über Pull Requests dargestellt. Ein besonderes Gewicht liegt auf den in der Abteilung eingeführten Regeln "keine direkte Arbeit auf main" und "nach Möglichkeit keine direkte Arbeit auf develop", um ungeprüfte Integrationen zu vermeiden.
+
+Ergänzend werden Benennungsstandards und typische Fehlermuster behandelt. Dazu zählen unter anderem uneinheitliche Branch-Namen, fehlende Rückführung von Hotfixes in develop sowie zu große oder fachlich gemischte Pull Requests. Die Teilnehmenden erhalten hierfür klare Leitlinien zur Benennung, zur inhaltlichen Abgrenzung von Commits und zur Vorbereitung reviewfähiger Pull Requests.
+
+Zur didaktischen Strukturierung umfasst der Baustein drei Ebenen: erstens eine kompakte Prozessdarstellung als Referenz, zweitens angeleitete Schritt-für-Schritt-Abläufe für wiederkehrende Standardsituationen (Feature, Bugfix, Release, Hotfix) und drittens kurze Übungsaufgaben mit typischen Teamkonstellationen. Damit wird sichergestellt, dass nicht nur Begriffe bekannt sind, sondern der Ablauf im Projektalltag sicher angewendet werden kann.
+
+*Lernziele des Bausteins:*
+- Die Teilnehmenden können die Funktion der Branch-Typen im angepassten Git-Flow-Modell fachlich korrekt erklären und voneinander abgrenzen.
+- Die Teilnehmenden können für eine gegebene Aufgabe den passenden Branch-Typ auswählen und regelkonform benennen.
+- Die Teilnehmenden können einen vollständigen Standardablauf von der Änderung bis zum Merge über Pull Request durchführen und begründen.
+- Die Teilnehmenden können typische Prozessfehler erkennen (z. B. falscher Zielbranch, fehlende Rückführung von Hotfixes) und geeignete Korrekturen ableiten.
 
 
+=== Entwicklungsumgebung
+
+//TODO schulungsunterlagen vscode beschreiben
+#lorem(50)
 
 = Fazit
 
-Im Rahmen dieser Arbeit wurden für die identifizierten Problemfelder Branching, Management und Code-Review konkrete Maßnahmen konzipiert und in den Projektkontext überführt. Die Einführung eines angepassten Git-Flow-Modells, der Einsatz von Copilot-gestützten Reviews sowie die Einbindung von ZenHub adressieren sowohl technische als auch organisatorische Schwachstellen der bisherigen Arbeitsweise.
+*Erkenntnis:* Im Rahmen dieser Arbeit wurden für die identifizierten Problemfelder Branching, Management und Code-Review konkrete Maßnahmen konzipiert und in den Projektkontext überführt. Die Einführung eines angepassten Git-Flow-Modells, der Einsatz von Copilot-gestützten Reviews sowie die Einbindung von ZenHub adressieren sowohl technische als auch organisatorische Schwachstellen der bisherigen Arbeitsweise.
 
 Die Einordnung der erwarteten Prozesswirkung kann ergänzend auf etablierten Befunden zu Delivery- und Team-Performance gestützt werden @forsgren2018accelerate.
 
-Die durchgeführten Tests und Abstimmungen zeigen, dass die gewählten Ansätze grundsätzlich geeignet sind, Transparenz, Nachvollziehbarkeit und Qualität in der Zusammenarbeit zu erhöhen. Gleichzeitig wurde deutlich, dass die Wirksamkeit der Maßnahmen von klar formulierten Richtlinien, konsistenter Anwendung im Team und einer belastbaren Schulungs- und Dokumentationsbasis abhängt.
+*Implikation:* Die durchgeführten Tests und Abstimmungen zeigen, dass die gewählten Ansätze grundsätzlich geeignet sind, Transparenz, Nachvollziehbarkeit und Qualität in der Zusammenarbeit zu erhöhen. Gleichzeitig wurde deutlich, dass die Wirksamkeit der Maßnahmen von klar formulierten Richtlinien, konsistenter Anwendung im Team und einer belastbaren Schulungs- und Dokumentationsbasis abhängt.
 
 // TODO: Hier belastbare Abschlussbefunde (z. B. Beobachtungen, Kennzahlen, Grenzen und Ausblick) eintragen.
 #lorem(80)
 
-Insgesamt legt die Arbeit damit eine praktikable Grundlage für einen einheitlichen, GitHub-basierten Entwicklungs- und Steuerungsprozess in der #gls("fpt Systems GmbH").
+*Ausblick/Übergang:* Insgesamt legt die Arbeit damit eine praktikable Grundlage für einen einheitlichen, GitHub-basierten Entwicklungs- und Steuerungsprozess in der #gls("fpt Systems GmbH").

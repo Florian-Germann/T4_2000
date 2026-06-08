@@ -1,21 +1,13 @@
 todo:
 - erfahrungen alex david dokumentieren
 
-- branching schulung
-
-- agent toolchain erstellung pr's
-
-- branch management in vscode
-
-- vscode arbeitsweise dokumentieren
-
-- CaseConveying Lib Review
-
-- PalletConveying Lib Review
-
-- vscode in Arbeit verarbeiten
+- vs code schulung
 
 - lorem blöcke entfernen
+
+- copilot sagen, dass er mehrer requests machen soll, falls nötig
+
+- kuka steuerungen remote erreichen
 
 hold:
 
@@ -24,6 +16,8 @@ hold:
 - steuerung mit dev überbügeln
 
 - twincat agents(nur für st brauchbar bis plc++)
+
+- agent toolchain erstellung pr's
 
 erledigt:
 
@@ -69,3 +63,13 @@ Probleme Projekt Jakob -> FA3428
 - großes review stdLib
 
 - std lib mergen
+
+- powerpoint teammeeting vorbereiten
+
+- CaseConveying Lib Review
+
+- PalletConveying Lib Review
+
+- branch management in vscode
+
+- branching schulung
