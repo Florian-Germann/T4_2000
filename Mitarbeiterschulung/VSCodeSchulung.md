@@ -1,0 +1,169 @@
+# Arbeiten mit Visual Studio Code als Entwicklungsumgebung
+
+## Einführung
+Visual Studio Code (VS Code) wird in der O-SW als zentrale Arbeitsumgebung für Projektorganisation, Textbearbeitung und GitHub-gestützte Zusammenarbeit eingesetzt.
+Die Schulung beschreibt den praxisnahen Einsatz im Zusammenspiel mit TwinCAT XAE Shell und den etablierten Teamprozessen.
+
+Die Inhalte basieren auf "Link zu Powerpoint" und wurden didaktisch aufbereitet.
+
+---
+
+## Inhalt
+- Sichere Einrichtung von VS Code im FPT-Kontext
+- Einheitliche Nutzung im Teamalltag
+- Strukturierte Arbeit mit Source Control und Pull Reqüsts
+- Bewusster und kontrollierter Einsatz von KI-Funktionen
+
+---
+
+## Installation und Grundeinrichtung
+
+### Installation
+VS Code kann über den Microsoft Store oder über die interne Softwareverteilung installiert werden.
+
+### Projekt-Workspace einbinden
+Nach der Installation wird die project.code-workspace Datei in die Projektmappe importiert.
+Als Referenz dient das Repository:
+https://github.com/FPTSystems/Fx.FlexManager
+
+### Einrichten für die Nutzung bei FPT
+Die FPT-spezifische Arbeitsumgebung entsteht durch:
+- Nutzung der bereitgestellten Workspace-Konfiguration
+- Akzeptieren empfohlener Erweiterungen
+- Einhaltung der Teamstandards für Branching und Reviews
+
+---
+
+## Add-ons und Erweiterungen
+Nach dem Öffnen der project.code-workspace zeigt VS Code empfohlene Add-ons an.
+Diese sollen für den standardisierten Teamablauf installiert werden.
+
+### Warum das wichtig ist
+- Gleiche Toolbasis im Team
+- Weniger Konfigurationsabweichungen
+- Reproduzierbare Arbeitsablaeufe zwischen Projekten
+
+---
+
+## VS Code als Explorer und Texteditor
+VS Code wird im Alltag nicht nur als Editor, sondern auch als zentrale Projektoberflaeche genutzt.
+
+### Grundaufbau
+- Links: Dateiexplorer
+- Rechts: Texteditor
+
+Textbasierte Dateien werden nach Doppelklick direkt im Editor geöffnet und können ohne Medienbruch bearbeitet werden.
+
+### Nutzen im O-SW Kontext
+- Projektstruktur und Dateiinhalte in einer Sicht
+- Direkte Verbindung zur Source-Control-Ansicht
+- Weniger Wechsel zwischen mehreren Programmen
+
+---
+
+## Öffnen externer Programme aus VS Code
+Nicht alle projektrelevanten Dateien können direkt in VS Code bearbeitet werden.
+Dies betrifft insbesondere TwinCAT-spezifische Inhalte.
+
+### Standardvorgehen
+1. Rechtsklick auf die Datei
+2. "Open with default application"
+3. Datei wird mit dem in Windows hinterlegten Standardprogramm geöffnet
+
+Beispiel: Öffnen einer Datei in der TwinCAT XAE Shell.
+
+---
+
+## GitHub-Aktionen in VS Code
+Die GitHub-nahe Arbeit erfolgt zentral über den Bereich Source Control in der Seitenleiste.
+
+### Sichtbare Kernbereiche
+- Repository-Informationen und Branch-Auswahl
+- Commit-Bereich mit geaenderten Dateien
+- Worktree zur übersicht aller lokalen Aenderungen
+
+### Standardablauf im Team
+1. Aktuellen Stand holen (Fetch/Pull)
+2. Auf den vorgesehenen Branch wechseln
+3. Änderungen bearbeiten und prüfen
+4. Commit erstellen
+5. Push durchführen
+6. Pull Request erstellen oder aktualisieren
+
+---
+
+## KI-Tools in der Testphase
+Im aktuellen Stand werden KI-gestützte Werkzeuge erprobt.
+Der Einsatz ist hilfreich, ersetzt aber keine fachliche Prüfung.
+
+### Verfügbare Agenten (Test)
+- Code Review Agent:
+Analysiert TwinCAT-Sourcecode auf Coding-Conventions und mögliche Logikfehler.
+
+- Issue Publisher Agent:
+Erstellt GitHub Issues aus den Ergebnissen anderer Agents.
+
+### Vorbereitung für den Testeinsatz
+Zum Testen können aus folgendem Repository die Ordner .github und docs/CodingConventions übernommen werden:
+https://github.com/FPTSystems/FPT.Test-Repo/tree/feature/review-agent
+
+Alternativ kann die Bereitstellung intern abgestimmt werden.
+
+### Wichtige Regel
+Nicht blind der KI vertrauen. Ergebnisse müssen immer manuell validiert werden.
+
+---
+
+## Anwendung von Copilot Chat in VS Code
+
+### Vorgehen für den Review-Einsatz
+1. Copilot Chat in VS Code öffnen
+2. Agent-Auswahl aufrufen
+3. Code Reviewer auswählen
+4. Im Prompt den zu analysierenden Ordner eindeutig angeben
+
+### Hinweise zur Qualitaet
+- Präzise Prompts verbessern die Treffgenauigkeit
+- Ergebnisse sind als Vorschläge zu verstehen
+- Endgültige Bewertung bleibt beim Entwicklerteam
+
+---
+
+## Ausblick und laufende Entwicklung
+Der aktuelle Ausblick aus der PowerPoint adressiert folgende Themen:
+- Dateizugriff auf KRC-Steuerungen
+- Pull-Request-Erstellungs-Agent
+- Weitere Optimierungen im Work in Progress
+
+Für die Weiterentwicklung sind Rückmeldungen aus dem Team ausdrücklich erwünscht.
+
+---
+
+## Best Practices für den Alltag
+- VS Code als zentrale Arbeitsoberflaeche nutzen
+- Empfohlene Add-ons in Projekt-Workspaces übernehmen
+- Branches und Pull Requests konseqünt nach Teamstandard einsetzen
+- Kleine, nachvollziehbare Commits erstellen
+- KI-Ausgaben immer fachlich und technisch gegenprüfen
+
+---
+
+## Typische Fehler vermeiden
+
+❌ VS Code ohne Workspace-Konfiguration nutzen und Teamstandards umgehen  
+❌ Empfohlene Add-ons nicht installieren  
+❌ Änderungen ohne Sichtprüfung direkt committen  
+❌ Pull Requests ohne ausreichenden Kontext erstellen  
+❌ KI-Vorschläge ungeprüft übernehmen  
+
+---
+
+## Ziel
+Die Schulung schafft eine einheitliche und praxisnahe Nutzung von VS Code in der O-SW.
+Dadurch werden Projektorganisation, Zusammenarbeit und Qualitätssicherung in einem durchgängigen Ablauf verbunden.
+
+Im Team führt das zu:
+- mehr Transparenz im Arbeitsstand
+- weniger Medienbrüchen zwischen Tools
+- klareren Review- und Freigabeprozessen
+- einer stabileren, nachvollziehbaren Entwicklungsarbeit

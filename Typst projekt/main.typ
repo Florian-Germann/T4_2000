@@ -28,17 +28,17 @@
 
 = Einleitung
 
-Eine strukturierte Quellcodeverwaltung ist eine zentrale Voraussetzung für moderne Softwareentwicklung. Gerade in verteilten Teams, die gleichzeitig an mehreren Komponenten arbeiten, muss jederzeit nachvollziehbar sein, welche Änderungen wann und warum erfolgt sind. Git-basierte Plattformen wie GitHub bieten dafür die technische Grundlage.
+Strukturierte Quellcodeverwaltung ist eine Grundvoraussetzung für moderne Softwareentwicklung in verteilten Teams. In solchen Umgebungen muss jederzeit dokumentiert sein, welche Änderungen wann und von wem durchgeführt wurden. Git-basierte Plattformen wie GitHub bieten dafür eine etablierte Lösung.
 
-GitHub ermöglicht die zentrale Ablage, Verwaltung und gemeinsame Weiterentwicklung von Softwareprojekten. Durch die zugrunde liegende Git-Versionskontrolle lassen sich Änderungen transparent dokumentieren und frühere Zustände bei Bedarf wiederherstellen. Besonders in komplexen Projekten erhöht das die Nachvollziehbarkeit und reduziert Abstimmungsaufwand.
+GitHub ermöglicht zentrale Ablage und gemeinsame Weiterentwicklung von Projekten. Durch die Git-Versionskontrolle lassen sich Änderungen transparent dokumentieren und frühere Zustände reproduzieren. Dies steigert in komplexen Projekten die Nachvollziehbarkeit und reduziert Abstimmungsaufwand erheblich.
 
-Ein wesentliches Konzept in diesem Zusammenhang sind Branches. Sie erlauben es, neue Funktionen, Fehlerbehebungen oder Experimente getrennt von der Hauptlinie umzusetzen. Erst nach einer Prüfung werden Änderungen zurückgeführt. Dadurch können mehrere Personen parallel arbeiten, ohne sich gegenseitig zu blockieren.
+Branches sind ein zentrales Konzept dieser Versionskontrolle. Sie ermöglichen es, neue Funktionen, Fehlerbehebungen oder Experimente isoliert umzusetzen. Nach Prüfung und Freigabe fließen diese Änderungen in die Hauptentwicklungslinie zurück. So arbeiten mehrere Personen parallel, ohne sich gegenseitig zu behindern.
 
-Die Kombination aus Versionskontrolle, klarer Historie und parallelen Entwicklungszweigen schafft damit eine belastbare Grundlage für Teamarbeit in der Softwareentwicklung.
+Die Kombinierung aus Versionskontrolle, nachvollziehbarer Historie und parallelen Entwicklungszweigen schafft eine robuste Grundlage für Teamarbeit.
 
-Wie gut GitHub in der Praxis funktioniert, hängt jedoch stark von den gewählten Prozessen ab. Insbesondere eine passende Branching-Strategie und ein funktionierendes Team-Management sind entscheidend. Branching-Regeln legen fest, wie Features, Bugfixes und Releases vorbereitet und integriert werden. Sie beeinflussen damit nicht nur den technischen Ablauf, sondern auch Koordination, Planbarkeit und Qualitätssicherung.
+In der Praxis hängt die Effektivität von GitHub stark von gewählten Prozessen ab. Insbesondere prägen zwei Faktoren den Erfolg: erstens eine passende Branching-Strategie, zweitens funktionierendes Team-Management. Diese definieren, wie Features, Bugfixes und Releases vorbereitet und integriert werden - nicht nur technisch, sondern auch organisatorisch.
 
-Gleichzeitig reicht eine gute Branching-Strategie allein nicht aus. Ebenso wichtig ist eine strukturierte Aufgabenplanung im Team. Projektmanagement-Werkzeuge helfen dabei, Arbeitspakete transparent zu priorisieren, Verantwortlichkeiten eindeutig zuzuordnen und Fortschritte laufend sichtbar zu machen. Durch die enge Verzahnung mit Entwicklungsprozessen, automatisierten Workflows und übersichtlichen Boards entsteht ein gemeinsames Verständnis darüber, welche Aufgaben als Nächstes anstehen und wo Engpässe drohen. Das stärkt Zusammenarbeit und erhöht zugleich Qualität und Umsetzungsgeschwindigkeit.
+Eine gute Branching-Strategie allein genügt jedoch nicht. Ergänzend erforderlich ist strukturierte Aufgabenplanung im Team. Projektmanagement-Werkzeuge unterstützen dabei durch: transparente Priorisierung von Arbeitspaketen, klare Verantwortlichkeitszuweisung und sichtbare Fortschrittsverfolgung. Die Verzahnung mit Entwicklungsprozessen, automatisierten Workflows und übersichtlichen Boards schafft gemeinsames Verständnis für anstehende Aufgaben und potenzielle Engpässe. Dies fördert Zusammenarbeit und steigert Qualität sowie Implementierungsgeschwindigkeit.
 
 
 Zur didaktisch klaren Einordnung folgt die Arbeit der Abfolge Ausgangslage, konzeptioneller Lösungsansatz, fachliche Grundlagen, Evaluation im Testkontext, Pilotierung im Projekt, organisatorische Implementierung und Schulung sowie abschließendes Fazit.
@@ -50,21 +50,21 @@ Zur didaktisch klaren Einordnung folgt die Arbeit der Abfolge Ausgangslage, konz
 
 === Branching<ProblematikBranching>
 
-In der Abteilung #gls("O-SW") gibt es bislang keine einheitliche und verbindliche Vorgehensweise für den Umgang mit GitHub-Branches. Zwar wurden Richtlinien aus der #gls("E-SW") bereits für interne Bibliotheken und Template-Projekte übernommen, in der praktischen Arbeit an Anlagen zeigt sich jedoch, dass diese Vorgaben nicht in allen Fällen direkt passen. Die Entwicklungsabläufe unterscheiden sich in Struktur und Inhalt, wodurch im Alltag Unklarheiten entstehen.
+In der Abteilung #gls("O-SW") existiert bislang keine verbindliche und einheitliche Vorgehensweise für GitHub-Branches. Obwohl die #gls("E-SW") Richtlinien bereits bei internen Bibliotheken und Template-Projekten eingesetzt werden, zeigt sich in der Praxis: Diese Vorgaben passen nicht auf die Anlagenentwicklung. Die Entwicklungsabfläufe unterscheiden sich strukturell und inhaltlich, was zu alltags prägenden Unklarheiten führt.
 
-Fehlt diese Passgenauigkeit, werden Branching-Entscheidungen häufig individuell getroffen. Das führt zu uneinheitlichen Abläufen, erschwert die Nachvollziehbarkeit von Änderungen und erhöht das Konfliktpotenzial beim Zusammenführen von Code. Gleichzeitig sinkt die Effizienz in der Zusammenarbeit, weil gemeinsame Regeln nicht konsequent angewendet werden können.
+Ohne diese Passgenauigkeit treffen Entwickler Branching-Entscheidungen zunehmend individuell. Das führt zu uneinheitlichen Abfällen, erschwert die Nachvollziehbarkeit von Änderungen und erhöht das Konfliktrisiko beim Zusammenführen von Code. Gleichzeitig sinkt die Zusammenarbeitseffizienz, da gemeinsame Regeln keine durchgehende Anwendung finden.
 
 === Management
 
-Im Bereich Management besteht in der #gls("O-SW") derzeit das Problem, dass keine dedizierte Team-Management-Software genutzt wird. Die Release-Planung erfolgt überwiegend über mündliche Absprachen und E-Mail-Verläufe. Das ist in der täglichen Praxis fehleranfällig und nur eingeschränkt transparent. Zusätzlich entstehen regelmäßig Engpässe, wenn neue Versionen von #gls("FlexOp") kurzfristig bereitgestellt werden und notwendige Vorbereitungen nicht rechtzeitig angestoßen wurden.
+Im Bereich Management nutzt die #gls("O-SW") derzeit keine dedizierte Team-Management-Software. Die Release-Planung erfolgt vornehmlich über mündliche Absprachen und E-Mail-Verteiler. Dies ist in der Praxis fehleranfällig und nur begrenzt transparent. Zusätzlich entstehen Engpässe, wenn neue #gls("FlexOp")-Versionen verbreitet werden und notwendige Vorbereitung nicht rechtzeitig anläuft.
 
 === Code-Review
 
-Trotz klar formulierter Coding-Conventions gelangen weiterhin falsch benannte Variablen oder unzureichend dokumentierte Codeanteile in Projekte. Ursache ist vor allem, dass die Einhaltung der Regeln bisher nur eingeschränkt und überwiegend manuell geprüft wird. Für #gls("TwinCat") stehen keine klassischen Linter#footnote("Ein Linter prüft Code automatisch auf Fehler und Stilabweichungen.") oder vergleichbare Standardwerkzeuge zur Verfügung, wodurch die automatisierte Qualitätskontrolle deutlich erschwert wird.
+Bei der Codequalität zeigt sich trotz formulierter Coding-Conventions ein wiederkehrendes Problem: Falsch benannte Variablen und unzureichend dokumentierte Code-Passagen gelangen in Projekte. Die Ursache liegt darin, dass die Regelkontrolle bisher nur begrenzt und überwiegend manuell stattfindet. Für #gls("TwinCat") fehlen klassische Linter-Werkzeuge oder vergleichbare Lösungen, so dass automatisierte Qualitätssicherung deutlich erschwert ist.
 
 === Entwicklungsumgebung
 
-In der #gls("O-SW") besteht derzeit das Problem, dass keine einheitliche Entwicklungsumgebung verfügbar ist. Ursache ist, dass die Lizenzen der bisherigen Lösung ausgelaufen sind und aufgrund von Kostenaspekten sowie langen Update-Zeiten eine neue Lösung eingeführt werden soll. Zum aktuellen Zeitpunkt steht jedoch noch kein vollständig etabliertes Nachfolgesystem bereit.
+In der #gls("O-SW") besteht das Problem fehlender Entwicklungsumgebung-Einheit. Die Ursache: Lizenzen der bisherigen Lösung sind abgelaufen; kostengründe und lange Update-Zyklen machen Neuentwicklung erforderlich. Aktuell existiert kein etabliertes Nachfolgesystem.
 
 Aus diesen vier Problemfeldern ergibt sich der Bedarf nach einem gemeinsamen, technisch umsetzbaren und von der gesamten Abteilung getragenen Lösungsansatz.
 
@@ -90,7 +90,7 @@ Zur Verbesserung der Code-Qualität wird ein flexibler Ansatz verfolgt, der klas
 
 Um in der #gls("O-SW") wieder nahtlos entwickeln zu können, wird derzeit eine neue Umgebung aufgebaut. Bisher kamen Visual Studio 2017 in Kombination mit dem Windows Explorer, GitHub Desktop oder Sourcetree sowie ein in Visual Studio integriertes Werkzeug für KUKA-Steuerungen zum Einsatz. Das firmeneigene integrierte Werkzeug FlexManager ist jedoch veraltet und kann nicht auf neuere Visual-Studio-Versionen aktualisiert werden. Da deshalb ohnehin eine Neuentwicklung erforderlich wäre und die Visual-Studio-Lizenzen auslaufen, wurde die Konzeption einer neuen Entwicklungsumgebung beschlossen. Die Entscheidung fiel auf Visual Studio Code in Kombination mit der TwinCat XAE Shell, da sich VS Code durch Extensions bedarfsgerecht erweitern lässt.
 
-=== Teilfazit Ausgangslage und Zielbild
+== Teilfazit Ausgangslage und Zielbild
 
 *Erkenntnis:* Die identifizierten Problemfelder lassen sich nur durch ein abgestimmtes Maßnahmenbündel aus Branching-Regeln, Managementprozess, Review-Methodik und geeigneter Entwicklungsumgebung adressieren.
 
@@ -101,9 +101,9 @@ Um in der #gls("O-SW") wieder nahtlos entwickeln zu können, wird derzeit eine n
 
 = Grundlagen und Ausgangslage
 
-== Industriestandards
-In der Softwareentwicklung haben sich über viele Jahre hinweg unterschiedliche Branching-Standards etabliert.
-Im Folgenden werden die zwei bekanntesten Modelle vorgestellt und im Hinblick auf ihre Eignung für den vorliegenden Anwendungsfall eingeordnet.
+== Industriestandards für Versionskontrolle
+
+In der Softwareentwicklung haben sich mehrere Branching-Muster etabliert. Die folgenden zwei Modelle sind am weitesten verbreitet und werden im Hinblick auf ihre Eignung für den hier vorliegenden Kontext untersucht.
 
 === GitHub-Flow
 
@@ -146,9 +146,9 @@ Die Ausgestaltung Pull-Request-basierter Zusammenarbeit und ihre Auswirkungen au
 
     nach Fertigstellung direkt PR in main
   ],
-))<Tabelle-GitHub-Flow>
+), caption: "GitHub-Flow Branches")<Tabelle-GitHub-Flow>
 
-@Tabelle-GitHub-Flow beschreibt die einzelnen Branches und ihre Aufgaben, während @GitHub-Flow den Ablauf grafisch ergänzt. Daraus wird ersichtlich, dass diese Strategie vor allem für schnelle, häufige Feature-Releases geeignet ist. Ob sie im konkreten Fall sinnvoll ist, hängt jedoch immer von den organisatorischen und technischen Rahmenbedingungen ab.
+@Tabelle-GitHub-Flow zeigt die Branch-Typen und ihre Aufgaben; @GitHub-Flow visualisiert den Ablauf. Beide verdeutlichen: GitHub-Flow ist optimiert für schnelle, häufige Feature-Releases. Ob dieses Modell geeignet ist, hängt von organisatorischen und technischen Rahmenbedingungen ab.
 ==== Vorteile
 - Schnelle Iteration
 - Geringe Komplexität
@@ -156,25 +156,21 @@ Die Ausgestaltung Pull-Request-basierter Zusammenarbeit und ihre Auswirkungen au
 ==== Nachteile
 - Wenig Struktur für große Releases
 - Risiko eines instabilen Main-Branches bei häufigem Mergen
-==== Teilfazit GitHub-Flow
+==== Bewertung für den O-SW Kontext
 
-*Erkenntnis:* GitHub-Flow ist eine einfache und agile Strategie, die insbesondere für kontinuierliche Integration und kurze Release-Zyklen geeignet ist.
+*Erkenntnis:* GitHub-Flow bietet Einfachheit und Agilität für kontinuierliche Integration und kurze Release-Zyklen.
 
-*Implikation:* Im Kontext der #gls("O-SW") mit stärker meilensteinorientierten Releases zeigt sich jedoch ein Nachteil: Da eine separate Release-Vorbereitung fehlt, steigt das Risiko von Instabilitäten im Freigabeprozess.
+*Limitation:* Im Kontext der #gls("O-SW") mit meilensteinhaften Releases wird ein Schwachpunkt offenbar: Die Abwesenheit separater Release-Vorbereitung erhöht das Risiko von Instabilitäten beim Freigabeprozess.
 
-*Übergang:* Für den vorliegenden Kontext sind daher strukturiertere Modelle wie Git-Flow zu prüfen; entsprechend wird im nächsten Abschnitt Git-Flow bewertet.
+*Konsequenz:* Strukturiertere Modelle wie Git-Flow sind daher für diesen Einsatzbereich zu prüfen.
 
-=== Git-Flow <Git-Flow>
+=== Git-Flow: Strukturiertes Branching für komplexe Releases <Git-Flow>
 
+Git-Flow ist ein strukturiertes Branching-Modell, das Entwicklungsabfläufe klar trennt und stabile Releases absichert. Vorgestellt 2010 von Vincent Driessen (@driessen2010gitflow), wird es in Projekten mit parallelen Features, Hotfixes und Versionen am häufigsten angewendet.
 
 #figure(image("assets/Gitflow-Workflow-4.png", width: 80%), caption: "Git Flow" )<Git-Flow-Grafik>
 
-Git-Flow ist ein strukturiertes Branching-Modell für Git, das Entwicklungsabläufe klar trennt und gleichzeitig stabile Releases unterstützt. Das Modell wurde 2010 von Vincent Driessen vorgestellt und wird vor allem in Projekten eingesetzt, in denen mehrere Features, Hotfixes und Versionen parallel entstehen.
-
-Die ursprüngliche Beschreibung des Modells geht auf Driessen zurück @driessen2010gitflow.
-
-Das Konzept basiert auf mehreren langlebigen Branches mit eindeutig definierten Aufgaben.
-@Git-Flow-Grafik zeigt, wie diese Branches zusammenwirken und wo die eigentliche Entwicklung stattfindet. Ergänzend werden in @tabelle-Git-Flow die einzelnen Branches beziehungsweise Branch-Gruppen beschrieben.
+Das Modell basiert auf mehreren langlebigen Branches mit definierten Rollen. @Git-Flow-Grafik zeigt deren Zusammenspiel, @tabelle-Git-Flow beschreibt die einzelnen Branches und ihr Verhalten.
 
 #figure(table(
   columns: (1fr, 2fr),
@@ -255,9 +251,9 @@ Das Konzept basiert auf mehreren langlebigen Branches mit eindeutig definierten 
 
     Änderungen fließen auch in develop
   ],
-))<tabelle-Git-Flow>
+), caption: "Git-Flow Branches")<tabelle-Git-Flow>
 
-Dieses System eignet sich besonders für strukturierte Abläufe mit klar definierten, umfangreicheren und aufeinander aufbauenden Releases. Für Rolling-Release-Ansätze ist es dagegen weniger passend, da die Zeitspanne bis zur Veröffentlichung tendenziell länger ist. Da in der #gls("O-SW") Releases primär an Projektmeilensteinen vorgesehen sind, ist Git-Flow für diesen Anwendungsfall gut geeignet.
+Dieses Modell unterstützt strukturierte Abfälle mit klar umrissenen, großen und aufbauend verknüpften Releases. Für Rolling-Release-Ansätze ist es weniger geeignet, da die Verweildauer bis Verhältnisfreigabe tendenziell länger ist. Da die #gls("O-SW") Releases primär an Projektmeilensteinen anknüpft, ist Git-Flow für diesen Fall gut erreichbar.
  
 == Richtlinien E-SW<E-SW-Richtlinien>
 
@@ -358,7 +354,7 @@ Die in @Git-Flow-E-SW dargestellte Vorgehensweise zeigt, dass die aktuelle Strat
     Beispiel:  
     hotfix/Fx.FlexOP_v4.5.5.12_2547
   ],
-))<tabelle-E-SW>
+), caption: "E-SW Branches")<tabelle-E-SW>
 
 Das Word-Dokument enthält in @Git-Flow-E-SW und @tabelle-E-SW die Kernelemente einer angepassten Git-Flow-Variante. Der zentrale Unterschied besteht darin, dass Releases nicht in separaten release/\*-Branches vorbereitet, sondern in main erstellt und anschließend über einen release/\*-Branch veröffentlicht werden.
 Abgesehen davon entsprechen die grundsätzlichen Vor- und Nachteile weitgehend dem klassischen Git-Flow-Modell.
@@ -375,48 +371,56 @@ GitHub Copilot kann mehr leisten als reine Codevervollständigung. Das System ka
 
 Die Bedeutung strukturierter Code-Reviews für Qualitätssicherung und Teamzusammenarbeit ist in der Forschung breit belegt @bacchelli2013moderncodereview @mcintosh2016codereview.
 
-== Rahmenbedingungen und Setup bei fpt
+== Rahmenbedingungen und Testumgebung
 
-Bei fpt befindet sich der Einsatz von Copilot für Code-Reviews derzeit noch in einer Erprobungsphase. Um produktive Bereiche nicht zu beeinflussen, wurde dafür ein separates Test-Repository eingerichtet. Da Copilot bei Reviews nur auf Inhalte des jeweiligen Repositories zugreifen kann, müssen die Coding-Conventions dort lokal im .github-Ordner hinterlegt sein. Dies geschieht über .md-Dateien, die GitHub direkt gerendert darstellt. Damit Änderungen nicht manuell in jedes Repository verteilt werden müssen, wurde das in @CodingConventionDiagramm gezeigte Verteilungssystem aufgebaut. Jeder Block steht für ein Repository, die Pfeile repräsentieren GitHub Actions.
+=== Testinfrastruktur
 
-Die Funktionsweise von Pull-Request-Reviews und branchbezogenen Schutzmechanismen ist in der offiziellen GitHub-Dokumentation beschrieben @githubdocs_prreviews @githubdocs_protectedbranches.
+Copilot-Reviews sind bei fpt in Erprobung. Infrastruktur:
+- Separates Test-Repository (isoliert von Produktion)
+- Copilot nutzt nur lokale Repository-Inhalte
+- Coding-Conventions als `.md`-Dateien im `docs`-Ordner
+- Copilot Anweisungen als `.md`-Dateien im `.github`-Ordner
 
-Wenn sich Coding-Conventions ändern, wird im Übersichts-Repository eine GitHub Action ausgeführt, die die aktualisierten .md-Dateien an Bibliotheken und Template-Projekte verteilt. Da die Ziel-Repositories in den Workflows explizit hinterlegt werden müssen, können fortlaufend neu entstehende Projekt-Repositories nicht direkt auf diesem Weg gepflegt werden. Deshalb werden die notwendigen Actions im Template-Projekt abgelegt. Alle daraus abgeleiteten Projekte übernehmen diese automatisch und können die aktuellen Conventions zentral aus dem Übersichts-Repository abrufen.
+*Datenverteilung:* Zentrale GitHub Action verteilt aktualisierte Conventions und Copilot Anweisungen zu Bibliotheken und Template-Projekten. Neue Projekte erben Actions automatisch (vgl. @CodingConventionDiagramm). Technische Details @githubdocs_prreviews @githubdocs_protectedbranches.
 
 
 #figure(image("assets/CodingConventionFlow.png", width: 90%), caption: "Coding-Convention Verteilung" )<CodingConventionDiagramm>
 
-Diese Actions sind bereits in allen #gls("O-SW")-Repositories vorhanden, die nicht als Projekt-Repositories geführt werden. Die Abläufe wurden intensiv getestet. Auch die automatische Übernahme in neu erzeugte Projekte ist bereits umgesetzt.
+*Status:* Actions in allen O-SW-Repositories außer Projekt-Repositories vorhanden; intensive Tests bestätigen automatische Übernahme.
 
+=== Testmethodologie
 
-Zusätzlich wurde im Test-Repository implementiert, dass Copilot bei jeder Pull Request auf main automatisch alle enthaltenen Commits gegen die hinterlegten Coding-Conventions prüft und Verbesserungsvorschläge liefert. Um die Zuverlässigkeit realistisch zu bewerten, wurden bewusst typische Fehler eingebaut. Aus den resultierenden Copilot-Antworten konnten mehrere Problemfelder abgeleitet werden.
-Diese werden im Folgenden dargestellt, erläutert und hinsichtlich möglicher Lösungen bewertet.
+Im Test-Repository prüft Copilot automatisch jeden PR auf main gegen Conventions. Vorgehen:
+- Absichtlich typische Fehler eingebaut
+- Checkliste erst NACH Review hinzugefügt (Nachvollziehbarkeit, methodische Konsistenz)
+- Bei Änderungen an Conventions: vorherigen PR schließen, neuen erstellen (vergleichbare Bedingungen)
+== Evaluationsergebnisse und Verbesserungszyklen
 
+=== Iteration 1: Präzision der Conventions
 
-== Testablauf
+*Befund:* Gründlichkeit der Copilot-Reviews unzureichend.
 
-Zur Bewertung der Zuverlässigkeit von GitHub Copilot wurde im Test-Repository ein separater Branch angelegt, in den gezielt typische Programmierfehler eingebracht wurden. Anschließend wurde jeweils eine Pull Request in main geöffnet, um die konfigurierte Code-Review-Richtlinie auszulösen. Copilot analysierte die Änderungen und hinterließ entsprechende Kommentare.
+*Ursache:* Coding-Conventions nicht präzise genug formuliert.
 
-Da Copilot auch die Pull-Request-Beschreibung und Diskussionen verarbeitet, wurde die Checkliste der absichtlich eingebauten Fehler jeweils erst nach Abschluss des Reviews ergänzt. So blieb die Auswertung nachvollziehbar und methodisch vergleichbar.
+*Gegenmaßnahmen:*
+- Kapitel "TwinCat" und "Allgemein" vollständig überarbeitet
+- Microsoft-Copilot-Agent "Prompt Coach" für KI-kompatible Formulierung eingesetzt
+- Sprachliche Präzisierung + erweiterte Copilot-Anweisungen
+- Jede Regel erhielt eindeutige ID (Format: Kapitelnummer-Fehlernummer, z. B. "3.2.7-2")
+- KI-generierte Vorschläge durch mehrere Personen validiert
 
-Wenn Anpassungen an Coding-Conventions oder Copilot-Anweisungen vorgenommen wurden, wurde die vorherige Pull Request geschlossen und eine neue erstellt. Dadurch konnte jede Änderung unter möglichst vergleichbaren Rahmenbedingungen bewertet werden.
+*Validierungsprocess:* Nur nach sorgfältiger inhaltlicher Prüfung übernommen. keine automatische Übernahme.
 
+*Effekt:* Qualität deutlich gestiegen. Kapitel- und Regelreferenzen konsistent. erkannte Probleme sichtbar.
 
-== Ergebnisse und Problemanalyse
+=== Iteration 2: Kommentarunterdrückung bei Umbenennungen
 
-=== Grundproblem
+*Befund:* Copilot erkannte Struct-Variablen-Benennungsverstöße (z. B. fehlendes `stc_`-Präfix), GitHub unterdrückte Kommentare.
 
-In den ersten Copilot-Reviews zeigte sich, dass die Gründlichkeit der Befunde nicht ausreichte. Nach eigener Recherche und Rücksprache mit GitHub Copilot Chat wurde deutlich, dass die zugrunde liegenden Coding-Conventions vermutlich nicht präzise genug formuliert waren. Deshalb wurden die Kapitel "#gls("TwinCat")" und "Allgemein" vollständig überarbeitet. Zur Unterstützung wurde der Microsoft-Copilot-Agent "Prompt Coach" genutzt, um die Regeln im vorhandenen Kontext verständlicher und KI-kompatibler zu formulieren. Die Überarbeitung betraf vor allem die sprachliche Präzisierung sowie ergänzende Copilot-Anweisungen.
-
-Die durch KI erzeugten Vorschläge wurden anschließend von mehreren Personen inhaltlich geprüft und nur nach sorgfältiger Bewertung übernommen. Eine ungeprüfte oder automatische Übernahme erfolgte ausdrücklich nicht.
-
-Zusätzlich erhielt jede Regel eine eindeutige ID, auf die GitHub Copilot in Befunden verweisen kann. Die Struktur folgt dem Muster Kapitelnummer-Fehlernummer im Kapitel, beispielsweise "3.2.7-2".
-
-Nach diesen Anpassungen verbesserte sich die Qualität der Reviews deutlich. Dies zeigte sich unter anderem daran, dass Kapitel- und Regelreferenzen konsistent verwendet wurden und erkannte Probleme zumindest als unterdrückte Kommentare sichtbar wurden.
-
-=== Problem Kommentarunterdrückung
-
-Das zentrale Restproblem bestand darin, dass Copilot Benennungsregelverstöße für Variablentypen innerhalb von Structs nur eingeschränkt zuverlässig erkannte. Besonders betroffen war die Prüfung des Präfixes stc\_ für Struct-Typ-Variablen. In der Praxis wurden Verstöße zwar erkannt, die zugehörigen Kommentare jedoch häufig unterdrückt. Das Problem wurde gezielt reproduziert, indem im Testcode das erforderliche Präfix bei einem Variablentyp in einer Struct entfernt wurde. Zur Gegenmaßnahme wurden die relevanten Abschnitte der Coding-Conventions aus @VariableNaming in den Kontextdialog übernommen und auf dieser Basis die in @structKlausel gezeigte Zusatzklausel formuliert.
+*Ursachenanalyse:* GitHub unterdrückt Meldungen bei:
+- Dateien, die als "neu hinzugefügt" erscheinen (nach Umbenennung)
+- Fehlender stabiler Diff-Verknüpfung für umbenannte Dateien
+- Umbenennung als intentionale Änderung (Copilot "widerspricht" PR-Intent)
 
 #figure(image("assets\Vorgaben-Variablen.png", width: 90%), caption: "Coding-Convention Variablen Präfixe" )<VariableNaming>
 
@@ -478,34 +482,21 @@ Damit werden Verstöße nicht nur an der Deklaration, sondern zusätzlich an der
 Nach dem Test zeigte sich, dass die ursprünglichen Kommentare weiterhin teilweise unterdrückt wurden, Verstöße jedoch zusätzlich an der ersten Verwendung der betroffenen Variablen als Fehler erschienen. Da diese Fundstellen nicht in umbenannten Dateien lagen, blieben die entsprechenden Meldungen sichtbar.
 
 
-== Feedback und weitere Verbesserung
+=== Iteration 3: Balance zwischen Präzision und Agilität
 
-Nach der Umsetzung der Verbesserungen im Test-Repository wurde ein Abstimmungsgespräch mit Ralf Scheyerle geführt, in dem die Änderungen bewertet wurden.
-Dabei wurde angemerkt, dass die Instructions in Teilen zu eng gefasst seien. Dadurch funktioniere Copilot zwar zuverlässig als Reviewer, die spätere Nutzung als Coding Agent werde jedoch unnötig eingeschränkt. Da diese Flexibilität für den produktiven KI-Einsatz wesentlich ist, wurde empfohlen, die Anweisungen gezielt zu öffnen, ohne die Review-Qualität zu verlieren.
+*Feedback von Ralf Scheyerle:* Instructions zu eng gefasst → Copilot zuverlässig als Reviewer, aber später als Code-Agent eingeengt.
 
-Im Anschluss wurden die Instructions entsprechend überarbeitet. Konkret wurde die Klausel entfernt, die das Verhalten zu stark auf reines Reviewing begrenzte. Außerdem wurden die überarbeiteten TwinCat-Instructions in das Übersichts-Repository übernommen. Damit kann der in @CodingConventionDiagramm dargestellte Verteilungsprozess nun sowohl für Coding-Conventions als auch für Copilot-Instructions einheitlich genutzt werden.
+*Anpassung:* Instructions bewusst geöffnet, ohne Review-Qualität zu verlieren. Restriktive Reviewing-Klausel entfernt.
 
-Außerdem wurde angemerkt, dass Copilot bei Pull-Request-Reviews nur die veränderten Zeilen auswerten kann. Dies führt dazu, dass bereits vorhandener Code nicht überprüft wird. Das zeigt sich insbesondere darin, dass Fehler, die bereits im Template-Projekt vorliegen, nicht zuverlässig erkannt werden. Daher musste eine ergänzende Lösung zur Prüfung von Bestandscode gefunden werden.
+*Konsequenz:* Überarbeitete TwinCat-Instructions ins Übersichts-Repository übernommen → einheitlicher Verteilungsprozess für Conventions UND Instructions (vgl. @CodingConventionDiagramm).
 
-Zu diesem Zweck wurde in Zusammenarbeit mit Ralf Scheyerle ein Agent entwickelt, der große Datenmengen komplexen Bestandscodes analysieren kann. Dies wurde dadurch ermöglicht, dass Ralf bereits einen Agenten besitzt, der qualitativ hochwertige Agent-Anweisungen formulieren kann. Mithilfe dessen konnte dieser Reviewer erfolgreich erstellt werden. Dieser wurde auch sofort eingesetzt, um die Template-Projekte und Standard-Libraries, soweit möglich, von Coding-Conventions-Verstößen zu bereinigen.
+=== Iteration 4: Bestandscode-Analyse
 
-= Entwicklungsumgebung
+*Erkannt:* Copilot prüft in PR-Reviews nur veränderte Zeilen → Bestandscode (z. B. in Template-Projekten) bleibt unkontrolliert.
 
-Für die Entwicklungsumgebung wurde die Kombination aus VS Code und TwinCat XAE Shell gewählt, da sich VS Code über Extensions flexibel an projektspezifische Anforderungen anpassen lässt. Zudem ist VS Code Open Source und benötigt im Vergleich zu umfassenden IDE-Lösungen deutlich weniger Ressourcen.
-
-Für die Einführung dieser Umgebung ist nicht nur die Tool-Auswahl entscheidend, sondern vor allem ein einheitlicher Arbeitsablauf. Deshalb werden im Folgenden die drei zentralen Bereiche Dateiverwaltung, SPS-Programmierung und GitHub-Verwaltung getrennt betrachtet und jeweils aus Prozesssicht konkretisiert.
+*Lösung:* Spezialisierter Agent zur Bestandscode-Analyse entwickelt (Zusammenarbeit mit Ralf Scheyerle). Dieser Agent wurde sofort eingesetzt, um Template-Projekte und Standard-Libraries zu bereinigen.
 
 
-== Dateiverwaltung
-
-Die Dateiverwaltung erfolgte bislang überwiegend über den Windows Explorer. Da VS Code jedoch eine strukturierte Projektansicht bereitstellt, soll die Dateiverwaltung dorthin verlagert werden. Dadurch können zentrale Funktionen wie GitHub-Source-Verwaltung sowie die Bearbeitung von in Projekten häufig vorkommenden Textartefakten (z. B. XML-Dateien) in einer Umgebung gebündelt werden. Auf diese Weise lässt sich ein schlanker und effizienter Entwicklungsprozess mit weniger parallel geöffneten Programmen etablieren.
-
-Für die praktische Umsetzung bedeutet das einen klaren Soll-Ablauf:
-- Projekt lokal öffnen und die benötigten Verzeichnisse direkt im VS Code Explorer verwalten.
-- Relevante Textartefakte (z. B. XML-Dateien) ohne Medienbruch im gleichen Arbeitsfenster bearbeiten.
-- Änderungen unmittelbar im Source-Control-Bereich prüfen, bevor sie committet werden.
-
-Dadurch entfällt der häufige Wechsel zwischen Explorer, separatem Git-Client und Editor. Gleichzeitig steigt die Nachvollziehbarkeit, weil Dateiänderung und Versionsstatus jederzeit im selben Kontext sichtbar sind.
 
 == SPS-Programmierung
 
@@ -571,114 +562,98 @@ Die Branching-Strategie wurde auf Basis des angepassten Git-Flow-Modells umgeset
 ==== Erfahrungen und Probleme
 
 //TODO  dokumentieren in meeting nach pr in main
-Positives:
-- Keine/wenig Mergekonflikte (leicht auflösbar)
-- sicheres arbeiten und Pullen ohne Arbeitsverlust
-- strukturierte Code Reviews durch PR's
+*Branching-Strategie funktioniert:*
+- Mergekonflikte entstehen selten und lassen sich leicht lösen
+- Sicheres paralleles Arbeiten ohne Datenverlust
+- PR-basierte Reviews strukturieren den Freigabeprozess
 Negatives:
 - 
 #lorem(20)
 
 === Copilot Code-Review
 
-Das Copilot-gestützte Code-Review wurde analog zum Test-Repository in den Projektkontext überführt. Pull Requests auf main werden dabei automatisch gegen die hinterlegten Coding-Conventions geprüft. Die Ergebnisse fließen als strukturierte Review-Kommentare in den Freigabeprozess ein und unterstützen die frühzeitige Erkennung von Abweichungen.
-
-Das Code-Review wird bei jedem Pull Request auf main ausgelöst, um die Einhaltung der Coding-Conventions systematisch zu prüfen.
+Das Copilot-gestützte Code-Review läuft analog zum Test-Repository. Jeder PR zu main wird automatisch gegen die Coding-Conventions geprüft; Befunde integrieren sich direkt in den Freigabeprozess.
 
 ==== Erfahrungen und Probleme
 
-Zunächst lief das Projekt, wie in jedem anderen auch üblich, ganz normal, mit dem Unterschied, dass bei jedem PR ein Review des Copilots aufgerufen wurden. 
-Nach dem ersten Meilenstein, der Virtuellen Inbetriebnahme, wurde ein Zwischenfazit mit den Erfahrungen gezogen.
-Alexandru schrieb hier die folgende Erfahrungen:
-- Kommentiert meißt auf Rechtschreibfehler, hier bisher immer korrekt, auch automatischer resolve
-- Manchmal nichtverwendung von Variablen angemeckert, obwohl in FUP verwendet
-- Fehler als schlimmer Klassifiziert, als sie sind
-- Bei strukturellen Verbesserungsvorschlägen manchmal Syntaxfehler präsent (manuelle Umsetzung/Überprüfung nötig)
+Das Projekt lief regulär mit einem Unterschied: Jeder PR zu main löste automatisch einen Copilot-Review aus.
+
+Nach dem ersten Meilenstein (Virtuelle Inbetriebnahme) zog Alexandru folgende Bilanz:
+- Rechtschreibfehler: Zuverlässig erkannt, automatischer Resolve funktioniert
+- Falsch-Positive: Manchmal Meldungen für Variablen, die in FUP tatsächlich verwendet werden
+- Schweregrad-Einstufung: Copilot überschätzt manchmal die Kritikalität von Fehlern
+- Syntaxfehler in Vorschlägen: Strukturelle Verbesserungen erfordern teils manuelle Nachprüfung
 //TODO  dokumentieren in meeting nach pr in main
 #lorem(20)
 
 
-= Projektmanagementprozess mit ZenHub
+= Projektmanagement mit ZenHub
 
-ZenHub ist ein webbasiertes Projektmanagement-Werkzeug, das speziell auf Softwareentwicklungsprozesse zugeschnitten ist und sich direkt in GitHub integriert. Der zentrale Vorteil besteht darin, dass Aufgabenplanung und Quellcodeverwaltung in derselben Umgebung stattfinden. Dadurch entfallen Medienbrüche zwischen Ticket-System, E-Mail-Kommunikation und Repository-Verwaltung.
+ZenHub ist ein webbasiertes Projektmanagement-Tool für Softwareentwicklung, direkt in GitHub integriert. Vorteil: Aufgabenplanung und Quellcodeverwaltung in einer Umgebung - Medienbrüche zwischen Ticket-System, E-Mail, Repository entfallen (vgl. @zenhub_docs).
 
-Die zugrunde liegenden Funktionsbausteine werden in der Herstellerdokumentation beschrieben @zenhub_docs.
+*Nutzen für die O-SW:*
+Branching-Strategien und Code-Reviews sichern technische Qualität; ZenHub stärkt Prozessqualität durch Priorisierung, klare Verantwortlichkeiten, Terminbezug und Fortschritttransparenz.
 
-Für die vorliegende Arbeit ist ZenHub vor allem deshalb relevant, weil neben der technischen Umsetzung auch die organisatorische Steuerung verbessert werden soll. Während Branching-Strategien und Code-Reviews primär die technische Qualität absichern, stärkt ZenHub die Prozessqualität: Priorisierung, Verantwortlichkeiten, Terminbezug und Transparenz über den Arbeitsfortschritt.
+*Funktionale Bausteine:*
+- Boards: Operative Tagesgeschäft-Steuerung
+- Epics: Bündelung verwandter Features/Arbeitspakete
+- Roadmaps: Zeitplanung über Iterationen/Meilensteine
+- Automatisierungen: Regelmäßige Statuswechsel & Workflows
 
-Funktional stellt ZenHub dafür mehrere Bausteine bereit:
-- *Boards* zur operativen Steuerung der Aufgaben im Tagesgeschäft
-- *Epics* zur Bündelung zusammenhängender Features oder Arbeitspakete
-- *Roadmaps* zur zeitlichen Planung über mehrere Iterationen oder Meilensteine
-- *Automatisierungen* für wiederkehrende Statuswechsel und Workflows
+Resultat: Zentrale, nachvollziehbare Planungs- und Kommunikationsstruktur für Teams jeder Größe.
 
-Insgesamt entsteht damit eine zentrale und nachvollziehbare Planungs- und Kommunikationsstruktur, die sowohl für kleine Teams als auch für bereichsübergreifende Zusammenarbeit geeignet ist.
+== E-SW Prozess als Referenz
+s
+In der E-SW steuert ZenHub primär FlexOp-Releases. Etablierter Ablauf:
+- Issues erfassen & vorqualifizieren
+- Teamleiter Simon Würzer priorisiert (Dringlichkeit/Fachlichkeit)
+- Priorisierte Tickets zuordnen, Entwickler einweisen
+- Größere Vorhaben als Epics, zerlegbar in Einzel-Issues
+- Release-Zeitpunkte in Roadmap hinterlegen, Issues zuordnen
 
-== Aktueller Stand bei #gls("E-SW")
+*Effekt:* Hohe Transparenz über Zuständigkeiten & Fortschritt; operative Tasks jederzeit im Kontext von Release-Zielen.
 
-In der #gls("E-SW") wird ZenHub aktuell primär für die Release-Planung der firmeneigenen Nutzeroberfläche #gls("FlexOp") eingesetzt. Der Fokus liegt auf einer klaren Verbindung zwischen strategischer Planung (Roadmap und Epics) und operativer Umsetzung (Issues auf dem Board).
+== Übertragung auf die O-SW
 
-Der etablierte Ablauf in der #gls("E-SW") lässt sich wie folgt zusammenfassen:
-- Neue Aufgaben werden als Issues erfasst und inhaltlich vorqualifiziert.
-- Der Teamleiter Simon Würzer priorisiert diese Issues nach Dringlichkeit und fachlicher Relevanz.
-- Anschließend werden die priorisierten Tickets in den Bearbeitungsprozess überführt und passenden Teammitgliedern zugewiesen.
-- Umfangreichere Vorhaben werden als Epic angelegt und in umsetzbare Einzel-Issues zerlegt.
-- Für geplante Releases werden feste Zeitpunkte in der Roadmap hinterlegt und die zugehörigen Issues entsprechend zugeordnet.
+Ziel: Ersetze mündliche/E-Mail-Abstimmung durch standardisierten, nachvollziehbaren Prozess. Dies ist vor allem bei kurzfristigen #gls("FlexOp")-Versionsänderungen erforderlich - Abhängigkeiten früh sichtbar, Abstimmungsaufwand reduziert.
 
-Dieser Ablauf schafft hohe Transparenz über Zuständigkeiten und Fortschritt. Gleichzeitig wird sichergestellt, dass operative Aufgaben jederzeit im Kontext übergeordneter Release-Ziele stehen.
+*Vorgehen:*
+- Issues erfassen, priorisieren, Verantwortliche zuordnen
+- Größere Vorhaben in Epics bündeln → umsetzbare Einheiten
+- Zeitkritische Pakete zu Meilensteinen zuordnen
+- Board-Spalten klären (z. B. Backlog → Planned → In Progress → Review → Done)
+- Rollen definieren: Wer priorisiert? Wer genehmigt Releases?
 
-== Übertragung auf die #gls("O-SW")
-
-Die Übertragung auf die #gls("O-SW") verfolgt das Ziel, die bisher überwiegend mündliche und E-Mail-basierte Abstimmung durch einen standardisierten und nachvollziehbaren Prozess zu ersetzen. Insbesondere bei kurzfristigen Änderungen im Umfeld von #gls("FlexOp")-Versionen ist eine zentrale Planung erforderlich, um Abhängigkeiten frühzeitig sichtbar zu machen und den Abstimmungsaufwand zu reduzieren.
-
-Ausgehend von den in der #gls("E-SW") etablierten Abläufen wird ZenHub in der #gls("O-SW") so eingesetzt, dass strategische Planung und operative Umsetzung enger verknüpft werden. Aufgaben werden als Issues erfasst, priorisiert und den verantwortlichen Mitarbeitenden zugeordnet. Umfangreichere Vorhaben werden in Epics gebündelt und in umsetzbare Einheiten unterteilt. Für zeitkritische Arbeitspakete erfolgt zusätzlich eine Zuordnung zu geplanten Meilensteinen.
-
-// TODO: Hier den konkreten O-SW-Zielprozess mit Rollen, Board-Spalten, Priorisierungslogik und einem kurzen Praxisbeispiel ergänzen.
-#lorem(70)
-
-Durch dieses Vorgehen kann ZenHub nicht nur als reines Ticket-Tool genutzt werden, sondern als verbindendes Steuerungselement zwischen technischer Umsetzung, Branching-Prozess und Release-Kommunikation.
+Resultat: ZenHub fungiert als Verbindungselement zwischen technischer Umsetzung, Branching-Prozess und Release-Kommunikation - nicht nur als Ticket-Tool.
 
 
 = Schulung und Wissenssicherung
 
-Damit die zuvor beschriebenen Methoden im Team wirksam und regelkonform angewendet werden, werden im nächsten Schritt strukturierte Schulungsunterlagen erarbeitet. Diese sollen einerseits eine grundlegende Einführung in Git und GitHub für neue Mitarbeitende und Auszubildende bieten und andererseits die neu eingeführten Prozesse und Richtlinien vermitteln.
+Damit die Methoden wirksam und konsistent greifen, entstehen strukturierte Schulungsunterlagen. Sie unterstützen das Onboarding neuer Mitarbeitender und etablieren abteilungsweit einheitliche Standards.
 
-Die Dokumentation verfolgt dabei zwei Ziele: Erstens soll das Onboarding neuer Teammitglieder systematisch unterstützt werden, zweitens soll ein abteilungsweit einheitlicher Wissensstand etabliert werden.
+== Bedarfsermittlung
 
-== Aktuelles Wissen der Mitarbeiter
+Ein Austausch mit Mitarbeiter Matthias Scheuring zur Bedarfsermittlung: geringe Git/GitHub-Vorerfahrung, aber Projektberührung. Identifizierte Einstiegshürden:
 
-Zur bedarfsgerechten Ausgestaltung der Schulung wurde ein strukturierter Austausch mit dem Mitarbeiter Matthias Scheuring durchgeführt. Zum Zeitpunkt des Gesprächs verfügte er über geringe Vorerfahrung mit Git und GitHub, hatte jedoch bereits punktuelle Berührungspunkte in einem Projektkontext. Ziel des Termins war es, die aus Anwendersicht relevanten Einstiegshürden zu identifizieren und daraus priorisierte Schulungsinhalte abzuleiten.
+*Grundverständnis Git/GitHub:* Nicht ausreichend bekannt → Werkzeug nicht konsequent eingesetzt → wiederholt Anfragen um Commits.
 
-Die inhaltlichen Ergebnisse werden im weiteren Projektverlauf noch vollständig konsolidiert. Als aktueller Arbeitsstand lassen sich folgende Schwerpunkte festhalten:
-- Grundverständnis zu Git, GitHub und Versionshistorie
-- Sicheres Arbeiten mit Branches, Pull Requests und Merges
-- Orientierung im unternehmensspezifischen Ablaufmodell
+*Branch-Mechanik:* Anfangs unklar → Commits nur in main → Konflikte im Code und Team (@ProblematikBranching).
 
-Im Gespräch benannte Matthias mehrere Themen, die ihm den Einstieg in GitHub erschwerten. Zunächst war das Grundprinzip von Git nicht ausreichend bekannt, sodass das Werkzeug in der Praxis nicht konsequent genutzt wurde. Dies führte dazu, dass andere Projektbeteiligte wiederholt um Commits bitten mussten. #linebreak()
-Darüber hinaus war die Branch-Mechanik zu Beginn nicht hinreichend vertraut, was dazu führte, dass Commits ausschließlich in main vorgenommen wurden. Wie in @ProblematikBranching beschrieben, führte dies zu Konflikten im Code und im Team.
+*Unternehmenskontext:* Prozessverständnis fehlte.
 
-Auf Basis dieser Erhebung wurden die im Folgenden beschriebenen Schulungsbausteine zusammengestellt.
+Aus dieser Analyse entstanden die nachfolgenden Schulungsbausteine.
 
-== Wahl der Schulungsumgebung
+== Schulungsumgebung: Evaluierte Optionen
 
-Für die wirksame Vermittlung der Inhalte ist neben der fachlichen Aufbereitung auch die Auswahl geeigneter Lernumgebungen entscheidend. Die Bewertung erfolgte daher themenspezifisch.
+*Microsoft Learn:* Etablierte GitHub-Kurse, nicht an fpt-Prozesse anpassbar; teilweise nicht-fpt-Standard-Workflows.
 
-=== Microsoft Learn
+*GitHub Skills:* Hochwertige Inhalte, aber zu workspace-fokussiert; begrenzte Übertragbarkeit auf TwinCat/WorkVisual-Kontext.
 
-Microsoft Learn bietet etablierte Einstiegskurse zur Arbeit mit GitHub. Für den vorliegenden Anwendungsfall ist die Plattform jedoch nur eingeschränkt geeignet, da die Inhalte nicht an unternehmensspezifische Prozesse angepasst werden können. Zudem enthalten die Kurse teilweise Vorgehensweisen, die in der #gls("fpt Systems GmbH") nicht eingesetzt werden.
+*YouTube:* Umfassende didaktische Inhalte, ohne O-SW-spezifische Prozesse; nur ergänzendes Medium geeignet.
 
-=== GitHub Skills
+*Eigene Dokumentation:* ✓ Ideal - fpt-Wiki für beliebig gestaltbare Unterlagen, multimedial erweiterbar, an Unternehmensstandards anpassbar.
 
-GitHub Skills stellt einen qualitativ hochwertigen Kurs bereit, der den Einstieg in GitHub und die dortigen Workspaces unterstützt. Im Rahmen einer Erprobung zeigte sich jedoch, dass der Schwerpunkt stark auf Workspace-basierten Szenarien liegt. Da in der #gls("O-SW") überwiegend mit #gls("TwinCat") und #gls("WorkVisual") gearbeitet wird, ist die direkte Übertragbarkeit auf den Zielkontext begrenzt.
-
-=== YouTube <youtube>
-
-Auf YouTube sind zahlreiche didaktisch gut aufbereitete Inhalte verfügbar, die Funktionen und Nutzung von Git und GitHub umfassend erläutern. Da diese Inhalte die unternehmensspezifischen Prozesse naturgemäß nicht abbilden, eignen sie sich nicht als alleinige Schulungsgrundlage. Als ergänzendes Einstiegsmedium sind sie jedoch sinnvoll.
-
-=== Eigene Dokumentation
-
-In der #gls("fpt Systems GmbH") existiert bereits ein HTML-basiertes Intranet-Wiki zur zentralen Bereitstellung von Wissensinhalten. Da die Schulungsunterlagen dort eigenständig erstellt und gepflegt werden können, ist diese Lösung besonders geeignet, um den unternehmensspezifischen Umgang mit Git und GitHub abzubilden. Zusätzlich können multimediale Ergänzungen wie Abbildungen und externe Verweise integriert werden. Dadurch lassen sich die in @youtube genannten Videos gezielt als ergänzende Lernressourcen einbinden.
-
+→ *Gewählte Strategie:* Interne Wiki-Dokumentation mit ergänzenden Präsentationen und YouTube-Videos.
 
 
 == Umsetzung der Dokumentation
@@ -686,13 +661,19 @@ In der #gls("fpt Systems GmbH") existiert bereits ein HTML-basiertes Intranet-Wi
 === Git und GitHub Grundlagen
 
 
-Die Dokumentation der Git- und GitHub-Grundlagen bildet den Einstieg für neue Mitarbeitende und Auszubildende. Behandelt werden die zentralen Konzepte der Versionsverwaltung, die Arbeit mit Branches sowie der Ablauf von Pull Requests und Reviews im Unternehmenskontext. Die Inhalte sind so aufgebaut, dass sie sowohl für das Onboarding als auch als Nachschlagewerk im laufenden Projektbetrieb genutzt werden können.
+Die Dokumentation der Git- und GitHub-Grundlagen bildet den Einstieg für neue Mitarbeitende und Auszubildende. Behandelt werden Versionsverwaltung, Branches und Pull Requests im Unternehmenskontext. Sie dient sowohl zum Onboarding als auch als Nachschlagewerk.
 
-Die fachliche Grundstruktur der Schulungsdokumentation orientiert sich an dem in "Arbeiten mit Git & GitHub (mit GitHub Desktop)" ausgearbeiteten Aufbau. Inhaltlich beginnt die Unterlage mit einer kompakten Einführung in Git als Versionsverwaltungssystem und GitHub als kollaborative Plattform. Darauf aufbauend werden die Grundelemente des Git-Arbeitsmodells erläutert, insbesondere Working Directory, Staging Area, lokales Repository und Remote Repository. Im nächsten Schritt folgt der typische Arbeitsablauf im Team: Repository klonen, Änderungen synchronisieren, lokale Anpassungen prüfen, committen, pushen sowie Pull Requests zur kontrollierten Integration nutzen. Ergänzt wird dieser Ablauf durch eigenständige Kapitel zu Branches, Merge-Vorgängen, Konfliktbehandlung, Historie und typischen Fehlersituationen, sodass sowohl Grundlagenwissen als auch unmittelbar anwendbare Handlungsschritte abgedeckt werden.
+*Inhalte:* Git-Grundkonzepte (Working Directory, Staging Area, Repositories); Team-Workflow (klonen → ändern → committen → pushen → PR); Branches, Merges, Konfliktlösung, typische Fehler.
 
-Für die praktische Nutzbarkeit im Unternehmensalltag wird die Dokumentation nicht auf reine Textbeschreibungen beschränkt. Stattdessen werden die Kapitel durch Verweise auf die bereits vorhandene Präsentation sowie auf ein ausgewähltes Video-Tutorial ergänzt. Damit entsteht ein mehrstufiges Lernangebot aus kurzer Begriffserklärung, grafisch unterstützter Schritt-für-Schritt-Anleitung und weiterführendem Demonstrationsmaterial. Die schriftliche Dokumentation übernimmt dabei die Funktion des verbindlichen Referenzdokuments, während Präsentation und Video vor allem den Einstieg erleichtern und typische Bedienabläufe anschaulich machen.
+*Format:* Schriftliche Referenz + Präsentations-Link + Video-Tutorial → mehrstufiges Lernangebot.
 
-Der Rollout erfolgt stufenweise über das Intranet-Wiki der #gls("fpt Systems GmbH"). Zunächst wird die Grundlagendokumentation dort als zentraler Schulungsbaustein für neue Mitarbeitende und Auszubildende veröffentlicht. Anschließend wird sie in Einweisungsgesprächen und bei teaminternen Schulungen verwendet, sodass die grundlegenden Begriffe und Standardabläufe einheitlich vermittelt werden. Rückmeldungen aus diesen ersten Anwendungen werden in die weitere Ausarbeitung aufgenommen, bevor die Inhalte um unternehmensspezifische Vorgaben zu Branching, Pull-Request-Freigaben und Review-Prozessen ergänzt werden. Auf diese Weise entsteht schrittweise eine konsistente Dokumentationsbasis, die sowohl den allgemeinen Einstieg in GitHub als auch die konkreten Prozesse der #gls("O-SW") abbildet.
+*Rollout:* Wiki-Publikation → Einweisungsgespräche → Feedback → fpt-spezifische Vorgaben (Branching, Reviews) integrieren.
+
+*Lernziele:*
+- Git/GitHub-Grundkonzepte verstehen und unterscheiden
+- Standard-Workflow sicher durchführen
+- Branches und Merges korrekt handhaben
+- Typische Probleme erkennen und lösen
 
 
 === Branching Strategien
@@ -715,8 +696,23 @@ Zur didaktischen Strukturierung umfasst der Baustein drei Ebenen: erstens eine k
 
 === Entwicklungsumgebung
 
-//TODO schulungsunterlagen vscode beschreiben
-#lorem(50)
+
+*Basis:* PowerPoint (VS Code Bedienung Grundverständnis) → Schulungsunterlage (Referenz).
+
+*Inhalte:* Installation + Workspace-Setup; täglicher Workflow (fetch/pull → Branch-Wechsel → Bearbeitung → Commit → Push → PR); TwinCat XAE Shell Integration ("Open with default application"); KI-Einsatz (Copilot-Workflow, kritische Bewertung).
+
+*Lernziele:*
+- VS Code Setup durchführen und Workspace-Konfigurationen anwenden
+- Täglichen GitHub-Workflow sicher anwenden
+- XAE Shell korrekt als Komplement nutzen
+- KI-Hinweise kritisch als Entscheidungshilfe bewerten
+
+Didaktisch folgt der Baustein demselben Muster wie die übrigen Schulungskapitel: kompakte Einführung, standardisierte Schrittfolgen, Best Practices und typische Fehler. Damit werden nicht nur Bedienkenntnisse vermittelt, sondern ein verbindliches Verhaltensmodell für den Teamalltag etabliert.
+
+
+= Einführung im Team
+
+
 
 = Fazit
 
