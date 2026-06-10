@@ -1,0 +1,59 @@
+<svg viewBox="0 0 760 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .box-title { font-family: Arial, sans-serif; font-size: 16px; font-weight: 700; }
+      .box-text  { font-family: Arial, sans-serif; font-size: 13px; }
+      .arrow     { stroke: #2f2f2f; stroke-width: 3; }
+    </style>
+  </defs>
+
+  <rect width="760" height="640" fill="#ffffff"/>
+
+  <!-- Schritt 1: Änderung in XAE Shell -->
+  <rect x="140" y="40" width="480" height="92" rx="12" fill="#ff9966" stroke="#2f2f2f" stroke-width="2"/>
+  <text x="380" y="72"  class="box-title" text-anchor="middle" fill="#ffffff">1. Änderung in TwinCat XAE Shell</text>
+  <text x="380" y="96"  class="box-text"  text-anchor="middle" fill="#ffffff">SPS-Code bearbeiten (POUs, DUTs, GVLs)</text>
+  <text x="380" y="114" class="box-text"  text-anchor="middle" fill="#ffffff">Änderung wird lokal gespeichert</text>
+
+  <line x1="380" y1="132" x2="380" y2="162" class="arrow"/>
+  <polygon points="380,162 372,149 388,149" fill="#2f2f2f"/>
+
+  <!-- Schritt 2: Sync mit GitHub in VS Code -->
+  <rect x="140" y="162" width="480" height="92" rx="12" fill="#4da6e8" stroke="#2f2f2f" stroke-width="2"/>
+  <text x="380" y="194" class="box-title" text-anchor="middle" fill="#ffffff">2. Sync mit GitHub in VS Code</text>
+  <text x="380" y="218" class="box-text"  text-anchor="middle" fill="#ffffff">VS Code öffnen, Änderungen in Source Control sichtbar</text>
+  <text x="380" y="236" class="box-text"  text-anchor="middle" fill="#ffffff">Feature-Branch auswählen oder anlegen</text>
+
+  <line x1="380" y1="254" x2="380" y2="284" class="arrow"/>
+  <polygon points="380,284 372,271 388,271" fill="#2f2f2f"/>
+
+  <!-- Schritt 3: Commit + Push -->
+  <rect x="140" y="284" width="480" height="92" rx="12" fill="#ffd93d" stroke="#2f2f2f" stroke-width="2"/>
+  <text x="380" y="316" class="box-title" text-anchor="middle" fill="#1a1a1a">3. Commit und Push</text>
+  <text x="380" y="340" class="box-text"  text-anchor="middle" fill="#1a1a1a">Änderungen mit aussagekräftiger Nachricht committen</text>
+  <text x="380" y="358" class="box-text"  text-anchor="middle" fill="#1a1a1a">Branch auf GitHub pushen</text>
+
+  <line x1="380" y1="376" x2="380" y2="406" class="arrow"/>
+  <polygon points="380,406 372,393 388,393" fill="#2f2f2f"/>
+
+  <!-- Schritt 4: PR + Review -->
+  <rect x="140" y="406" width="480" height="92" rx="12" fill="#51cf66" stroke="#2f2f2f" stroke-width="2"/>
+  <text x="380" y="438" class="box-title" text-anchor="middle" fill="#1a1a1a">4. Pull Request und Review</text>
+  <text x="380" y="462" class="box-text"  text-anchor="middle" fill="#1a1a1a">PR auf GitHub erstellen, Copilot-Review läuft automatisch</text>
+  <text x="380" y="480" class="box-text"  text-anchor="middle" fill="#1a1a1a">Team prüft und gibt frei → Merge in Ziel-Branch</text>
+
+  <!-- Legende -->
+  <line x1="140" y1="530" x2="620" y2="530" stroke="#cccccc" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <rect x="140" y="548" width="18" height="18" rx="4" fill="#ff9966" stroke="#2f2f2f" stroke-width="1.5"/>
+  <text x="167" y="562" class="box-text" fill="#333">TwinCat XAE Shell</text>
+
+  <rect x="310" y="548" width="18" height="18" rx="4" fill="#4da6e8" stroke="#2f2f2f" stroke-width="1.5"/>
+  <text x="337" y="562" class="box-text" fill="#333">VS Code / GitHub</text>
+
+  <rect x="140" y="580" width="18" height="18" rx="4" fill="#ffd93d" stroke="#2f2f2f" stroke-width="1.5"/>
+  <text x="167" y="594" class="box-text" fill="#333">Git (Commit / Push)</text>
+
+  <rect x="310" y="580" width="18" height="18" rx="4" fill="#51cf66" stroke="#2f2f2f" stroke-width="1.5"/>
+  <text x="337" y="594" class="box-text" fill="#333">GitHub PR + Review + Merge</text>
+</svg>
