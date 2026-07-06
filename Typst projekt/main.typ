@@ -49,15 +49,66 @@ Die Abgrenzung liegt darin, dass keine vollständige Reorganisation aller Untern
 Zur didaktisch klaren Einordnung folgt die Arbeit der Abfolge Ausgangslage, konzeptioneller Lösungsansatz, fachliche Grundlagen, Evaluation im Testkontext, Pilotierung im Projekt, organisatorische Implementierung und Schulung sowie abschließendes Fazit.
 
 
+= Forschungsfragen und Methodik
+
+== Forschungsfragen
+
+Um die Zielerreichung nachvollziehbar zu prüfen, werden die folgenden Forschungsfragen zugrunde gelegt:
+
+- *F1:* Inwieweit verbessert ein angepasstes Git-Flow-Modell die Nachvollziehbarkeit und Stabilität von Integrations- und Freigabeprozessen in der #gls("O-SW")?
+- *F2:* Welchen messbaren Beitrag leisten Copilot-gestützte Reviews zur Erkennung formaler Regelverstöße im Vergleich zur rein manuellen Prüfung?
+- *F3:* Inwieweit reduziert die Einführung von ZenHub den organisatorischen Abstimmungsaufwand und erhöht die Transparenz über Verantwortlichkeiten, Prioritäten und Abhängigkeiten?
+- *F4:* Unter welchen organisatorischen und technischen Randbedingungen ist das kombinierte Prozessmodell langfristig im Teamalltag tragfähig?
+
+Die Kapitel sind entlang dieser Fragen strukturiert: F1 wird primär über Branching-Konzeption und Pilotierung beantwortet, F2 über die Evaluation des Review-Ansatzes, F3 über die Management- und ZenHub-Abschnitte sowie F4 über Einführung, Schulung, Limitationen und Wirtschaftlichkeitsbetrachtung.
+
+== Methodisches Vorgehen
+
+=== Untersuchungsdesign
+
+Die Arbeit folgt einem anwendungsorientierten, iterativen Design mit den Phasen Analyse, Konzeption, Evaluation im Testkontext, Pilotierung im Projekt und organisatorischer Verstetigung. Methodisch handelt es sich um eine praxisnahe Fallstudie im industriellen Umfeld mit formativer Verbesserung über mehrere Iterationen.
+
+Die Evaluation kombiniert qualitative und semiquantitative Elemente. Qualitativ werden Beobachtungen aus Reviews, Pilotbetrieb und Teamrückmeldungen ausgewertet. Semiquantitativ werden wiederkehrende Befundtypen, Review-Verhalten und Prozessindikatoren systematisch kategorisiert und zwischen Iterationen verglichen.
+
+=== Datengrundlage und Auswertungseinheit
+
+Die Datengrundlage umfasst:
+
+- Pull-Request-Reviews und zugehörige Befunde aus dem Test-Repository.
+- Beobachtungen und Rückmeldungen aus dem Pilotprojekt der #gls("O-SW").
+- Prozessartefakte aus Branching-, Review- und Planungsabläufen (z. B. Branch-Strukturen, Boards, Merge-Verläufe).
+
+Die Auswertungseinheit ist jeweils ein klar abgegrenzter Iterationszyklus beziehungsweise ein definierter Projektabschnitt. Dadurch bleiben Ursache-Wirkungs-Bezüge zwischen Maßnahme und beobachtetem Ergebnis nachvollziehbar.
+
+=== Bewertungsmetriken
+
+Zur Vergleichbarkeit werden die folgenden Metriken verwendet:
+
+#figure(table(
+  columns: (1.2fr, 2.8fr),
+  inset: 8pt,
+  align: (left, left),
+  stroke: 0.5pt + gray,
+  [*Metrik*], [*Bedeutung im Kontext dieser Arbeit*],
+  [Review-Abdeckung], [Anteil der relevanten Änderungen, die im PR-Prozess durch Review-Regeln adressiert werden.],
+  [Befundpräzision], [Grad der fachlich korrekten Zuordnung von Hinweisen zu konkreten Conventions.],
+  [Unterdrückungsanfälligkeit], [Häufigkeit, mit der formal korrekte Hinweise aufgrund von Diff-Eigenschaften nicht sichtbar werden.],
+  [Prozessdurchlauf], [Tendenz der Bearbeitungsdauer von Änderung bis Merge über standardisierte PR-Schritte.],
+  [Koordinationsaufwand], [Erforderliche Abstimmungsintensität zwischen Rollen bei Priorisierung, Review und Freigabe.],
+), caption: "Bewertungsmetriken für Evaluation und Pilotierung")<Metriken>
+
+Die Metriken werden überwiegend als Trends (niedrig, mittel, hoch; verbessert, unverändert, verschlechtert) bewertet, sofern keine belastbaren numerischen Reihen vorliegen.
+
+
 = Ausgangslage und Zielbild
 
 == Problematik<Problematik>
 
 === Branching<ProblematikBranching>
 
-In der Abteilung #gls("O-SW") existiert bislang keine verbindliche und einheitliche Vorgehensweise für GitHub-Branches. Obwohl die #gls("E-SW") Richtlinien bereits bei internen Bibliotheken und Template-Projekten eingesetzt werden, zeigt sich in der Praxis: Diese Vorgaben passen nicht auf die Anlagenentwicklung. Die Entwicklungsabfläufe unterscheiden sich strukturell und inhaltlich, was zu alltags prägenden Unklarheiten führt.
+In der Abteilung #gls("O-SW") existiert bislang keine verbindliche und einheitliche Vorgehensweise für GitHub-Branches. Obwohl die #gls("E-SW") Richtlinien bereits bei internen Bibliotheken und Template-Projekten eingesetzt werden, zeigt sich in der Praxis: Diese Vorgaben passen nicht auf die Anlagenentwicklung. Die Entwicklungsabläufe unterscheiden sich strukturell und inhaltlich, was zu alltagsprägenden Unklarheiten führt.
 
-Ohne diese Passgenauigkeit treffen Entwickler Branching-Entscheidungen zunehmend individuell. Das führt zu uneinheitlichen Abfällen, erschwert die Nachvollziehbarkeit von Änderungen und erhöht das Konfliktrisiko beim Zusammenführen von Code. Gleichzeitig sinkt die Zusammenarbeitseffizienz, da gemeinsame Regeln keine durchgehende Anwendung finden.
+Ohne diese Passgenauigkeit treffen Entwickler Branching-Entscheidungen zunehmend individuell. Das führt zu uneinheitlichen Abläufen, erschwert die Nachvollziehbarkeit von Änderungen und erhöht das Konfliktrisiko beim Zusammenführen von Code. Gleichzeitig sinkt die Zusammenarbeitseffizienz, da gemeinsame Regeln keine durchgehende Anwendung finden.
 
 Im Tagesgeschäft zeigt sich dies insbesondere bei der Frage, wann Änderungen direkt in develop integriert werden dürfen und wann zunächst in enger abgegrenzten Feature- oder Bugfix-Branches gearbeitet werden muss. Fehlen dafür verbindliche Kriterien, entstehen in einzelnen Projekten unterschiedliche Interpretationen. Dadurch wächst der Abstimmungsbedarf zwischen den Beteiligten, Pull Requests werden uneinheitlich vorbereitet und Freigabeentscheidungen werden stärker personenabhängig. Die Folge ist kein einzelner großer Fehler, sondern eine Vielzahl kleiner Reibungsverluste, die den Entwicklungsfluss über die Projektlaufzeit hinweg messbar verlangsamen.
 
@@ -75,7 +126,7 @@ Die manuelle Kontrolle ist fachlich notwendig, skaliert aber mit zunehmender Pro
 
 === Entwicklungsumgebung
 
-In der #gls("O-SW") besteht das Problem fehlender Entwicklungsumgebung-Einheit. Die Ursache: Lizenzen der bisherigen Lösung sind abgelaufen; kostengründe und lange Update-Zyklen machen Neuentwicklung erforderlich. Aktuell existiert kein etabliertes Nachfolgesystem.
+In der #gls("O-SW") besteht das Problem fehlender Entwicklungsumgebung-Einheit. Die Ursache: Lizenzen der bisherigen Lösung sind abgelaufen; Kostengründe und lange Update-Zyklen machen Neuentwicklung erforderlich. Aktuell existiert kein etabliertes Nachfolgesystem.
 
 Die bisherige Werkzeuglandschaft war über mehrere Anwendungen verteilt, sodass Dateiverwaltung, Versionskontrolle und Programmierung in getrennten Oberflächen stattfanden. Dieser Medienbruch erschwert konsistente Arbeitsabläufe, weil Kontextwechsel zwischen Tools zusätzliche Zeit benötigen und Fehlerquellen im Prozess erzeugen. Für eine belastbare Teamarbeit wird daher eine Umgebung benötigt, die den kollaborativen GitHub-Workflow unterstützt und gleichzeitig die technischen Anforderungen der SPS-Programmierung ohne Lizenzhürden abdeckt.
 
@@ -177,7 +228,7 @@ Für die #gls("O-SW") ist GitHub-Flow wenig geeignet. Die Abteilung entwickelt A
 
 === Git-Flow: Strukturiertes Branching für komplexe Releases <Git-Flow>
 
-Git-Flow ist ein strukturiertes Branching-Modell, das Entwicklungsabfläufe klar trennt und stabile Releases absichert. Vorgestellt 2010 von Vincent Driessen (@driessen2010gitflow), wird es in Projekten mit parallelen Features, Hotfixes und Versionen am häufigsten angewendet.
+Git-Flow ist ein strukturiertes Branching-Modell, das Entwicklungsabläufe klar trennt und stabile Releases absichert. Vorgestellt 2010 von Vincent Driessen (@driessen2010gitflow), wird es in Projekten mit parallelen Features, Hotfixes und Versionen am häufigsten angewendet.
 
 #figure(image("assets/Gitflow-Workflow-4.png", width: 80%), caption: "Git Flow" )<Git-Flow-Grafik>
 
@@ -431,7 +482,7 @@ Nach der Überarbeitung stieg die Erkennungsqualität deutlich. Befunde ließen 
 - Fehlender stabiler Diff-Verknüpfung für umbenannte Dateien
 - Umbenennung als intentionale Änderung (Copilot "widerspricht" PR-Intent)
 
-#figure(image("assets\Vorgaben-Variablen.png", width: 90%), caption: "Coding-Convention Variablen Präfixe" )<VariableNaming>
+#figure(image("assets/Vorgaben-Variablen.png", width: 90%), caption: "Coding-Convention Variablen Präfixe" )<VariableNaming>
 
 #figure(caption: "Klausel",
 sourcecode(```md
@@ -509,6 +560,24 @@ Um diese Lücke zu schließen, wurde in Zusammenarbeit mit Ralf Scheyerle ein sp
 
 Diese Ergänzung schließt die methodische Lücke der reinen PR-basierten Prüfung. Beide Ansätze ergänzen sich dabei: Pull-Request-Reviews sichern den Entwicklungsfluss kontinuierlich ab, während der Bestandscode-Agent dafür sorgt, dass auch historisch gewachsene Regelverstöße systematisch erfasst und schrittweise in den definierten Standard überführt werden können, ohne den laufenden Betrieb zu unterbrechen.
 
+=== Zusammenfassende Bewertung der Iterationen
+
+Zur konsistenten Einordnung werden die vier Iterationen entlang der in @Metriken definierten Kriterien zusammengeführt.
+
+#figure(table(
+  columns: (1.3fr, 2.0fr, 1.4fr, 1.5fr),
+  inset: 8pt,
+  align: (left, left, left, left),
+  stroke: 0.5pt + gray,
+  [*Iteration*], [*Ziel der Anpassung*], [*Befundpräzision*], [*Unterdrückungsanfälligkeit*],
+  [1], [Präzisere und referenzierbare Conventions], [deutlich verbessert], [unverändert],
+  [2], [Sichtbarkeit bei Umbenennungen erhöhen], [stabil], [verbessert, aber nicht eliminiert],
+  [3], [Review-Präzision mit Assistenz-Flexibilität balancieren], [hoch], [unverändert],
+  [4], [Bestandscode außerhalb von PR-Diffs erfassen], [hoch bei Vollanalyse], [nicht PR-diff-abhängig],
+), caption: "Iterationsvergleich entlang zentraler Evaluationsmetriken")<Iterationsvergleich>
+
+In Summe zeigt @Iterationsvergleich eine klare Reifung des Ansatzes: Die fachliche Präzision steigt über die Iterationen konsistent an, während plattformbedingte Einschränkungen gezielt durch Prozessmaßnahmen kompensiert werden.
+
 == Zwischenfazit zur Evaluation
 
 Die vier Iterationen zeigen einen klaren Entwicklungspfad. Ausgangspunkt war ein System, das grundsätzlich funktionsfähig, aber in seiner Prüftiefe unzureichend war. Der entscheidende Hebel lag nicht in der KI-Technologie selbst, sondern in der Qualität der zugrunde liegenden Conventions und Instruktionen: Erst präzise, eindeutig referenzierbare Regeln ermöglichten reproduzierbare und fachlich verwertbare Befunde.
@@ -561,7 +630,7 @@ Diese Trennung reduziert Tool-Konflikte. Fachliche Änderungen entstehen in der 
 Die GitHub-Verwaltung erfolgte bisher vor allem über Sourcetree oder GitHub Desktop. In VS Code steht jedoch bereits eine integrierte Oberfläche für pull, push, commit, checkout, Branch-Auswahl, Arbeitsbaum und Änderungsverwaltung bereit.
 
 
-#figure(image("assets\VS-Code-SourceControl.png", width: 50%), caption: "VS-Code Source Verwaltung" )<VS-Code-SourceControl>
+#figure(image("assets/VS-Code-SourceControl.png", width: 50%), caption: "VS-Code Source Verwaltung" )<VS-Code-SourceControl>
 
 Das Interface ist über die Seitenleiste jederzeit erreichbar (vgl. @VS-Code-SourceControl). Für Issues, Actions und Pull Requests ergänzen die empfohlenen Extensions "GitHub Pull Requests" und "GitHub Actions" den Funktionsumfang.
 
@@ -607,6 +676,11 @@ Als besonders positiv wurde festgehalten, dass der Pull-Request-Übergang als na
 
 Als Herausforderung zeigte sich der anfängliche Mehraufwand in der Einarbeitungsphase. Das konsequente Anlegen und Benennen von Branches sowie das Vorbereiten reviewfähiger Pull Requests erfordert Disziplin und erhöht zunächst den Zeitaufwand pro Änderung. Dieser Aufwand relativiert sich mit zunehmender Routine; er ist als Investition in die langfristige Transparenz und Nachvollziehbarkeit zu verstehen.
 
+Im Projektverlauf wurde außerdem festgestellt, dass die Coding-Conventions auskommentierten Code als Regelverletzung werten. Da vorübergehend deaktivierter Code in der Entwicklungsphase jedoch ein reguläres Mittel ist, wurde in Absprache mit dem Team eine pragmatische Regel eingeführt: In develop darf auskommentierter Code verbleiben, sofern er mit einem `// WARNING:`-Tag kenntlich gemacht wird. In Branches auf main-Richtung bleibt die ursprüngliche Regel weiterhin gültig.
+
+Zusätzlich wurde identifiziert, dass `.tmc`-Dateien (TwinCat-Maschinenkonfigurationen) in die `.gitignore` aufgenommen werden sollten. Diese Dateien enthalten maschinenspezifische Einstellungen, die nicht projektübergreifend versioniert werden sollen und bei fehlendem Eintrag zu unerwünschten Konflikten im Repository führen können.
+
+
 === Copilot Code-Review
 
 Das Copilot-gestützte Code-Review läuft analog zum Test-Repository. Jeder PR zu main wird automatisch gegen die Coding-Conventions geprüft; Befunde integrieren sich direkt in den Freigabeprozess.
@@ -620,11 +694,12 @@ Nach dem ersten Meilenstein (Virtuelle Inbetriebnahme) zog Alexandru folgende Bi
 - Falsch-Positive: Manchmal Meldungen für Variablen, die in FUP tatsächlich verwendet werden
 - Schweregrad-Einstufung: Copilot überschätzt manchmal die Kritikalität von Fehlern
 - Syntaxfehler in Vorschlägen: Strukturelle Verbesserungen erfordern teils manuelle Nachprüfung
+- Strukturelle Befunde: Copilot erkannte einen Strukturfehler im Code korrekt; der zugehörige automatische Verbesserungsvorschlag war jedoch syntaktisch fehlerhaft und hätte nicht direkt übernommen werden dürfen. Als Konsequenz wurde die Funktion „Commit Suggestion" deaktiviert, um ungeprüfte automatische Korrekturen zu verhindern.
+- Kommentarvorschläge: Bei Rechtschreib- und Formulierungsfehlern in Kommentaren lieferte Copilot konsistent gute und direkt anwendbare Verbesserungsvorschläge.
 
 Diese Rückmeldung deckt sich mit den Beobachtungen aus der Evaluation: Copilot liefert einen messbaren Mehrwert bei formalen und sprachlichen Qualitätsaspekten, benötigt bei domänenspezifischen SPS-Kontexten jedoch weiterhin menschliche Plausibilisierung. Besonders bei FUP-bezogenen Verwendungsstellen ist der semantische Kontext nicht immer vollständig ableitbar, was zu vereinzelten Falsch-Positiven führt.
 
 Für den Pilotbetrieb wurde deshalb ein pragmatischer Umgang festgelegt: Kritische oder strukturelle Empfehlungen werden als Prüfhinweis behandelt und erst nach manueller Verifikation umgesetzt; klar nachvollziehbare Formalverstöße können direkt korrigiert werden. Dadurch bleibt der Nutzen des automatisierten Reviews erhalten, ohne ungeprüfte Änderungen in den Codebestand zu übernehmen. Alexandru beurteilte den Gesamtnutzen nach dem ersten Meilenstein als positiv: Der Review-Aufwand für formale Aspekte sank spürbar, während der fachlich inhaltliche Review weiterhin manuell bleibt. Dieses Zusammenspiel aus automatisierter Formalkontrolle und menschlicher Fachkontrolle erwies sich als praxistaugliches Modell für die weitere Projektarbeit.
-
 
 = Projektmanagement mit ZenHub
 
@@ -634,7 +709,7 @@ Für die O-SW ist ZenHub ein strategisches Ergänzungselement zu den technischen
 
 ZenHub stellt dafür vier funktionale Bausteine bereit. Boards ermöglichen die operative Steuerung des Tagesgeschäfts, indem Issues per Drag-and-Drop durch konfigurierbare Spalten bewegt werden. Epics bündeln thematisch verwandte Issues zu übergeordneten Arbeitspaketen und ermöglichen damit eine strukturierte Fortschrittsverfolgung auf Funktions- oder Meilensteinebene. Roadmaps stellen die zeitliche Planung über Iterationen und Releases hinweg dar und machen Abhängigkeiten und kritische Pfade sichtbar. Automatisierungen schließlich reduzieren manuellen Verwaltungsaufwand, indem Statuswechsel regelbasiert ausgelöst werden, etwa wenn ein zugehöriger Pull Request gemergt wird.
 
-Die Kombination dieser Bausteine schafft eine zentrale, nachvollziehbare Planungs- und Kommunikationsstruktur, die unabhängig von Teamgröße skaliert.
+ Die Kombination dieser Bausteine schafft eine zentrale, nachvollziehbare Planungs- und Kommunikationsstruktur, die unabhängig von Teamgröße skaliert.
 
 == E-SW Prozess als Referenz
 
@@ -651,6 +726,12 @@ Das konkrete Vorgehen sieht vor, dass Issues für alle relevanten Arbeitspakete 
 Für die Board-Konfiguration wurden Spalten nach dem Muster Backlog → Planned → In Progress → Review → Done festgelegt. Diese Aufteilung spiegelt den tatsächlichen Arbeitsfluss wider: Ein Issue wandert von der Erfassung über die aktive Bearbeitung durch die Code-Review-Phase bis zur abgeschlossenen Integration. Die Rollen wurden klar definiert: Priorisierung und Release-Freigabe liegen bei der Teamleitung, die operative Aufgabenverwaltung bei den Entwicklern.
 
 ZenHub fungiert damit nicht als isoliertes Ticket-System, sondern als Verbindungselement zwischen technischer Umsetzung, Branching-Prozess und Release-Kommunikation. Issues, Pull Requests und Branches lassen sich in einem durchgängigen Ablauf verknüpfen, sodass Planungs- und Entwicklungsstand jederzeit konsistent und für alle Beteiligten einsehbar bleiben. Für die O-SW ist entscheidend, dass ZenHub nicht als administrativer Overhead verstanden wird, sondern als operatives Steuerungsinstrument, das den bestehenden GitHub-Workflow gezielt ergänzt.
+
+== Zwischenfazit zum Projektmanagement
+
+*Erkenntnis:* Die Kopplung von ZenHub mit Branching- und Review-Prozessen verbessert die organisatorische Steuerbarkeit, weil Planungs- und Entwicklungszustände auf denselben Artefakten aufbauen.
+
+*Implikation:* Besonders wirksam ist die Einführung dann, wenn Rollen für Priorisierung, Bearbeitung und Freigabe verbindlich definiert sind und Board-Status diszipliniert gepflegt werden.
 
 
 = Schulung und Wissenssicherung
@@ -721,6 +802,12 @@ Inhaltlich umfasst der Baustein die Installation und Einrichtung von VS Code ink
 
 Didaktisch folgt der Baustein dem gleichen Muster wie die übrigen Schulungskapitel: kompakte Einführung, standardisierte Schrittfolgen, Best Practices und typische Fehler. Nach Abschluss können die Teilnehmenden das VS-Code-Setup selbstständig durchführen, den täglichen GitHub-Workflow sicher anwenden, die XAE Shell korrekt als Komplement einsetzen und KI-Hinweise kritisch als Entscheidungshilfe bewerten. Damit werden nicht nur Bedienkenntnisse vermittelt, sondern ein verbindliches Verhaltensmodell für den Teamalltag etabliert.
 
+== Zwischenfazit zur Schulung und Wissenssicherung
+
+*Erkenntnis:* Die Wirksamkeit der technischen Maßnahmen hängt wesentlich davon ab, ob Prozesswissen, Tool-Bedienung und Rollenverständnis gemeinsam vermittelt werden.
+
+*Implikation:* Ein mehrstufiges Lernangebot aus Wiki, Präsentation und betreuter Praxis reduziert Einstiegshürden und stabilisiert die Anwendung der Standards im Tagesgeschäft.
+
 
 = Einführung im Team
 
@@ -732,6 +819,47 @@ Im zweiten Schritt wird die Anwendung in laufenden Projekten durch begleitete Pr
 Zur nachhaltigen Verankerung wird ergänzend ein leicht zugängliches Wissenspaket im internen Wiki bereitgestellt. Dieses umfasst Prozessbeschreibungen, Namenskonventionen, Standardabläufe für typische Branching-Situationen sowie Leitlinien zur Bewertung von Copilot-Hinweisen. Damit steht sowohl für Neueinsteiger als auch für erfahrene Mitarbeitende eine einheitliche Referenz zur Verfügung.
 
 Die Wirksamkeit der Einführung wird über regelmäßige Kurz-Reviews im Team überprüft. In diesen Terminen werden wiederkehrende Probleme gesammelt, Verbesserungsmaßnahmen beschlossen und dokumentiert. So entsteht ein kontinuierlicher Verbesserungsprozess, der technische Qualität und organisatorische Umsetzbarkeit gleichermaßen berücksichtigt.
+
+
+= Diskussion, Limitationen und Wirtschaftlichkeit
+
+== Einordnung der Ergebnisse
+
+Die Ergebnisse zeigen, dass die Kombination aus Branching-Regeln, Copilot-Review und integriertem Team-Management als Gesamtsystem wirkt. Einzelmaßnahmen erzeugen bereits lokale Verbesserungen, erreichen jedoch erst im Zusammenspiel eine stabile Wirkung auf Nachvollziehbarkeit, Qualitätskontrolle und Planbarkeit. Insbesondere die Kopplung von PR-Prozess und organisatorischer Aufgabensteuerung reduziert Schnittstellenverluste zwischen Entwicklung und Koordination.
+
+Die Evaluation belegt zugleich, dass technische Qualität nicht ausschließlich über Tooling entsteht. Der größte Effekt ergibt sich dort, wo präzise Regeln, klare Rollen und einheitliche Arbeitsabläufe zusammengeführt werden. Für die #gls("O-SW") bedeutet das, dass methodische Disziplin im Prozess genauso relevant ist wie die Auswahl der Werkzeuge.
+
+== Limitationen und Validität
+
+Die Aussagekraft der Ergebnisse unterliegt mehreren Limitationen:
+
+- *Interne Validität:* Die Untersuchung erfolgt in einem konkreten Unternehmenskontext mit begrenzter Teamgröße; individuelle Arbeitsstile können Ergebnisse mitprägen.
+- *Externe Validität:* Die Übertragbarkeit auf andere Domänen ist nicht vollständig gegeben, insbesondere bei abweichenden Toolketten oder Release-Modellen.
+- *Konstruktvalidität:* Ein Teil der Bewertung basiert auf semiquantitativen Trendkategorien statt auf durchgängigen numerischen Zeitreihen.
+- *Plattformeinfluss:* Beobachtete Effekte im Review-Prozess sind teilweise durch GitHub-Diff-Mechanismen bestimmt und nicht allein durch Copilot-Instruktionen steuerbar.
+
+Zur Minderung dieser Effekte wurden Iterationen klar getrennt, Maßnahmen isoliert bewertet und Befunde mit realen Repository-Änderungen abgeglichen. Dennoch bleiben Restrisiken, die in zukünftigen Auswertungszyklen mit erweiterten Datensätzen weiter reduziert werden sollten.
+
+== Wirtschaftliche Einordnung
+
+Die Einführung verursacht zunächst Mehraufwand durch Konzeption, Schulung und disziplinierte Prozessanwendung. Dem gegenüber stehen wiederkehrende Nutzenpotenziale im Betrieb:
+
+- frühere Erkennung formaler Qualitätsmängel,
+- geringerer Abstimmungsaufwand bei Priorisierung und Freigabe,
+- bessere Nachvollziehbarkeit für Übergaben, Onboarding und Fehlersuche.
+
+In der Gesamtabwägung ist der Ansatz wirtschaftlich plausibel, wenn die anfänglichen Einführungsaufwände durch kontinuierliche Nutzung verstetigt werden. Besonders relevant ist dabei die Skalierungswirkung: Mit wachsender Projektanzahl sinken die relativen Zusatzkosten pro Änderung, während standardisierte Abläufe mehrfach nutzbaren Nutzen erzeugen.
+
+== Governance-Empfehlungen für den Dauerbetrieb
+
+Für einen stabilen Langzeitbetrieb werden folgende Leitplanken empfohlen:
+
+- verbindliche Merge-Kriterien je Zielbranch,
+- regelmäßige Pflege und Versionierung der Conventions,
+- klar definierte Rollen für Priorisierung, Review und Freigabe,
+- periodische Prozess-Reviews anhand der in @Metriken beschriebenen Indikatoren.
+
+Diese Governance-Elemente sichern die Dauerhaftigkeit der eingeführten Methodik und reduzieren das Risiko einer schleichenden Rückkehr zu uneinheitlichen Arbeitsweisen.
 
 
 = Fazit

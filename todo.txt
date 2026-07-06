@@ -1,13 +1,11 @@
 todo:
-- erfahrungen alex david dokumentieren
+- robin arbeit schicken
 
-- vs code schulung
+- prompt bei hochsprache testen
 
-- lorem blöcke entfernen
+- promt in übersicht
 
-- copilot sagen, dass er mehrer requests machen soll, falls nötig
-
-- kuka steuerungen remote erreichen
+- warning tag über auskommentierte kommentare(pragma warning)
 
 hold:
 
@@ -18,6 +16,8 @@ hold:
 - twincat agents(nur für st brauchbar bis plc++)
 
 - agent toolchain erstellung pr's
+
+- kuka steuerungen remote erreichen
 
 erledigt:
 
@@ -73,3 +73,11 @@ Probleme Projekt Jakob -> FA3428
 - branch management in vscode
 
 - branching schulung
+
+- lorem blöcke entfernen
+
+- copilot sagen, dass er mehrer requests machen soll, falls nötig
+
+- prüfen, ob agents bleiben sollen
+
+- unterschiede agents skill prompt und instructions
