@@ -81,3 +81,5 @@ Probleme Projekt Jakob -> FA3428
 - prüfen, ob agents bleiben sollen
 
 - unterschiede agents skill prompt und instructions
+
+- verbesserungen robin umsetzen

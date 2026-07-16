@@ -48,7 +48,6 @@ Die Abgrenzung liegt darin, dass keine vollständige Reorganisation aller Untern
 
 Zur didaktisch klaren Einordnung folgt die Arbeit der Abfolge Ausgangslage, konzeptioneller Lösungsansatz, fachliche Grundlagen, Evaluation im Testkontext, Pilotierung im Projekt, organisatorische Implementierung und Schulung sowie abschließendes Fazit.
 
-
 = Forschungsfragen und Methodik
 
 == Forschungsfragen
@@ -463,6 +462,11 @@ Um aussagekräftige und vergleichbare Ergebnisse zu erzielen, wurde eine einheit
 
 Wurde eine Iteration mit einer Anpassung der Conventions oder Instruktionen abgeschlossen, wurde der zugehörige Pull Request geschlossen und ein neuer erstellt. Dadurch startet jede Iteration unter vergleichbaren Bedingungen mit einem frischen Diff, was die Isolation der Änderungseffekte sicherstellt. Diese Vorgehensweise verhindert, dass nachträgliche Anpassungen am selben Pull Request die Bewertung der Review-Qualität verfälschen. Jede Iteration basiert damit auf einem klar abgegrenzten Testzustand mit nachvollziehbarer Historie.
 
+Als Referenzbasis für die Iterationshistorie wurden die geschlossenen Pull Requests des Test-Repositories herangezogen.
+Für die vorliegende Auswertung wurden 60 aktiv getestete und anschließend geschlossene Pull Requests berücksichtigt.
+
+Die quantitative Detailauswertung in dieser Arbeit fokussiert jedoch bewusst auf den abgegrenzten Verlauf der virtuellen Inbetriebnahme im Projekt GIRA, um eine einheitliche Vergleichsbasis innerhalb desselben Projektabschnitts sicherzustellen.
+
 == Evaluationsergebnisse und Verbesserungszyklen
 
 === Iteration 1: Präzision der Conventions
@@ -676,7 +680,7 @@ Als besonders positiv wurde festgehalten, dass der Pull-Request-Übergang als na
 
 Als Herausforderung zeigte sich der anfängliche Mehraufwand in der Einarbeitungsphase. Das konsequente Anlegen und Benennen von Branches sowie das Vorbereiten reviewfähiger Pull Requests erfordert Disziplin und erhöht zunächst den Zeitaufwand pro Änderung. Dieser Aufwand relativiert sich mit zunehmender Routine; er ist als Investition in die langfristige Transparenz und Nachvollziehbarkeit zu verstehen.
 
-Im Projektverlauf wurde außerdem festgestellt, dass die Coding-Conventions auskommentierten Code als Regelverletzung werten. Da vorübergehend deaktivierter Code in der Entwicklungsphase jedoch ein reguläres Mittel ist, wurde in Absprache mit dem Team eine pragmatische Regel eingeführt: In develop darf auskommentierter Code verbleiben, sofern er mit einem `// WARNING:`-Tag kenntlich gemacht wird. In Branches auf main-Richtung bleibt die ursprüngliche Regel weiterhin gültig.
+Im Projektverlauf wurde außerdem festgestellt, dass die Coding-Conventions auskommentierten Code als Regelverletzung werten. Da vorübergehend deaktivierter Code in der Entwicklungsphase jedoch ein reguläres Mittel ist, wurde in Absprache mit dem Team eine pragmatische Regel eingeführt: In develop darf auskommentierter Code verbleiben, sofern er mit einem `{warning 'ToDo:'}`-Tag kenntlich gemacht wird. In Branches auf main-Richtung bleibt die ursprüngliche Regel weiterhin gültig.
 
 Zusätzlich wurde identifiziert, dass `.tmc`-Dateien (TwinCat-Maschinenkonfigurationen) in die `.gitignore` aufgenommen werden sollten. Diese Dateien enthalten maschinenspezifische Einstellungen, die nicht projektübergreifend versioniert werden sollen und bei fehlendem Eintrag zu unerwünschten Konflikten im Repository führen können.
 
@@ -700,6 +704,29 @@ Nach dem ersten Meilenstein (Virtuelle Inbetriebnahme) zog Alexandru folgende Bi
 Diese Rückmeldung deckt sich mit den Beobachtungen aus der Evaluation: Copilot liefert einen messbaren Mehrwert bei formalen und sprachlichen Qualitätsaspekten, benötigt bei domänenspezifischen SPS-Kontexten jedoch weiterhin menschliche Plausibilisierung. Besonders bei FUP-bezogenen Verwendungsstellen ist der semantische Kontext nicht immer vollständig ableitbar, was zu vereinzelten Falsch-Positiven führt.
 
 Für den Pilotbetrieb wurde deshalb ein pragmatischer Umgang festgelegt: Kritische oder strukturelle Empfehlungen werden als Prüfhinweis behandelt und erst nach manueller Verifikation umgesetzt; klar nachvollziehbare Formalverstöße können direkt korrigiert werden. Dadurch bleibt der Nutzen des automatisierten Reviews erhalten, ohne ungeprüfte Änderungen in den Codebestand zu übernehmen. Alexandru beurteilte den Gesamtnutzen nach dem ersten Meilenstein als positiv: Der Review-Aufwand für formale Aspekte sank spürbar, während der fachlich inhaltliche Review weiterhin manuell bleibt. Dieses Zusammenspiel aus automatisierter Formalkontrolle und menschlicher Fachkontrolle erwies sich als praxistaugliches Modell für die weitere Projektarbeit.
+
+Zur semiquantitativen Einordnung wurde für den Verlauf der virtuellen Inbetriebnahme im Projekt GIRA folgende Stichprobe betrachtet (n = 40 Copilot-Befunde):
+
+#figure(table(
+  columns: (2.2fr, 1fr, 1fr),
+  inset: 8pt,
+  align: (left, right, right),
+  stroke: 0.5pt + gray,
+  [*Kategorie*], [*Anzahl*], [*Anteil*],
+  [Korrekt erkannte Befunde], [25], [62,5 %],
+  [Manuelle Prüfung erforderlich], [13], [32,5 %],
+  [Falsch-Positive], [2], [5,0 %],
+  [*Summe*], [*40*], [*100 %*],
+), caption: "Semiquantitative Befundauswertung (GIRA, virtuelle Inbetriebnahme)")<GiraBefunde>
+
+Die 2 Falsch-Positiven traten überwiegend in Situationen auf, in denen Copilot FUP-Kontexte in TwinCat nicht eindeutig interpretieren konnte. Die 13 manuell zu prüfenden Befunde entstanden bis auf 2 Fälle durch temporär auskommentierten Code oder projektbedingte Workarounds während der Entwicklungsphase.
+
+Für diesen Fall wurde eine verbindliche Teamregel festgelegt: Auskommentierter Code ist in der Entwicklungsphase zulässig, sofern direkt darüber ein `{warning 'ToDo:'}`-Hinweis steht, dass der betroffene Abschnitt vor Release entweder entfernt oder wieder in Betrieb genommen werden muss. Dieser Hinweis sorgt innerhalb der XAE Shell für eine Warnung im Fehlerfenster. Dies wurde im Anschluss auch in den Copilot Anweisungen eingearbeitet, dass hier bei einem PR in develop kein Fehler angemerkt wird.
+
+Ergänzend wurde aus vergleichbaren Projekten ähnlicher Größenordnung eine explizite Schätzung dokumentiert: Ohne den eingeführten Review-Ansatz verbleiben schätzungsweise rund 100 kleinere Benennungs- und Rechtschreibfehler (Variablen und Kommentare) zunächst unentdeckt und werden häufig erst in späteren Wartungsphasen sichtbar. Diese Zahl ist als Erfahrungswert zu verstehen und variiert zwischen Entwicklern und Projekten teils deutlich. Im neuen Ablauf wurden solche formalen Fehler im betrachteten Projektabschnitt nicht mehr als spätere Wartungsbefunde festgestellt, da sie bereits im PR-Prozess adressiert wurden. 
+Allerdings kann mit sehr hoher Sicherheit sagen, dass durch die neuen Review-Abläufe keine Strukturfehler mehr vorhanden sind, die unter ganz bestimmten, und nicht beachteten Umständen, zu Fehlern geführt hätten.
+
+Zeitlich zeigt sich im Pilotbetrieb eine Verschiebung des Aufwands: Reviews auf `feature/* -> develop` dauern tendenziell länger als zuvor, da sie vorher nicht vorhanden waren, während Reviews auf `develop -> main` deutlich entlastet werden und statt mehrerer Stunden in der Regel unter einer Stunde abgeschlossen werden können.
 
 = Projektmanagement mit ZenHub
 
@@ -847,6 +874,39 @@ Die Einführung verursacht zunächst Mehraufwand durch Konzeption, Schulung und 
 - frühere Erkennung formaler Qualitätsmängel,
 - geringerer Abstimmungsaufwand bei Priorisierung und Freigabe,
 - bessere Nachvollziehbarkeit für Übergaben, Onboarding und Fehlersuche.
+
+Für die O-SW wird die Wirtschaftlichkeit hier als pragmatische Kosten-Nutzen-Prognose auf Basis der zusätzlichen Toolkosten und der erwarteten Zeiteinsparung modelliert.
+Die Zeiteinsparung ist hier nur eine Schätzung und kann je nach Mitarbeiter stark variieren.
+
+*Zusätzliche Lizenzkosten (monatlich):*
+
+- Copilot Business: 7 Lizenzen für Experten `19,99€ * 7` = `139,93€`
+- ZenHub: 7 Lizenzen für Experten und betroffene Nutzer  `4,99€ * 7` = `34,39€`
+- Summe Zusatzkosten/Monat = `174,32€`
+
+*Nutzenannahme für die O-SW (jährlich):*
+
+- Anzahl Betroffener Mitarbeiter: 25
+- Zeiteinsparung pro Mitarbeiter pro Monat: 10
+- Interner Stundensatz: `//ToDo: x EUR/Stunde`
+
+Damit ergibt sich als einfache Nutzenformel:
+
+#figure(caption: "Nutzenformel",
+  math.equation(block: true,
+    $"Monatlicher Nutzen" = 25_"Mitarbeiter" * 10_"Stunden/Mitarbeiter/Monat" * x_"EUR/Stunde"$
+  )
+)
+
+Die Wirtschaftlichkeit ist gegeben, wenn gilt:
+
+#figure(caption: "Break-even-Bedingung", 
+  math.equation(block: true,
+    $"Jährlicher Nutzen" > "Zusatzkosten/Jahr"$
+  )
+)
+
+Auf Grundlage der Pilotbeobachtung ist diese Annahme plausibel: Obwohl frühere PR-Phasen (`feature/* -> develop`) mehr Disziplin und Zeit erfordern, sinkt der Aufwand in integrationsnahen Freigaben (`develop -> main`) deutlich. Zusätzlich reduziert die frühere Erkennung formaler Mängel späte Nacharbeit in Wartungsphasen.
 
 In der Gesamtabwägung ist der Ansatz wirtschaftlich plausibel, wenn die anfänglichen Einführungsaufwände durch kontinuierliche Nutzung verstetigt werden. Besonders relevant ist dabei die Skalierungswirkung: Mit wachsender Projektanzahl sinken die relativen Zusatzkosten pro Änderung, während standardisierte Abläufe mehrfach nutzbaren Nutzen erzeugen.
 
