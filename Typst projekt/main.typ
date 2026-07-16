@@ -880,21 +880,34 @@ Die Zeiteinsparung ist hier nur eine Schätzung und kann je nach Mitarbeiter sta
 
 *Zusätzliche Lizenzkosten (monatlich):*
 
-- Copilot Business: 7 Lizenzen für Experten `19,99€ * 7` = `139,93€`
+- Copilot Business: 25 Lizenzen für Programmierer `19,99€ * 25` = `499,75€`
 - ZenHub: 7 Lizenzen für Experten und betroffene Nutzer  `4,99€ * 7` = `34,39€`
-- Summe Zusatzkosten/Monat = `174,32€`
+- Summe Zusatzkosten/Monat = `534,14€`
 
-*Nutzenannahme für die O-SW (jährlich):*
+*Nutzenannahme für die O-SW (monatlich):*
 
-- Anzahl Betroffener Mitarbeiter: 25
-- Zeiteinsparung pro Mitarbeiter pro Monat: 10
-- Interner Stundensatz: `//ToDo: x EUR/Stunde`
+Zur Berechnung des Nutzens mussten einige Annahmen und Schätzungen getroffen werden, da hier genaue Zahlen nicht verfügbar sind.
+
+Die Nutzenannahme kann in zwei Bereiche aufgeteilt werden. Zum einen der primäre Nutzen durch schnellere Entwicklung und zum anderen der Nutzen einer Erleichterte Servicearbeit durch lesbareren Code. Vom ersten Punkt sind hier rund 25 Programmierer betroffen, welche laut groben Schätzung von Alexandru und David sich auf 4 Stunden pro Mitarbeiter pro Monat belaufen.
+Die Kosten die pro Mitarbeiter pro Stunde anfallen, werden hier mit 85€ beanschlagt, was in etwa dem Industriedurchschnitt entspricht. 
+
+Der zweite Teil, also den Nutzen in der Servicearbeit betrifft etwa 8 Mitarbeiter. Eine Schätzung der Abteilungsleitung Simon Schweighart besagt, dass die Hotline Mitarbeiter pro Monat etwa 3 Stunden pro Person einsparen können, wenn der Code klar lesbar und verständlich ist. Hier wird wieder der gleiche Stundensatz wie bei Programmierern angenommen. 
+
+- Anzahl Betroffener Programmierer: `25` 
+- Zeiteinsparung pro Programmierer pro Monat: `4h`
+\ 
+- Anzahl Betroffener Hotliner: `8`
+- Zeiteinsparung pro Hotliner pro Monat: `3h`
+\
+
+- Interner Stundensatz: `85 €/h`
+\ 
 
 Damit ergibt sich als einfache Nutzenformel:
 
-#figure(caption: "Nutzenformel",
+#figure(caption: "Nutzenformel Programmierung",
   math.equation(block: true,
-    $"Monatlicher Nutzen" = 25_"Mitarbeiter" * 10_"Stunden/Mitarbeiter/Monat" * x_"EUR/Stunde"$
+    $10.540 frac("€","Monat") = \ (25 "Programmierer" * 4 frac("h","Programmierer/Monat") + 8 "Hotliner" * 3 frac("h","Hotliner/Monat") )* 85frac("€","h")$
   )
 )
 
@@ -902,11 +915,12 @@ Die Wirtschaftlichkeit ist gegeben, wenn gilt:
 
 #figure(caption: "Break-even-Bedingung", 
   math.equation(block: true,
-    $"Jährlicher Nutzen" > "Zusatzkosten/Jahr"$
+    $"Monatlicher Nutzen" > "Zusatzkosten/Monat" \ 
+     10.540 frac("€","Monat") > 534,14 frac("€","Monat")$
   )
 )
 
-Auf Grundlage der Pilotbeobachtung ist diese Annahme plausibel: Obwohl frühere PR-Phasen (`feature/* -> develop`) mehr Disziplin und Zeit erfordern, sinkt der Aufwand in integrationsnahen Freigaben (`develop -> main`) deutlich. Zusätzlich reduziert die frühere Erkennung formaler Mängel späte Nacharbeit in Wartungsphasen.
+
 
 In der Gesamtabwägung ist der Ansatz wirtschaftlich plausibel, wenn die anfänglichen Einführungsaufwände durch kontinuierliche Nutzung verstetigt werden. Besonders relevant ist dabei die Skalierungswirkung: Mit wachsender Projektanzahl sinken die relativen Zusatzkosten pro Änderung, während standardisierte Abläufe mehrfach nutzbaren Nutzen erzeugen.
 
