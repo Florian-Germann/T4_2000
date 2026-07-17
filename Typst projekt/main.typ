@@ -465,7 +465,7 @@ Wurde eine Iteration mit einer Anpassung der Conventions oder Instruktionen abge
 Als Referenzbasis für die Iterationshistorie wurden die geschlossenen Pull Requests des Test-Repositories herangezogen.
 Für die vorliegende Auswertung wurden 60 aktiv getestete und anschließend geschlossene Pull Requests berücksichtigt.
 
-Die quantitative Detailauswertung in dieser Arbeit fokussiert jedoch bewusst auf den abgegrenzten Verlauf der virtuellen Inbetriebnahme im Projekt GIRA, um eine einheitliche Vergleichsbasis innerhalb desselben Projektabschnitts sicherzustellen.
+Die quantitative Detailauswertung in dieser Arbeit fokussiert jedoch bewusst auf den abgegrenzten Verlauf der virtuellen Inbetriebnahme im Projekt GIRA, um eine einheitliche Vergleichsbasis innerhalb desselben Projektabschnitts sicherzustellen. Die in den Kennzahlen ausgewiesene Teilstichprobe (n = 40) wurde gezielt auf den einheitlich dokumentierten Projektabschnitt mit vergleichbaren Randbedingungen begrenzt.
 
 == Evaluationsergebnisse und Verbesserungszyklen
 
@@ -724,7 +724,7 @@ Die 2 Falsch-Positiven traten überwiegend in Situationen auf, in denen Copilot 
 Für diesen Fall wurde eine verbindliche Teamregel festgelegt: Auskommentierter Code ist in der Entwicklungsphase zulässig, sofern direkt darüber ein `{warning 'ToDo:'}`-Hinweis steht, dass der betroffene Abschnitt vor Release entweder entfernt oder wieder in Betrieb genommen werden muss. Dieser Hinweis sorgt innerhalb der XAE Shell für eine Warnung im Fehlerfenster. Dies wurde im Anschluss auch in den Copilot Anweisungen eingearbeitet, dass hier bei einem PR in develop kein Fehler angemerkt wird.
 
 Ergänzend wurde aus vergleichbaren Projekten ähnlicher Größenordnung eine explizite Schätzung dokumentiert: Ohne den eingeführten Review-Ansatz verbleiben schätzungsweise rund 100 kleinere Benennungs- und Rechtschreibfehler (Variablen und Kommentare) zunächst unentdeckt und werden häufig erst in späteren Wartungsphasen sichtbar. Diese Zahl ist als Erfahrungswert zu verstehen und variiert zwischen Entwicklern und Projekten teils deutlich. Im neuen Ablauf wurden solche formalen Fehler im betrachteten Projektabschnitt nicht mehr als spätere Wartungsbefunde festgestellt, da sie bereits im PR-Prozess adressiert wurden. 
-Allerdings kann mit sehr hoher Sicherheit sagen, dass durch die neuen Review-Abläufe keine Strukturfehler mehr vorhanden sind, die unter ganz bestimmten, und nicht beachteten Umständen, zu Fehlern geführt hätten.
+Für den ausgewerteten Projektabschnitt und die betrachteten PRs kann mit hoher Sicherheit gesagt werden, dass durch die neuen Review-Abläufe keine relevanten Strukturfehler mehr verblieben sind, die unter bestimmten und zuvor nicht beachteten Umständen zu Fehlern geführt hätten.
 
 Zeitlich zeigt sich im Pilotbetrieb eine Verschiebung des Aufwands: Reviews auf `feature/* -> develop` dauern tendenziell länger als zuvor, da sie vorher nicht vorhanden waren, während Reviews auf `develop -> main` deutlich entlastet werden und statt mehrerer Stunden in der Regel unter einer Stunde abgeschlossen werden können.
 
@@ -875,39 +875,33 @@ Die Einführung verursacht zunächst Mehraufwand durch Konzeption, Schulung und 
 - geringerer Abstimmungsaufwand bei Priorisierung und Freigabe,
 - bessere Nachvollziehbarkeit für Übergaben, Onboarding und Fehlersuche.
 
-Für die O-SW wird die Wirtschaftlichkeit hier als pragmatische Kosten-Nutzen-Prognose auf Basis der zusätzlichen Toolkosten und der erwarteten Zeiteinsparung modelliert.
-Die Zeiteinsparung ist hier nur eine Schätzung und kann je nach Mitarbeiter stark variieren.
+Für die O-SW wird die Wirtschaftlichkeit als pragmatische Kosten-Nutzen-Prognose auf Basis zusätzlicher Toolkosten und erwarteter Zeiteinsparung modelliert. Die Zeiteinsparung ist dabei eine explizite Schätzung und kann je nach Projekt und Mitarbeiter deutlich variieren.
 
 *Zusätzliche Lizenzkosten (monatlich):*
 
-- Copilot Business: 25 Lizenzen für Programmierer `19,99€ * 25` = `499,75€`
-- ZenHub: 7 Lizenzen für Experten und betroffene Nutzer  `4,99€ * 7` = `34,39€`
-- Summe Zusatzkosten/Monat = `534,14€`
+- Copilot Business: 25 Lizenzen für Programmierer (19,99 EUR \* 25 = 499,75 EUR)
+- ZenHub: 7 Lizenzen für Experten und betroffene Nutzer (4,99 EUR \* 7 = 34,93 EUR)
+- Summe Zusatzkosten/Monat: 534,68 EUR
 
 *Nutzenannahme für die O-SW (monatlich):*
 
-Zur Berechnung des Nutzens mussten einige Annahmen und Schätzungen getroffen werden, da hier genaue Zahlen nicht verfügbar sind.
+Zur Berechnung des Nutzens wurden Annahmen getroffen, da keine vollständigen Zeitreihen für alle Projekte vorliegen.
 
-Die Nutzenannahme kann in zwei Bereiche aufgeteilt werden. Zum einen der primäre Nutzen durch schnellere Entwicklung und zum anderen der Nutzen einer Erleichterte Servicearbeit durch lesbareren Code. Vom ersten Punkt sind hier rund 25 Programmierer betroffen, welche laut groben Schätzung von Alexandru und David sich auf 4 Stunden pro Mitarbeiter pro Monat belaufen.
-Die Kosten die pro Mitarbeiter pro Stunde anfallen, werden hier mit 85€ beanschlagt, was in etwa dem Industriedurchschnitt entspricht. 
+Die Nutzenannahme wird in zwei Bereiche aufgeteilt: erstens beschleunigte Entwicklung und zweitens erleichterte Servicearbeit durch besser lesbaren Code. Vom ersten Bereich sind 25 Programmierer betroffen. Nach einer groben Schätzung von Alexandru und David beträgt die monatliche Einsparung 4 Stunden je Programmierer.
 
-Der zweite Teil, also den Nutzen in der Servicearbeit betrifft etwa 8 Mitarbeiter. Eine Schätzung der Abteilungsleitung Simon Schweighart besagt, dass die Hotline Mitarbeiter pro Monat etwa 3 Stunden pro Person einsparen können, wenn der Code klar lesbar und verständlich ist. Hier wird wieder der gleiche Stundensatz wie bei Programmierern angenommen. 
+Der zweite Bereich betrifft die Servicearbeit mit etwa 8 Hotline-Mitarbeitern. Eine Schätzung der Abteilungsleitung (Simon Schweighart) geht von rund 3 Stunden Einsparung pro Person und Monat aus, wenn der Code klar lesbar und nachvollziehbar ist. Für beide Bereiche wird ein interner Stundensatz von 85 EUR/h angesetzt.
 
-- Anzahl Betroffener Programmierer: `25` 
-- Zeiteinsparung pro Programmierer pro Monat: `4h`
-\ 
-- Anzahl Betroffener Hotliner: `8`
-- Zeiteinsparung pro Hotliner pro Monat: `3h`
-\
-
-- Interner Stundensatz: `85 €/h`
-\ 
+- Anzahl betroffener Programmierer: 25
+- Zeiteinsparung je Programmierer und Monat: 4 h
+- Anzahl betroffener Hotliner: 8
+- Zeiteinsparung je Hotliner und Monat: 3 h
+- Interner Stundensatz: 85 EUR/h
 
 Damit ergibt sich als einfache Nutzenformel:
 
-#figure(caption: "Nutzenformel Programmierung",
+#figure(caption: "Nutzenformel (monatlich)",
   math.equation(block: true,
-    $10.540 frac("€","Monat") = \ (25 "Programmierer" * 4 frac("h","Programmierer/Monat") + 8 "Hotliner" * 3 frac("h","Hotliner/Monat") )* 85frac("€","h")$
+    $"Monatlicher Nutzen" = (25 * 4 + 8 * 3) * 85 = 10.540 "EUR"$
   )
 )
 
@@ -915,12 +909,33 @@ Die Wirtschaftlichkeit ist gegeben, wenn gilt:
 
 #figure(caption: "Break-even-Bedingung", 
   math.equation(block: true,
-    $"Monatlicher Nutzen" > "Zusatzkosten/Monat" \ 
-     10.540 frac("€","Monat") > 534,14 frac("€","Monat")$
+    $"Monatlicher Nutzen" > "Zusatzkosten/Monat"$
   )
 )
 
+Für die hier angesetzten Werte gilt:
 
+#figure(caption: "Vergleich Nutzen zu Zusatzkosten", 
+  math.equation(block: true,
+    $10.540 "EUR" > 534,68 "EUR"$
+  )
+)
+
+Damit liegt der monatliche Nutzwert rechnerisch deutlich über den zusätzlichen Lizenzkosten. Diese Aussage ist als Prognose zu verstehen und sollte nach Einführung mit Ist-Daten (z. B. PR-Durchlaufzeiten, Nacharbeitszeiten und Serviceaufwände) validiert werden.
+
+Zur Einordnung der Robustheit wurden ergänzend zwei einfache Szenarien betrachtet:
+
+#figure(table(
+  columns: (1.8fr, 1.5fr, 1.5fr, 1.5fr),
+  inset: 8pt,
+  align: (left, right, right, right),
+  stroke: 0.5pt + gray,
+  [*Szenario*], [*Monatlicher Nutzen*], [*Zusatzkosten/Monat*], [*Saldo/Monat*],
+  [Konservativ (50 % des geschätzten Nutzens)], [5.270 EUR], [534,68 EUR], [4.735,32 EUR],
+  [Realistisch (volle Schätzung)], [10.540 EUR], [534,68 EUR], [10.005,32 EUR],
+), caption: "Szenariovergleich zur Wirtschaftlichkeit")<Wirtschaftsszenarien>
+
+Auch im konservativen Szenario bleibt der berechnete Nutzen deutlich oberhalb der zusätzlichen Lizenzkosten.
 
 In der Gesamtabwägung ist der Ansatz wirtschaftlich plausibel, wenn die anfänglichen Einführungsaufwände durch kontinuierliche Nutzung verstetigt werden. Besonders relevant ist dabei die Skalierungswirkung: Mit wachsender Projektanzahl sinken die relativen Zusatzkosten pro Änderung, während standardisierte Abläufe mehrfach nutzbaren Nutzen erzeugen.
 

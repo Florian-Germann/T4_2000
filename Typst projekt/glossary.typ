@@ -5,7 +5,7 @@
   ),
   (
     key: "E-SW",
-    description: "Entwicklung Software - Abteilung bei der fpt Systems GmbH, welche die Entwicklung neuer FlexOp Versionen und anderer Hochsprachenprojekten übernimmt",
+    description: "Entwicklung Software - Abteilung bei der fpt Systems GmbH, welche die Entwicklung neuer FlexOp-Versionen und anderer Hochsprachenprojekte übernimmt",
   ),
   (
     key: "FlexOp",
