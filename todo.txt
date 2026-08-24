@@ -1,0 +1,85 @@
+todo:
+- robin arbeit schicken
+
+- prompt bei hochsprache testen
+
+- promt in übersicht
+
+- warning tag über auskommentierte kommentare(pragma warning)
+
+hold:
+
+- compilierbarkeit in PR
+
+- steuerung mit dev überbügeln
+
+- twincat agents(nur für st brauchbar bis plc++)
+
+- agent toolchain erstellung pr's
+
+- kuka steuerungen remote erreichen
+
+erledigt:
+
+extensions ins Repositorie
+
+remotedesktopverbindung in vscode öffnen -> nicht möglich wegen mremote bug
+
+template in test Repositorie
+
+- extensions in workspace
+
+Probleme Projekt Jakob -> FA3428
+- gitignore unvollständig
+
+- merge konflikte datenbank
+
+- kein Repo Experte
+
+- test repo löschen/einfügen
+
+- ref to convention einarbeiten
+
+- refactoring datei in gitignore
+
+- robin abklären extensions
+
+- workflow kompletter code analysieren -> möglich, aber teuer
+
+- copilot nur diff gemeckert -> sieht nur diff
+
+- code review agent erstellen
+
+- test repo agent testen
+
+- agent legt review in md ab
+
+- agent legt issues auf github an
+
+- direkter commit dev klären 
+
+- review publisher(label discussion/ copilot review: am anfang)
+
+- großes review stdLib
+
+- std lib mergen
+
+- powerpoint teammeeting vorbereiten
+
+- CaseConveying Lib Review
+
+- PalletConveying Lib Review
+
+- branch management in vscode
+
+- branching schulung
+
+- lorem blöcke entfernen
+
+- copilot sagen, dass er mehrer requests machen soll, falls nötig
+
+- prüfen, ob agents bleiben sollen
+
+- unterschiede agents skill prompt und instructions
+
+- verbesserungen robin umsetzen
