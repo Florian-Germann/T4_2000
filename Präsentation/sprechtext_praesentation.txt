@@ -1,0 +1,154 @@
+Sprechtext zur Präsentation T4_2000
+Dauer: ca. 17 Minuten Vortrag + 3 Minuten Fragen
+
+Hinweis zur Nutzung:
+- Der Text ist folienweise aufgebaut.
+- Die Zeitangaben sind Richtwerte.
+- Du kannst pro Folie 1-2 Sätze kürzen, falls du unter 17 Minuten bleiben willst.
+
+------------------------------------------------------------
+Folie 1 - Titelseite (ca. 0:30 min)
+------------------------------------------------------------
+"Guten Tag zusammen. Ich stelle heute meine Studienarbeit T4_2000 vor.
+Der Titel lautet: Konzeption und Implementierung eines GitHub-basierten Branching-, Review- und Projektmanagementprozesses mit KI-gestützter Code-Compliance.
+Ich zeige Ihnen die Ausgangslage, den Lösungsansatz, die Evaluation sowie die Ergebnisse aus der Pilotierung im Projektkontext."
+
+------------------------------------------------------------
+Folie 2 - Agenda und Zeitplan (ca. 0:45 min)
+------------------------------------------------------------
+"Kurz zum Ablauf: Zuerst gehe ich auf Ausgangslage und Zielbild ein.
+Dann folgen Forschungsfragen und Methodik.
+Im Hauptteil zeige ich die Branching-Entscheidung, die Evaluation des Copilot-Review-Ansatzes und die Pilotierung im Projekt GIRA.
+Danach kommen ZenHub, Einführung im Team, Wirtschaftlichkeit und Fazit.
+Die reine Vortragszeit beträgt etwa 17 Minuten, danach gerne Fragen."
+
+------------------------------------------------------------
+Folie 3 - Ausgangslage und Zielbild (ca. 1:45 min)
+------------------------------------------------------------
+"Die Ausgangslage in der O-SW war durch vier zentrale Problemfelder geprägt.
+Erstens gab es kein durchgängig einheitliches Branching. Das erhöhte Konfliktrisiken bei Merges und erschwerte die Nachvollziehbarkeit.
+Zweitens war die Planung von Aufgaben und Releases nur begrenzt transparent, weil viele Abstimmungen mündlich oder per E-Mail liefen.
+Drittens war die formale Codequalitätsprüfung im TwinCat-Umfeld schwierig, weil klassische Linting-Mechanismen nicht in allen Bereichen verfügbar waren.
+Viertens gab es Medienbrüche in der Entwicklungsumgebung durch den Wechsel zwischen verschiedenen Tools.
+Das Zielbild war deshalb ein durchgängiger Prozess von der Planung bis zum Merge - mit klaren Rollen, klaren Regeln und belastbaren Qualitäts-Gates."
+
+------------------------------------------------------------
+Folie 4 - Forschungsfragen (ca. 1:30 min)
+------------------------------------------------------------
+"Die Arbeit basiert auf vier Forschungsfragen.
+Erstens: Verbessert ein angepasstes Git-Flow-Modell Stabilität und Nachvollziehbarkeit?
+Zweitens: Welchen Beitrag leisten Copilot-gestützte Reviews zur Erkennung von Regelverstößen?
+Drittens: Reduziert ZenHub den Abstimmungsaufwand und erhöht die Transparenz im Team?
+Viertens: Unter welchen organisatorischen und technischen Bedingungen ist das kombinierte Modell dauerhaft tragfähig?
+Damit ist der Fokus nicht nur technisch, sondern immer auch organisatorisch auf den realen Teamalltag gerichtet."
+
+------------------------------------------------------------
+Folie 5 - Methodisches Vorgehen (ca. 1:45 min)
+------------------------------------------------------------
+"Methodisch wurde iterativ vorgegangen: Analyse, Konzeption, Test, Pilotierung und Verstetigung.
+Für die Evaluation gab es ein isoliertes Test-Repository mit reproduzierbaren Pull-Request-Zyklen.
+So konnten Änderungen an Conventions und Instruktionen kontrolliert geprüft werden, ohne produktive Projekte zu beeinflussen.
+Die Datengrundlage bestand aus 60 aktiv getesteten und geschlossenen Test-PRs.
+Für die quantifizierte Einordnung im Projektkontext wurde eine Teilstichprobe von n gleich 40 im Abschnitt virtuelle Inbetriebnahme verwendet.
+Bewertet wurde vor allem über Befundpräzision, Unterdrückungsanfälligkeit sowie Prozess- und Koordinationsaspekte."
+
+------------------------------------------------------------
+Folie 6 - Branching-Entscheidung (ca. 1:45 min)
+------------------------------------------------------------
+"Bei der Branching-Wahl wurde GitHub-Flow mit Git-Flow verglichen.
+GitHub-Flow ist sehr schlank und passt gut zu häufigen, kontinuierlichen Releases.
+Im O-SW-Kontext stehen jedoch meilensteinorientierte Freigaben und stabile Zwischenstände im Vordergrund.
+Daher ist eine klarere Trennung von Entwicklungs- und Integrationspfaden erforderlich.
+Die Entscheidung fiel deshalb auf ein angepasstes Git-Flow-Modell, weil es Rückverfolgbarkeit, Planbarkeit und stabile Integrationspfade besser unterstützt."
+
+------------------------------------------------------------
+Folie 7 - Evaluation Iteration 1 und 2 (ca. 2:00 min)
+------------------------------------------------------------
+"In Iteration 1 zeigte sich: Copilot konnte zwar grundsätzlich prüfen, aber die Regeln waren anfangs zu unpräzise.
+Die Maßnahme war, Conventions klarer zu formulieren und eindeutig referenzierbar zu machen.
+Dadurch stieg die Befundqualität spürbar.
+In Iteration 2 trat ein Plattformeffekt auf: Hinweise wurden bei Umbenennungen teilweise unterdrückt.
+Wichtig war hier die Erkenntnis, dass das nicht nur ein Modellproblem ist, sondern mit der GitHub-Diff-Logik zusammenhängt.
+Als Gegenmaßnahme wurde eine Anti-Suppression-Strategie eingeführt, bei der Verstöße zusätzlich an stabilen Fundstellen gemeldet werden."
+
+------------------------------------------------------------
+Folie 8 - Evaluation Iteration 3 und 4 (ca. 2:00 min)
+------------------------------------------------------------
+"Iteration 3 adressierte die Balance zwischen Präzision und Nutzbarkeit.
+Zu restriktive Instruktionen verbesserten zwar Reviews, schränkten aber die Assistenz im Alltag ein.
+Durch gezielte Anpassung blieb die Review-Präzision hoch und der Assistenzmodus wurde wieder flexibler.
+Iteration 4 schloss einen methodischen blinden Fleck:
+PR-Reviews sehen nur geänderte Zeilen im Diff, nicht den gesamten Bestandscode.
+Deshalb wurde zusätzlich eine repositoryweite Bestandscode-Analyse eingeführt.
+Die Kernaussage aus allen Iterationen ist: KI-Review ist wirksam, wenn Conventions präzise sind und Prozessregeln sauber umgesetzt werden."
+
+------------------------------------------------------------
+Folie 9 - Pilotierung im Projekt GIRA (ca. 1:45 min)
+------------------------------------------------------------
+"Die erarbeiteten Ansätze wurden im Projekt GIRA während der virtuellen Inbetriebnahme pilotiert.
+Die Branching-Regeln wurden insgesamt stabil eingehalten, und Pull Requests wirkten als früher Qualitätskontrollpunkt.
+Wie erwartet gab es anfangs Mehraufwand durch konsequente Branch-Nutzung und saubere PR-Vorbereitung.
+Aus der Praxis wurden zwei wichtige Teamregeln festgelegt:
+Erstens auskommentierter Code in develop nur mit klarer ToDo-Kennzeichnung.
+Zweitens .tmc-Dateien in .gitignore, um maschinenspezifische Konflikte im Repository zu vermeiden."
+
+------------------------------------------------------------
+Folie 10 - Pilot-Ergebnisse n = 40 (ca. 1:45 min)
+------------------------------------------------------------
+"In der betrachteten Stichprobe von 40 Copilot-Befunden waren 25 korrekt, also 62,5 Prozent.
+13 Befunde, also 32,5 Prozent, erforderten manuelle Prüfung.
+2 Befunde, also 5 Prozent, waren falsch-positiv.
+Das zeigt einen klaren Mehrwert bei formalen und sprachlichen Verstößen.
+Gleichzeitig bleibt bei SPS-spezifischer Semantik die menschliche Plausibilisierung zwingend notwendig.
+Praktisch verschiebt sich der Aufwand dadurch sinnvoll nach vorne: frühe PR-Reviews werden gründlicher, späte Freigaben werden entlastet."
+
+------------------------------------------------------------
+Folie 11 - Projektmanagement mit ZenHub (ca. 1:30 min)
+------------------------------------------------------------
+"Neben der technischen Seite wurde auch die organisatorische Steuerung verbessert.
+Mit ZenHub wurde ein einheitlicher Board-Flow umgesetzt: Backlog, Planned, In Progress, Review und Done.
+Größere Arbeitspakete werden über Epics strukturiert, Release-Abhängigkeiten über Roadmaps sichtbar gemacht.
+Der zentrale Vorteil ist die direkte Kopplung von Issues, Branches und Pull Requests.
+Dadurch steigen Transparenz, Priorisierungssicherheit und Verbindlichkeit in der Zusammenarbeit zwischen Entwicklung und Koordination."
+
+------------------------------------------------------------
+Folie 12 - Einführung und Wissenssicherung (ca. 1:15 min)
+------------------------------------------------------------
+"Für die Einführung wurde ein stufenweises Vorgehen gewählt, um laufende Projekte nicht zu stören.
+Zuerst eine Basisschulung mit Branching, PR-Freigabe und ZenHub-Nutzung.
+Danach begleitete Praxisphasen in realen Projekten.
+Ergänzend wurde ein Wissenspaket im Wiki aufgebaut, damit Standards, Namensregeln und typische Abläufe dauerhaft verfügbar sind.
+Regelmäßige Kurz-Reviews sorgen dafür, dass Probleme früh erkannt und Prozesse kontinuierlich verbessert werden."
+
+------------------------------------------------------------
+Folie 13 - Wirtschaftlichkeit (ca. 1:30 min)
+------------------------------------------------------------
+"Zur Wirtschaftlichkeit wurden monatliche Zusatzkosten und Nutzen gegenübergestellt.
+Die zusätzlichen Lizenzkosten für Copilot Business und ZenHub liegen bei 534,68 Euro pro Monat.
+Der geschätzte monatliche Nutzen durch Zeitersparnis in Entwicklung und Service liegt bei 10.540 Euro.
+Selbst im konservativen Szenario mit nur 50 Prozent dieses Nutzens bleiben rund 5.270 Euro.
+Damit liegt der Nutzen in beiden Szenarien deutlich über den Zusatzkosten.
+Wichtig ist: Das ist eine belastbare Prognose, die im Dauerbetrieb mit Ist-Daten weiter validiert werden sollte."
+
+------------------------------------------------------------
+Folie 14 - Fazit (ca. 1:15 min)
+------------------------------------------------------------
+"Das wichtigste Ergebnis ist das Zusammenspiel der Maßnahmen.
+Branching, Copilot-Review und ZenHub entfalten den größten Effekt als Gesamtsystem, nicht als Einzelmaßnahme.
+KI-Review erhöht die formale Qualität deutlich, ersetzt aber keine fachliche Bewertung durch erfahrene Entwickler.
+Für langfristigen Erfolg sind klare Governance-Regeln, Schulung und kontinuierliche Messung entscheidend.
+Damit liegt eine praktikable Grundlage für einen durchgängigen GitHub-basierten Entwicklungs- und Steuerungsprozess in der O-SW vor."
+
+------------------------------------------------------------
+Folie 15 - Fragen (ca. 0:15 min Übergang)
+------------------------------------------------------------
+"Vielen Dank für die Aufmerksamkeit.
+Ich freue mich auf Ihre Fragen und auf die Diskussion."
+
+------------------------------------------------------------
+Optionale Reserve (falls du schneller bist)
+------------------------------------------------------------
+Wenn Zeit übrig ist, kannst du ergänzen:
+1) Konkretes Beispiel für Anti-Suppression bei Umbenennungen.
+2) Konkrete Erfahrung aus dem Pilotprojekt zur Entlastung bei develop -> main Reviews.
+3) Ausblick: Welche Kennzahlen ihr als Nächstes regelmäßig tracken wollt (z. B. PR-Durchlaufzeit, Nacharbeitsquote, Konflikthäufigkeit).

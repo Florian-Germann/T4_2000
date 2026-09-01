@@ -1,0 +1,17 @@
+Kurzfassung der Projektarbeit T4_2000
+
+Die vorliegende Arbeit befasst sich mit der Konzeption und praktischen Einführung eines GitHub-basierten Prozessmodells für die O-SW der fpt Systems GmbH. Ausgangspunkt waren vier zentrale Problemfelder: uneinheitliche Branching-Abläufe, fehlende Transparenz in der Aufgaben- und Release-Planung, begrenzte formale Codequalitätsprüfung im TwinCat-Umfeld sowie eine nicht durchgängig integrierte Entwicklungsumgebung. Ziel war ein konsistenter End-to-End-Prozess von der Planung über die Entwicklung und Prüfung bis zur Freigabe.
+
+Methodisch wurde ein anwendungsorientiertes, iteratives Vorgehen gewählt. Neben der Konzeption wurden Maßnahmen in einem isolierten Test-Repository evaluiert und anschließend im Projektkontext pilotiert. Die Bewertung erfolgte qualitativ und semiquantitativ anhand von Prozess- und Qualitätsmetriken, unter anderem Befundpräzision, Unterdrückungsanfälligkeit und Koordinationsaufwand.
+
+Im Bereich Branching wurde ein angepasstes Git-Flow-Modell als geeignetste Strategie identifiziert. Im Gegensatz zu GitHub-Flow unterstützt dieses Modell die Anforderungen meilensteinorientierter Anlagenprojekte mit mehreren stabilen Entwicklungsständen besser. Die klare Trennung von Branch-Rollen und verbindlichen Pull-Request-Übergängen erhöhte Nachvollziehbarkeit und Integrationsstabilität.
+
+Für die Codequalität wurde ein Copilot-gestützter Review-Ansatz eingeführt und über vier Iterationen verbessert. Zentrale Erkenntnis war, dass die Wirksamkeit der KI wesentlich von präzisen, referenzierbaren Conventions und klaren Instruktionen abhängt. Gleichzeitig zeigte sich ein plattformbedingter Einfluss durch GitHub-Diff-Mechanismen, insbesondere bei Umbenennungen. Durch eine Anti-Suppression-Strategie und ergänzende Bestandscode-Analyse konnten diese Grenzen prozessual adressiert werden.
+
+In der Pilotierung im Projekt GIRA bestätigte sich die grundsätzliche Praxistauglichkeit. Das Branching wurde stabil angewendet, Pull Requests fungierten als wirksamer Qualitätskontrollpunkt, und Copilot lieferte insbesondere bei formalen und sprachlichen Befunden einen deutlichen Mehrwert. In der ausgewerteten Teilstichprobe (n = 40) wurden 62,5 % der Befunde korrekt erkannt, 32,5 % erforderten manuelle Prüfung und 5,0 % waren falsch-positiv. Gleichzeitig blieb die fachliche Plausibilisierung durch erfahrene Entwickler, insbesondere bei SPS-spezifischer Semantik, unverzichtbar.
+
+Zur organisatorischen Einbettung wurde ZenHub als integriertes Planungswerkzeug betrachtet und auf die O-SW übertragen. Die Kopplung von Issues, Branches und Pull Requests verbesserte die Transparenz von Verantwortlichkeiten, Prioritäten und Release-Abhängigkeiten. Ergänzend wurden Schulungs- und Wissenssicherungsmaßnahmen definiert, um die neuen Standards dauerhaft im Team zu verankern.
+
+Die wirtschaftliche Einordnung zeigt eine plausible positive Kosten-Nutzen-Relation. Den monatlichen Zusatzkosten von 534,68 EUR steht ein geschätzter monatlicher Nutzen von 10.540 EUR gegenüber; selbst im konservativen Szenario verbleibt ein deutlicher positiver Saldo.
+
+Insgesamt kommt die Arbeit zu dem Ergebnis, dass nicht Einzelmaßnahmen, sondern erst das abgestimmte Zusammenspiel aus Branching-Strategie, KI-gestütztem Review, Projektmanagement und Schulung eine nachhaltige Prozessverbesserung ermöglicht. Für den Dauerbetrieb werden klare Governance-Regeln, regelmäßige Pflege der Conventions und kontinuierliche Messung zentraler Prozessindikatoren empfohlen.
